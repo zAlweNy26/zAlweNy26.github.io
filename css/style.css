@@ -1,0 +1,136 @@
+* {
+	font-family: Roboto, sans-serif;
+	color: black;
+	font-size: 16px;
+}
+
+html {
+	background-image: url('../img/rainbow_space.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: fixed;
+}
+
+.my-card {
+	background-color: rgb(114, 137, 218);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19),0 6px 6px rgba(0,0,0,0.23);
+	max-width: 100%;
+	position: relative;
+	border-radius: 10px;
+}
+
+.my-card-picture img {
+	border-radius: 50%;
+	width: 128px;
+	height: 128px;
+	box-shadow: 0 10px 20px rgba(0,0,0,0.19),0 6px 6px rgba(0,0,0,0.23);
+}
+
+#discord {
+	margin-top: 24px;
+	border-radius: 10px;
+	margin-bottom: 18px;
+	box-shadow: 0 10px 20px rgba(0,0,0,0.19),0 6px 6px rgba(0,0,0,0.23);
+}
+
+.steam-card {
+	background-color: rgb(40, 40, 40);
+	max-width: 100%;
+	position: relative;
+	border-radius: 10px;
+	box-shadow: 0 10px 20px rgba(0,0,0,0.19),0 6px 6px rgba(0,0,0,0.23);
+}
+
+.steam-content, .git-content {
+	margin-left: -7px;
+	height: 68px;
+}
+
+.git-content { height: 68px; }
+
+.steam-content p, .git-content p { color: white; }
+
+#steamicon {
+	margin-left: 7px;
+	overflow: hidden;
+	border-radius: 10px;
+}
+
+#steamnick, #steamlogoff, #steamdate, #gitnick { margin-left: 80px; }
+
+#steamnick { margin-top: -70px; }
+
+#steamlogoff {
+	margin-top: -3px;
+	font-size: 14px;
+}
+
+#steamdate {
+	margin-top: -7px;
+	font-size: 12px;
+}
+
+#steamlevel {
+	border-radius: 50%;
+  	width: 36px;
+  	height: 36px;
+  	padding: 4px;
+  	border: 2px solid rgb(100, 100, 100);
+	text-align: center;
+	margin-left: 310px;
+	margin-top: -30px;
+}
+
+.git-card {
+	background-color: rgb(40, 40, 40);
+	max-width: 100%;
+	position: relative;
+	border-radius: 10px;
+	box-shadow: 0 10px 20px rgba(0,0,0,0.19),0 6px 6px rgba(0,0,0,0.23);
+}
+
+#giticon {
+	margin-left: 7px;
+	overflow: hidden;
+	width: 68px;
+	height: 68px;
+	border-radius: 10px;
+	border: 2px solid white;
+	vertical-align: middle;
+}
+
+#gitnick { margin-top: -46px; }
+
+.git-content p a { font-size: 14px; }
+
+#gitfollowers { margin-top: -43px; }
+
+#gitfollowers, #gitfollowing, #gitrepos { 
+	margin-left: 230px;
+	font-size: 14px;
+}
+
+.vertical-center {
+	min-height: 100%;
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+}
+
+.comp {
+	vertical-align: middle;
+	margin-bottom: 5px;
+}
+
+.my-card-picture { padding-top:2rem; }
+
+.is-horizontal-center { justify-content: center; }
+
+.icon {
+  	vertical-align: middle;
+  	border-radius: 50%;
+}
+
+.bold { font-weight: bold; }
+
+.press { font-size: 12px; }
