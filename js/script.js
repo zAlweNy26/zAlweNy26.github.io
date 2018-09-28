@@ -1,10 +1,9 @@
 var previous = null, current = null, previous1 = null, current1 = null, previous2 = null, current2 = null;
+
 setInterval(function () {
   $.getJSON("https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=6F02CBC0085858AF9A58B3465B9952E4&steamids=76561198154675159", function (steam) {
     current = JSON.stringify(steam);
-    if (previous && current && previous !== current) {
-      location.reload();
-    }
+    if (previous && current && previous !== current) $('.steam-content').load(document.URL + ' .steam-content');
     previous = current;
     $('.steamurl').attr("href", steam.response.players[0].profileurl);
     $('#steamicon').attr("src", steam.response.players[0].avatarmedium);
@@ -44,9 +43,7 @@ setInterval(function () {
 setInterval(function () {
   $.getJSON("https://api.steampowered.com/IPlayerService/GetSteamLevel/v1/?key=6F02CBC0085858AF9A58B3465B9952E4&steamid=76561198154675159", function (steam) {
     current1 = JSON.stringify(steam);
-    if (previous1 && current1 && previous1 !== current1) {
-      location.reload();
-    }
+    if (previous1 && current1 && previous1 !== current1) $('#steamlevel').load(document.URL + ' #steamlevel');
     previous1 = current1;
     $('#steamlevel').html(steam.response.player_level);
   });
@@ -55,9 +52,7 @@ setInterval(function () {
 setInterval(function () {
   $.getJSON("https://api.github.com/users/zAlweNy26?client_id=9b8f70a67801fd08fed1&client_secret=a71e8f21e522647cde778a0ee7d17db5a6b433d5", function (git) {
     current2 = JSON.stringify(git);
-    if (previous2 && current2 && previous2 !== current2) {
-      location.reload();
-    }
+    if (previous2 && current2 && previous2 !== current2) $('.git-content').load(document.URL + ' .git-content');
     previous2 = current2;
     $('.giturl').attr("href", git.html_url);
     $('#giticon').attr("src", git.avatar_url);
