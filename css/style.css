@@ -104,28 +104,26 @@ html {
 	overflow: hidden;
 	width: 92px;
 	height: 92px;
+	float: left;
 	border-radius: 10px;
 	border: 2px solid rgb(225, 0, 0);
 }
 
 #ytnick {
-	margin-top: -90px;
-	margin-left: 95px;
-	margin-bottom: 5px;
 	text-align: center;
 	font-weight: bold;
+	margin-top: 10px;
+	float: left;
+	margin-left: 10% !important;
 }
 
-#ytinfos {
-	overflow: hidden;
-	margin-left: 80px;
-}
+#ytinfos { overflow: hidden; }
 
 #ytsubs, #ytvideos, #ytviews, #ytsince { 
 	font-size: 14px;
-	margin-left: 6%;
+	margin-left: 3.5%;
+	float: left;
 	text-align: center;
-	margin-bottom: 10px;
 }
 
 .vertical-center {
