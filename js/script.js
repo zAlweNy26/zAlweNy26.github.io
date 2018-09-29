@@ -1,3 +1,10 @@
+var keys = {
+  STEAM: CryptoJS.AES.decrypt("U2FsdGVkX18y9I2sBjzVb0wM58VhiM5D5+08NZt8hR7WHQNg4CYp9hu+k43mq5yl/k8M6URnvq2qgYxjo0tITQ==", "Alwe").toString(CryptoJS.enc.Utf8),
+  GOOGLE: CryptoJS.AES.decrypt("U2FsdGVkX1+sCE5TTd3uCSuLkC3Drt+lMBIIlcHCYMzI2GDERUzblmRJgJq42m7g/xDQSjsKOavi/IBYVt8mnw==", "Alwe").toString(CryptoJS.enc.Utf8),
+  GITHUB: CryptoJS.AES.decrypt("U2FsdGVkX1+4rZWRZ6lc1/vLA5A4iowER5TxsjQRwxQCuNsb58cLgb1SpINAsVJv4vHg6e9i8oTkTk4VWs9vIg==", "Alwe").toString(CryptoJS.enc.Utf8),
+  GITHUBID: CryptoJS.AES.decrypt("U2FsdGVkX195If0+o4hG8auWzkA5a07tfW+nQvLs6Hs8rTYzUcSH2rgfjaxjIwX1", "Alwe").toString(CryptoJS.enc.Utf8),
+}
+
 var previous = null, current = null, previous1 = null, current1 = null, previous2 = null, current2 = null, previous3 = null, current3 = null;
 
 setInterval(function () {
