@@ -1,7 +1,7 @@
 var previous = null, current = null, previous1 = null, current1 = null, previous2 = null, current2 = null, previous3 = null, current3 = null;
 
 setInterval(function () {
-  $.getJSON("https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=6F02CBC0085858AF9A58B3465B9952E4&steamids=76561198154675159", function (steam) {
+  $.getJSON("https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=" + keys.STEAM + "&steamids=76561198154675159", function (steam) {
     current = JSON.stringify(steam);
     if (previous && current && previous !== current) {
       $('.steam-content').load(document.URL + ' .steam-content');
@@ -42,7 +42,7 @@ setInterval(function () {
 }, 1000);
 
 setInterval(function () {
-  $.getJSON("https://api.steampowered.com/IPlayerService/GetSteamLevel/v1/?key=6F02CBC0085858AF9A58B3465B9952E4&steamid=76561198154675159", function (steam) {
+  $.getJSON("https://api.steampowered.com/IPlayerService/GetSteamLevel/v1/?key=" + keys.STEAM + "&steamid=76561198154675159", function (steam) {
     current1 = JSON.stringify(steam);
     if (previous1 && current1 && previous1 !== current1) $('#steamlevel').load(document.URL + ' #steamlevel');
     previous1 = current1;
@@ -51,7 +51,7 @@ setInterval(function () {
 }, 1000);
 
 setInterval(function () {
-  $.getJSON("https://api.github.com/users/zAlweNy26?client_id=9b8f70a67801fd08fed1&client_secret=a71e8f21e522647cde778a0ee7d17db5a6b433d5", function (git) {
+  $.getJSON("https://api.github.com/users/zAlweNy26?client_id=" + keys.GITHUBID + "&client_secret=" + keys.GITHUB, function (git) {
     current2 = JSON.stringify(git);
     if (previous2 && current2 && previous2 !== current2) $('.git-content').load(document.URL + ' .git-content');
     previous2 = current2;
@@ -64,7 +64,7 @@ setInterval(function () {
   });
 }, 1000);
 
-$.getJSON("https://www.googleapis.com/youtube/v3/channels?part=snippet%2Cstatistics&forUsername=PlayerInsideIT&key=AIzaSyByAZMWWepZNwDqCu2uvrqAy7NPz6rabZ0", function (yt) {
+$.getJSON("https://www.googleapis.com/youtube/v3/channels?part=snippet%2Cstatistics&forUsername=PlayerInsideIT&key=" + keys.GOOGLE, function (yt) {
   $('.yturl').attr("href", "https://www.youtube.com/channel/" + yt.items[0].id);
   $('#yticon').attr("src", yt.items[0].snippet.thumbnails.medium.url);
   $('#ytnick').html(yt.items[0].snippet.title + " <span id='favyt'><span class='redbra'>[</span> Favourite Youtuber <span class='redbra'>]</span></span>");
