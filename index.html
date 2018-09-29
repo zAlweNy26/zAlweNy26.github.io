@@ -35,10 +35,10 @@
                     <p>
                       I'm Daniele Nicosia also known as zAlweNy26, I'm 17 years old, I'm from Trapani, Sicily, Italy
                       and I <i style="color: red;" class="fa fa-heart" aria-hidden="true"></i> coding and playing videogames !
-                      <p class="has-text-centered bold">About programming :</p>
+                      <p class="has-text-centered" style="font-weight: bold;">About programming :</p>
                       The programming languages I used and I'm using right now are : C, C++, JavaScript, Java and Python.
                       I also know a bit of HTML5 and CSS3.<br><br>
-                      <p class="has-text-centered bold">About videogames :</p>
+                      <p class="has-text-centered" style="font-weight: bold;">About videogames :</p>
                       I generally like all kinds of games, but specifically :<br>
                       I like Survival/Adventure games, MOBA, a bit the FPS/TPS games and I LOVE all kinds of RPG games !!!
                       I like playing with people and confronting me, but I generally like singleplayer games as well :D
@@ -55,26 +55,30 @@
             <div class="column is-narrow">
               <div class="steam-card">
                 <div class="steam-content">
-                  <a class="steamurl" href="" target="_blank"><img id="steamicon" alt="Steam Profile Image" src=""></a>
-                  <a class="steamurl" href="" target="_blank"><p id="steamnick"></p></a>
-                  <p id="steamlogoff"></p>
-                  <p id="steamlevel"></p>
-                  <p id="steamdate"></p>
+                  <div style="overflow: hidden;">
+                    <a class="steamurl" href="" target="_blank"><img id="steamicon" alt="Steam Profile Image" src=""></a>
+                    <a class="steamurl" href="" target="_blank"><p id="steamnick"></p></a><br>
+                    <p id="steamlogoff"></p><br>
+                    <p id="steamdate"></p>
+                    <p id="steamlevel"></p>
+                  </div>
                 </div>
               </div>
               <iframe id="discord" src="https://discordapp.com/widget?id=380469557040644098&theme=dark" 
-                width="350" height="558" allowtransparency="true" frameborder="0"></iframe>
+                width="350" height="548" allowtransparency="true" frameborder="0"></iframe>
               <div class="git-card">
                 <div class="git-content">
-                  <a class="giturl" href="" target="_blank"><img id="giticon" alt="GitHub Profile Image" src=""></a>
-                  <a class="giturl" href="" target="_blank"><p id="gitnick"></p></a>
-                  <p id="gitfollowers"></p>
-                  <p id="gitfollowing"></p>
-                  <p id="gitrepos"></p>
+                  <div style="overflow: hidden;">
+                    <a class="giturl" href="" target="_blank"><img id="giticon" alt="GitHub Profile Image" src=""></a>
+                    <a class="giturl" href="" target="_blank"><p id="gitnick"></p></a><br>
+                    <p id="gitfollowers"></p>
+                    <p id="gitfollowing"></p>
+                    <p id="gitrepos"></p>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="column is-narrow specs">
+            <div class="column is-narrow">
               <div class="my-card">
                 <div class="card-content">
                   <div class="media">
@@ -105,6 +109,18 @@
                       <img class="comp" src="img/psu.png"></a>&nbsp;&nbsp;&nbsp;VS550 Corsair 550 Watt<br><br>
                       <b class="press">Press an icon for more details on the product.</b>
                     </p>
+                  </div>
+                </div>
+              </div>
+              <div class="yt-card is-horizontal-center">
+                <div class="yt-content">
+                  <a class="yturl" href="" target="_blank"><img id="yticon" alt="Youtuber Image" src=""></a>
+                  <a class="yturl" href="" target="_blank"><p id="ytnick"></p></a>
+                  <div id="ytinfos">
+                    <p style="float: left;" id="ytvideos"></p>
+                    <p style="float: left;" id="ytviews"></p>
+                    <p style="float: left;" id="ytsubs"></p>
+                    <p style="float: left;" id="ytsince"></p>
                   </div>
                 </div>
               </div>

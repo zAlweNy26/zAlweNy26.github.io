@@ -1,14 +1,15 @@
-var previous = null, current = null, previous1 = null, current1 = null, previous2 = null, current2 = null;
+var previous = null, current = null, previous1 = null, current1 = null, previous2 = null, current2 = null, previous3 = null, current3 = null;
 
 setInterval(function () {
   $.getJSON("https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=6F02CBC0085858AF9A58B3465B9952E4&steamids=76561198154675159", function (steam) {
     current = JSON.stringify(steam);
-    if (previous && current && previous !== current) $('.steam-content').load(document.URL + ' .steam-content');
+    if (previous && current && previous !== current) {
+      $('.steam-content').load(document.URL + ' .steam-content');
+    }
     previous = current;
     $('.steamurl').attr("href", steam.response.players[0].profileurl);
-    $('#steamicon').attr("src", steam.response.players[0].avatarmedium);
+    $('#steamicon').attr("src", steam.response.players[0].avatarfull);
     $('#steamnick').html(steam.response.players[0].personaname);
-    $('#steamname').html(steam.response.players[0].realname);
     let a = new Date(steam.response.players[0].lastlogoff * 1000);
     let months = ['January', 'February', 'March', 'April', 'May', 'June',
       'July', 'August', 'September', 'October', 'November', 'December'];
@@ -57,8 +58,24 @@ setInterval(function () {
     $('.giturl').attr("href", git.html_url);
     $('#giticon').attr("src", git.avatar_url);
     $('#gitnick').html(git.login);
-    $('#gitfollowers').html(git.followers + "<a href='https://github.com/zAlweNy26?tab=followers' target='_blank'> Followers</a>");
-    $('#gitfollowing').html(git.following + "<a href='https://github.com/zAlweNy26?tab=following' target='_blank'> Following</a>");
-    $('#gitrepos').html(git.public_repos + "<a href='https://github.com/zAlweNy26?tab=repositories' target='_blank'> Repositories</a>");
+    $('#gitfollowers').html("<a class='gitlink' href='https://github.com/" + git.login + "?tab=followers' target='_blank'> Followers</a><br>" + git.followers);
+    $('#gitfollowing').html("<a class='gitlink' href='https://github.com/" + git.login + "?tab=following' target='_blank'> Following</a><br>" + git.following);
+    $('#gitrepos').html("<a class='gitlink' href='https://github.com/" + git.login + "?tab=repositories' target='_blank'> Repositories</a><br>" + git.public_repos);
   });
 }, 1000);
+
+$.getJSON("https://www.googleapis.com/youtube/v3/channels?part=snippet%2Cstatistics&forUsername=PlayerInsideIT&key=AIzaSyByAZMWWepZNwDqCu2uvrqAy7NPz6rabZ0", function (yt) {
+  $('.yturl').attr("href", "https://www.youtube.com/channel/" + yt.items[0].id);
+  $('#yticon').attr("src", yt.items[0].snippet.thumbnails.medium.url);
+  $('#ytnick').html(yt.items[0].snippet.title + " <span id='favyt'><span class='redbra'>[</span> Favourite Youtuber <span class='redbra'>]</span></span>");
+  let a = new Date(yt.items[0].snippet.publishedAt);
+  let year = a.getFullYear(), month = a.getMonth(), day = a.getDate();
+  if (day < 10) day = "0" + day;
+  if (month < 10) month = "0" + (parseInt(month) + 1);
+  else month = month + 1;
+  let created = day + '/' + month + '/' + year;
+  $('#ytsubs').html("<span style='color: rgb(225, 0, 0)'>Subscribers</span><br>" + parseInt(yt.items[0].statistics.subscriberCount).toLocaleString());
+  $('#ytvideos').html("<span style='color: rgb(225, 0, 0)'>Uploads</span><br>" + parseInt(yt.items[0].statistics.videoCount).toLocaleString());
+  $('#ytviews').html("<span style='color: rgb(225, 0, 0)'>Views</span><br>" + parseInt(yt.items[0].statistics.viewCount).toLocaleString());
+  $('#ytsince').html("<span style='color: rgb(225, 0, 0)'>Created at</span><br>" + created);
+});
