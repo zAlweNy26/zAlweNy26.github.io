@@ -89,8 +89,10 @@ $.getJSON("https://kitsu.io/api/edge/anime?filter[text]=trigun", function (anime
   $('#animeicon').attr("src", anime.data[0].attributes.posterImage.tiny);
   $('#animenick').html("<span id='favanime'>Favourite Anime</span><br>" + anime.data[0].attributes.titles.en);
   $('#animerate').html("<span style='color: rgb(225, 0, 0)'>Rating</span><br>" + anime.data[0].attributes.averageRating + " %");
-  $('#animestart').html("<span style='color: rgb(225, 0, 0)'>Start Date</span><br>" + anime.data[0].attributes.startDate);
-  $('#animeend').html("<span style='color: rgb(225, 0, 0)'>End Date</span><br>" + anime.data[0].attributes.endDate);
+  let datePart1 = anime.data[0].attributes.startDate.match(/\d+/g), year1 = datePart1[0], month1 = datePart1[1], day1 = datePart1[2];
+  let datePart2 = anime.data[0].attributes.endDate.match(/\d+/g), year2 = datePart2[0], month2 = datePart2[1], day2 = datePart2[2];
+  $('#animestart').html("<span style='color: rgb(225, 0, 0)'>Start Date</span><br>" + day1 + '/' + month1 + '/' + year1);
+  $('#animeend').html("<span style='color: rgb(225, 0, 0)'>End Date</span><br>" + day2 + '/' + month2 + '/' + year2);
   $('#animeepisodes').html("<span style='color: rgb(225, 0, 0)'>Episodes</span><br>" + anime.data[0].attributes.episodeCount);
   $('#animeeplength').html("<span style='color: rgb(225, 0, 0)'>Episodes Length</span><br>" + anime.data[0].attributes.episodeLength + " minutes");
   let nsfw;
