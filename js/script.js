@@ -85,7 +85,7 @@ $.getJSON("https://www.googleapis.com/youtube/v3/channels?part=snippet%2Cstatist
 });
 
 $.getJSON("https://kitsu.io/api/edge/anime?filter[text]=trigun", function (anime) {
-  $('.animeurl').attr("href", "https://kitsu.io/anime/trigun" + anime.data[0].attributes.slug);
+  $('.animeurl').attr("href", "https://kitsu.io/anime/" + anime.data[0].attributes.slug);
   $('#animeicon').attr("src", anime.data[0].attributes.posterImage.tiny);
   $('#animenick').html("<span id='favanime'>Favourite Anime</span><br>" + anime.data[0].attributes.titles.en);
   $('#animerate').html("<span style='color: rgb(225, 0, 0)'>Rating</span><br>" + anime.data[0].attributes.averageRating + " %");
