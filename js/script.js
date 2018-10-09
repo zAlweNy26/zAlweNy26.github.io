@@ -5,7 +5,7 @@ var keys = {
   GITHUBID: CryptoJS.AES.decrypt("U2FsdGVkX195If0+o4hG8auWzkA5a07tfW+nQvLs6Hs8rTYzUcSH2rgfjaxjIwX1", "Alwe").toString(CryptoJS.enc.Utf8)
 }
 
-var previous = null, current = null, previous1 = null, current1 = null, previous2 = null, current2 = null;
+var previous = null, current = null, previous1 = null, current1 = null;
 
 setInterval(function () {
   $.getJSON("https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=" + keys.STEAM + "&steamids=76561198154675159", function (steam) {
@@ -44,36 +44,13 @@ setInterval(function () {
     }
     $('#steamicon').css({ "border": "2px solid " + status });
   });
-}, 500);
-
-setInterval(function () {
-  $.getJSON("https://api.steampowered.com/IPlayerService/GetSteamLevel/v1/?key=" + keys.STEAM + "&steamid=76561198154675159", function (steam) {
-    current1 = JSON.stringify(steam);
-    if (previous1 && current1 && previous1 !== current1) $('#steamlevel').load(document.URL + ' #steamlevel');
-    previous1 = current1;
-    let colors = ["rgb(155, 155, 155)", "rgb(190, 40, 65)", "rgb(215, 90, 65)", "rgb(255, 205, 35)",
-      "rgb(70, 120, 60)", "rgb(80, 140, 220)", "rgb(120, 80, 200)",
-      "rgb(195, 80, 200)", "rgb(85, 35, 55)", "rgb(155, 125, 80)"], colorlevel = null, level = steam.response.player_level;
-    $('#steamlevel').html(level);
-    for (let i = 0, mul = 0, stop = 0; i < 2; i++) {
-      if (level >= 0 + mul && level <= 9 + mul) {
-        stop = 1;
-        colorlevel = colors[mul/10];
-      }
-      if (stop == 0) {
-        i = 0;
-        mul+= 10;
-      }
-    }
-    $('#steamlevel').css({ "border": "2px solid " + colorlevel });
-  });
 }, 1000);
 
 setInterval(function () {
   $.getJSON("https://www.googleapis.com/youtube/v3/channels?part=snippet%2Cstatistics&forUsername=PlayerInsideIT&key=" + keys.GOOGLE, function (yt) {
-    current2 = JSON.stringify(yt);
-    if (previous2 && current2 && previous2 !== current2) $('#steamlevel').load(document.URL + ' #steamlevel');
-    previous2 = current2;
+    current1 = JSON.stringify(yt);
+    if (previous1 && current1 && previous1 !== current1) $('#steamlevel').load(document.URL + ' #steamlevel');
+    previous1 = current1;
     $('.yturl').attr("href", "https://www.youtube.com/channel/" + yt.items[0].id);
     $('#yticon').attr("src", yt.items[0].snippet.thumbnails.medium.url);
     $('#ytnick').html("<span id='favyt'>Favourite Youtuber</span><br>" + yt.items[0].snippet.title);
@@ -83,10 +60,25 @@ setInterval(function () {
   });
 }, 1000);
 
+$.getJSON("https://api.steampowered.com/IPlayerService/GetSteamLevel/v1/?key=" + keys.STEAM + "&steamid=76561198154675159", function (steam) {
+  let colors = ["rgb(155, 155, 155)", "rgb(190, 40, 65)", "rgb(215, 90, 65)", "rgb(255, 205, 35)",
+    "rgb(70, 120, 60)", "rgb(80, 140, 220)", "rgb(120, 80, 200)",
+    "rgb(195, 80, 200)", "rgb(85, 35, 55)", "rgb(155, 125, 80)"], colorlevel = null, level = steam.response.player_level;
+  $('#steamlevel').html(level);
+  for (let i = 0, mul = 0, stop = 0; i < 2; i++) {
+    if (level >= 0 + mul && level <= 9 + mul) {
+      stop = 1;
+      colorlevel = colors[mul/10];
+    }
+    if (stop == 0) {
+      i = 0;
+      mul+= 10;
+    }
+  }
+  $('#steamlevel').css({ "border": "2px solid " + colorlevel });
+});
+
 $.getJSON("https://api.github.com/users/zAlweNy26?client_id=" + keys.GITHUBID + "&client_secret=" + keys.GITHUB, function (git) {
-  current2 = JSON.stringify(git);
-  if (previous2 && current2 && previous2 !== current2) $('.git-content').load(document.URL + ' .git-content');
-  previous2 = current2;
   $('.giturl').attr("href", git.html_url);
   $('#giticon').attr("src", git.avatar_url);
   $('#gitnick').html(git.login);

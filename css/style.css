@@ -206,6 +206,15 @@ html {
 	margin-bottom: 18px;
 	display: block;
 	text-align: center;
+}
+
+.sub {
+	font-size: 25px;
+	margin-top: -22px;
+	margin-bottom: -5px;
+}
+
+.about, .sub {
 	background-image: -webkit-gradient(linear, left top, right top, 
 		color-stop(0.350, #e81d1d), 
 		color-stop(0.375, #ff3300), 
