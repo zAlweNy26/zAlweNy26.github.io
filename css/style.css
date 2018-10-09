@@ -4,11 +4,44 @@
 	font-size: 16px;
 }
 
-html {
-	background-image: url('../img/rainbow_space.jpg');
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: fixed;
+.rainbow { 
+  height: 100%;
+  width: 100%;
+  left:0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+	background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
+	background-size: 1800% 1800%;
+	-webkit-animation: rainbow 18s ease infinite;
+	-z-animation: rainbow 18s ease infinite;
+	-o-animation: rainbow 18s ease infinite;
+	animation: rainbow 18s ease infinite;
+}
+
+@-webkit-keyframes rainbow {
+  0%{background-position:0% 82%}
+  50%{background-position:100% 19%}
+  100%{background-position:0% 82%}
+}
+
+@-moz-keyframes rainbow {
+  0%{background-position:0% 82%}
+  50%{background-position:100% 19%}
+  100%{background-position:0% 82%}
+}
+
+@-o-keyframes rainbow {
+  0%{background-position:0% 82%}
+  50%{background-position:100% 19%}
+  100%{background-position:0% 82%}
+}
+
+@keyframes rainbow { 
+  0%{background-position:0% 82%}
+  50%{background-position:100% 19%}
+  100%{background-position:0% 82%}
 }
 
 .my-card, .my-card-picture img, #discord, 
@@ -20,11 +53,9 @@ html {
 	max-width: 100%;
 }
 
-.my-card { background-color: rgb(114, 137, 218); }
+.steam-card, .git-card, .yt-card, .anime-card, .my-card { background-color: rgb(30, 30, 30); }
 
-.steam-card, .git-card, .yt-card, .anime-card { background-color: rgb(30, 30, 30); }
-
-.steam-content p, .git-content p, .yt-content p, .anime-content p { color: white; }
+.steam-content p, .git-content p, .yt-content p, .anime-content p, .content p { color: white; }
 
 #steamicon, #giticon {
 	overflow: hidden;
@@ -170,11 +201,33 @@ html {
 
 .icon {
   vertical-align: middle;
-  border-radius: 50%;
+	border-radius: 50%;
 }
 
 .my-card-picture { padding-top:2rem; }
 
 .is-horizontal-center { justify-content: center; }
 
-.press { font-size: 12px; }
+.press { 
+	font-size: 12px;
+	color: white;
+}
+
+.about {
+	margin-top: 18px;
+	margin-bottom: 18px;
+	display: block;
+	text-align: center;
+	background-image: -webkit-gradient(linear, left top, right top, 
+		color-stop(0.350, #e81d1d), 
+		color-stop(0.375, #ff3300), 
+		color-stop(0.450, #e8b71d), 
+		color-stop(0.500, #1de840), 
+		color-stop(0.550, #1ddde8), 
+		color-stop(0.625, #2b1de8), 
+		color-stop(0.650, #dd00f3)
+	);
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
