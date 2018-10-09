@@ -1,23 +1,18 @@
 * {
 	font-family: Roboto, sans-serif;
-	color: black;
+	color: white;
 	font-size: 16px;
 }
 
-.rainbow { 
-  height: 100%;
+html { 
+  height: 100vh;
   width: 100%;
-  left:0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  position: absolute;
 	background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
-	background-size: 1800% 1800%;
-	-webkit-animation: rainbow 18s ease infinite;
-	-z-animation: rainbow 18s ease infinite;
-	-o-animation: rainbow 18s ease infinite;
-	animation: rainbow 18s ease infinite;
+	background-size: 2000% 2000%;
+	-webkit-animation: rainbow 15s ease infinite;
+	-z-animation: rainbow 15s ease infinite;
+	-o-animation: rainbow 15s ease infinite;
+	animation: rainbow 15s ease infinite;
 }
 
 @-webkit-keyframes rainbow {
@@ -54,8 +49,6 @@
 }
 
 .steam-card, .git-card, .yt-card, .anime-card, .my-card { background-color: rgb(30, 30, 30); }
-
-.steam-content p, .git-content p, .yt-content p, .anime-content p, .content p { color: white; }
 
 #steamicon, #giticon {
 	overflow: hidden;
@@ -128,7 +121,6 @@
 }
 
 #favyt {
-	color: white;
 	float: left;
 	font-size: 20px;
 }
@@ -161,7 +153,6 @@
 #favanime {
 	float: left;
 	font-size: 20px;
-	color: white;
 }
 
 #animeicon {
@@ -208,10 +199,7 @@
 
 .is-horizontal-center { justify-content: center; }
 
-.press { 
-	font-size: 12px;
-	color: white;
-}
+.press { font-size: 12px; }
 
 .about {
 	margin-top: 18px;
