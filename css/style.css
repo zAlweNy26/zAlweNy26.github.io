@@ -64,7 +64,6 @@ html {
   width: 36px;
   height: 36px;
   padding: 4px;
-  border: 2px solid rgb(100, 100, 100);
 	text-align: center;
 	margin-left: 84%;
 	margin-top: -28px;
@@ -214,15 +213,21 @@ html {
 	margin-bottom: -5px;
 }
 
-.about, .sub {
+.tit { 
+	font-size: 32px; 
+	margin-top: -6px;
+	margin-bottom: -6px;
+}
+
+.about, .sub, .tit {
 	background-image: -webkit-gradient(linear, left top, right top, 
-		color-stop(0.350, #e81d1d), 
-		color-stop(0.375, #ff3300), 
-		color-stop(0.450, #e8b71d), 
-		color-stop(0.500, #1de840), 
-		color-stop(0.550, #1ddde8), 
-		color-stop(0.625, #2b1de8), 
-		color-stop(0.650, #dd00f3)
+		color-stop(35%, #e81d1d), 
+		color-stop(40%, #ff3300), 
+		color-stop(45%, #e8b71d), 
+		color-stop(50%, #1de840), 
+		color-stop(55%, #1ddde8), 
+		color-stop(60%, #2b1de8), 
+		color-stop(65%, #dd00f3)
 	);
   color: transparent;
   -webkit-background-clip: text;

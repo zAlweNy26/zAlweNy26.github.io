@@ -63,19 +63,21 @@ setInterval(function () {
 $.getJSON("https://api.steampowered.com/IPlayerService/GetSteamLevel/v1/?key=" + keys.STEAM + "&steamid=76561198154675159", function (steam) {
   let colors = ["rgb(155, 155, 155)", "rgb(190, 40, 65)", "rgb(215, 90, 65)", "rgb(255, 205, 35)",
     "rgb(70, 120, 60)", "rgb(80, 140, 220)", "rgb(120, 80, 200)",
-    "rgb(195, 80, 200)", "rgb(85, 35, 55)", "rgb(155, 125, 80)"], colorlevel = null, level = steam.response.player_level;
-  $('#steamlevel').html(level);
-  for (let i = 0, mul = 0, stop = 0; i < 2; i++) {
+    "rgb(195, 80, 200)", "rgb(85, 35, 55)", "rgb(155, 125, 80)", "rgb(155, 155, 155)"], colorlevel = null, level = steam.response.player_level;
+  for (let i = 0, mul = 0; i < 1;) {
     if (level >= 0 + mul && level <= 9 + mul) {
-      stop = 1;
-      colorlevel = colors[mul/10];
+      i++;
+      if (level < 10) colorlevel = colors[0];
+      else if (level <= 100) colorlevel = colors[mul/10];
+      else if (level <= 1000) {
+        let val = parseInt(mul.toString().substring(1), 10);
+        colorlevel = colors[val/10];
+      }
+      $('#steamlevel').css({ "border": "2px solid " + colorlevel });
     }
-    if (stop == 0) {
-      i = 0;
-      mul+= 10;
-    }
+    if (i == 0) mul+= 10;
   }
-  $('#steamlevel').css({ "border": "2px solid " + colorlevel });
+  $('#steamlevel').html(level);
 });
 
 $.getJSON("https://api.github.com/users/zAlweNy26?client_id=" + keys.GITHUBID + "&client_secret=" + keys.GITHUB, function (git) {
