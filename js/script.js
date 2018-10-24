@@ -104,7 +104,7 @@ $.ajax({
     $('#streamer').html(data.data[0].display_name);
     $('#streamerviews').html(parseInt(data.data[0].view_count).toLocaleString() + "<span style='color: rgb(100, 65, 165)'> total views</span>");
   },
-  error: function () { alert('Non funziona !'); },
+  error: function () { },
   beforeSend: function (xhr) { xhr.setRequestHeader('Client-ID', keys.TWITCH); },
 });
 
@@ -115,7 +115,7 @@ $.ajax({
   success: function (data) {
     $('#streamerfollowers').html(parseInt(data.total).toLocaleString() + "<span style='color: rgb(100, 65, 165)'> total followers</span>");
   },
-  error: function () { alert('Non funziona !'); },
+  error: function () { },
   beforeSend: function (xhr) { xhr.setRequestHeader('Client-ID', keys.TWITCH); },
 });
 
@@ -137,11 +137,11 @@ $.ajax({
           $('#streamer').html($('#streamer').text() + " - " + parseInt(viewers).toLocaleString() + "<span style='color: rgb(100, 65, 165)'> viewers</span>");
           $('#streamerplaying').html("<span style='color: rgb(100, 65, 165)'>Playing </span>" + data.data[0].name);
         },
-        error: function () { alert('Non funziona !'); },
+        error: function () { },
         beforeSend: function (xhr) { xhr.setRequestHeader('Client-ID', keys.TWITCH); },
       });
     }
   },
-  error: function () { alert('Non funziona !'); },
+  error: function () { },
   beforeSend: function (xhr) { xhr.setRequestHeader('Client-ID', keys.TWITCH); },
 });
