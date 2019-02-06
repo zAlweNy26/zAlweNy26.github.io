@@ -133,7 +133,6 @@ $.ajax({
         type: 'GET',
         dataType: 'json',
         success: function (data) {
-          console.log(data);
           $('#streamer').html($('#streamer').text() + " - " + parseInt(viewers).toLocaleString() + "<span style='color: rgb(100, 65, 165)'> viewers</span>");
           $('#streamerplaying').html("<span style='color: rgb(100, 65, 165)'>Playing </span>" + data.data[0].name);
         },
