@@ -48,7 +48,11 @@ $.ajax({
     $('#steamicon').css({ "border": "2px solid " + status });
   },
   error: function () { },
-  beforeSend: function (xhr) { xhr.setRequestHeader('Access-Control-Allow-Origin', '*'); },
+  beforeSend: function (xhr) { 
+    xhr.setRequestHeader('Access-Control-Allow-Origin', '*'); 
+    xhr.setRequestHeader('Access-Control-Allow-Headers', "Origin, X-Requested-With, Content-Type, Accept");
+    xhr.setRequestHeader('Access-Control-Allow-Credentials', true); 
+  }
 });
 
 $.ajax({
@@ -78,7 +82,11 @@ $.ajax({
     $('#steamlevel').html(level);
   },
   error: function () { },
-  beforeSend: function (xhr) { xhr.setRequestHeader('Access-Control-Allow-Origin', '*'); },
+  beforeSend: function (xhr) {
+    xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+    xhr.setRequestHeader('Access-Control-Allow-Headers', "Origin, X-Requested-With, Content-Type, Accept");
+    xhr.setRequestHeader('Access-Control-Allow-Credentials', true); 
+  }
 });
 
 $.ajax({
