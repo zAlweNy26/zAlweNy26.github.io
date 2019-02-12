@@ -64,8 +64,8 @@ $.ajax({
     if (previous1 && current1 && previous1 !== current1) $('#steamlevel').load(document.URL + ' #steamlevel');
     previous1 = current1;
     let colors = ["rgb(155, 155, 155)", "rgb(190, 40, 65)", "rgb(215, 90, 65)", "rgb(255, 205, 35)",
-      "rgb(70, 120, 60)", "rgb(80, 140, 220)", "rgb(120, 80, 200)",
-      "rgb(195, 80, 200)", "rgb(85, 35, 55)", "rgb(155, 125, 80)", "rgb(155, 155, 155)"], colorlevel = null, level = steam.response.player_level;
+      "rgb(70, 120, 60)", "rgb(80, 140, 220)", "rgb(120, 80, 200)", "rgb(195, 80, 200)", 
+      "rgb(85, 35, 55)", "rgb(155, 125, 80)", "rgb(155, 155, 155)"], colorlevel = null, level = steam.response.player_level;
     for (let i = 0, mul = 0; i < 1;) {
       if (level >= 0 + mul && level <= 9 + mul) {
         i++;
