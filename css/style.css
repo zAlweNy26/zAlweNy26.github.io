@@ -131,7 +131,7 @@ html {
 #animerate, #animestart, #animeend, .press,
 #animeepisodes, #animeeplength, #animensfw {  font-size: 14px; }
 
-#streamer, #streamerviews, #steamnick, #steamlogoff, #steamdate 
+#streamer, #streamerviews, #steamnick, #steamlogoff, #steamdate,
 #streamerfollowers, #streamerplaying { margin-left: 5px; }
 
 #favyt, #favanime { font-size: 20px; }
