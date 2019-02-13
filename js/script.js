@@ -101,7 +101,7 @@ $.ajax({
     $('#yticon').attr("src", yt.items[0].snippet.thumbnails.medium.url);
     $('#ytnick').html("<span id='favyt'>Favourite Youtuber</span><br>" + yt.items[0].snippet.title);
     $('#ytsubs').html("<span style='color: rgb(225, 0, 0)'>Subscribers</span><br>" + parseInt(yt.items[0].statistics.subscriberCount).toLocaleString());
-    $('#ytvideos').html("<span style='color: rgb(225, 0, 0)'>Uploads</span><br>" + parseInt(yt.items[0].statistics.videoCount).toLocaleString());
+    $('#ytvideos').html("<span style='color: rgb(225, 0, 0)'>Videos</span><br>" + parseInt(yt.items[0].statistics.videoCount).toLocaleString());
     $('#ytviews').html("<span style='color: rgb(225, 0, 0)'>Views</span><br>" + parseInt(yt.items[0].statistics.viewCount).toLocaleString());
   },
   error: function () {}
