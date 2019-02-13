@@ -1,7 +1,8 @@
 * {
-	font-family: Roboto, sans-serif;
+	font-family: "Comic Sans MS", cursive, sans-serif;
 	color: white;
 	font-size: 16px;
+	text-align: center;
 }
 
 html { 
@@ -39,20 +40,52 @@ html {
   100%{background-position:0% 82%}
 }
 
-.my-card, .my-card-picture img, #discord, .steam-card, 
-.yt-card, .anime-card, .twitch-card { box-shadow: 0 10px 20px rgba(0,0,0,0.19),0 6px 6px rgba(0,0,0,0.23); }
+.my-card, .steam-card, .yt-card, .comps-card, #discord,
+.anime-card, .twitch-card { box-shadow: 0 10px 20px rgba(0,0,0,0.19),0 6px 6px rgba(0,0,0,0.23); }
 
-.steam-card, .yt-card, .my-card, .anime-card, .twitch-card { 
+.steam-card, .yt-card, .my-card, .anime-card, .twitch-card, .comps-card { 
 	position: relative;
 	border-radius: 10px;
 	max-width: 100%;
 	background-color: rgb(30, 30, 30);
 }
 
-#steamlevel, #animerate, #animestart, #animeend, 
-#animeepisodes, #animeeplength, #animensfw, #streamer, 
-#streamerviews, #streamerfollowers, #streamerplaying,
-#ytnick, #ytsubs, #ytvideos, #ytviews, #animenick, .about { text-align: center; }
+.no-card { width: 350px; }
+
+.my-card { height: 100%; }
+
+.anime-card { margin-bottom: 24px; height: 160px; }
+
+.yt-card { margin-top: 24px; height: 117px; }
+
+.progress { background-color: rgb(255, 255, 255); }
+
+.progress.is-success::-webkit-progress-value { background-color: rgb(0, 255, 0) !important; }
+.progress.is-success::-moz-progress-bar { background-color: rgb(0, 255, 0) !important; }
+.progress.is-success::-ms-fill { background-color: rgb(0, 255, 0) !important; }
+
+.progress-wrapper {
+	margin-top: 20px;
+	margin-left: 20px;
+	margin-right: 110px;
+	position: relative;
+}
+
+.progress-name {
+	position: absolute;
+  top: -4px;
+  left: 110%;
+}
+
+.progress-value {
+  position: absolute;
+	top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: calc(1.5rem / 1.5);
+  line-height: 1.5rem;
+  font-weight: bold;
+}
 
 #steamicon, #twitchicon, #animeicon, #yticon,
 #steamnick, #steamlogoff, #steamdate, #animerate, 
@@ -105,13 +138,9 @@ html {
 	margin-top: 21px;
 	border-radius: 10px;
 	margin-bottom: 14px;
+	height: 558px;
+	width: 350px;
 }
-
-.anime-card { margin-bottom: 24px; }
-
-.yt-card { margin-top: 24px; }
-
-#steamnick, #steamlogoff, #steamdate { margin-left: 5px; }
 
 #steamlogoff {
 	margin-top: -3px;
@@ -123,48 +152,21 @@ html {
 	font-size: 12px;
 }
 
-.gitlink { font-size: 14px; }
-
-#animerate, #animestart, #animeend, 
+#animerate, #animestart, #animeend, .press,
 #animeepisodes, #animeeplength, #animensfw {  font-size: 14px; }
 
-#streamer, #streamerviews, 
+#streamer, #streamerviews, #steamnick, #steamlogoff, #steamdate 
 #streamerfollowers, #streamerplaying { margin-left: 5px; }
 
-#favyt {
-	float: right;
-	font-size: 20px;
-}
+#favyt, #favanime { font-size: 20px; }
 
-#ytnick {
+#ytnick, #animenick {
 	font-weight: bold;
 	margin-top: 5px;
-	float: right;
-	margin-right: 20%;
-}
-
-#ytsubs, #ytvideos, #ytviews { 
-	font-size: 14px;
-	margin-right: 8%;
-	margin-top: 5px;
-	float: right;
-}
-
-#favanime { font-size: 20px; }
-
-#animenick {
-	font-weight: bold;
-	margin-top: 5px;
-	margin-left: 22.5%;
 	color: rgb(225, 0, 0);
 }
 
-#animerate, #animestart, #animeend { 
-	margin-top: -10px; 
-	margin-left: 8.5%;
-}
-
-#animeepisodes, #animeeplength, #animensfw { margin-left: 6.5%; }
+#centered { margin-left: 10%; }
 
 .vertical-center {
 	min-height: 100%;
@@ -178,8 +180,6 @@ html {
 .my-card-picture { padding-top:2rem; }
 
 .is-horizontal-center { justify-content: center; }
-
-.press { font-size: 12px; }
 
 .about {
 	margin-top: 18px;
