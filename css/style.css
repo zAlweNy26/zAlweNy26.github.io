@@ -6,12 +6,10 @@
 }
 
 html { 
-  height: 100%;
-  width: 100%;
 	background: url("../img/wallpaper.jpg");
 	background-size: cover;
+	background-position: center;
   background-repeat: no-repeat;
-  background-position: center center;
 }
 
 .my-card, .steam-card, .yt-card, .comps-card, #discord,
