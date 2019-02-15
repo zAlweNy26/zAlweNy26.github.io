@@ -1,13 +1,14 @@
 var keys = {
-  STEAM: CryptoJS.AES.decrypt("U2FsdGVkX18y9I2sBjzVb0wM58VhiM5D5+08NZt8hR7WHQNg4CYp9hu+k43mq5yl/k8M6URnvq2qgYxjo0tITQ==", "Alwe").toString(CryptoJS.enc.Utf8),
+  GITHID: CryptoJS.AES.decrypt("U2FsdGVkX1+xyv2ntQdFAFn3Aeqn8lmYLtMTqif5qfmB/i3JMAjvCi3ylT/yIJt0", "Alwe").toString(CryptoJS.enc.Utf8),
+  GITHUB: CryptoJS.AES.decrypt("U2FsdGVkX1+OgGHSsIc81/93c3G2dg/BpC0ZFANjn+VeXZM7fJ20QxMZBWwv8N2f1tQTBeoOC9pCafqtjAe93g==", "Alwe").toString(CryptoJS.enc.Utf8),
   GOOGLE: CryptoJS.AES.decrypt("U2FsdGVkX1+sCE5TTd3uCSuLkC3Drt+lMBIIlcHCYMzI2GDERUzblmRJgJq42m7g/xDQSjsKOavi/IBYVt8mnw==", "Alwe").toString(CryptoJS.enc.Utf8),
   TWITCH: CryptoJS.AES.decrypt("U2FsdGVkX1/scalSQEqycGqJ8B6uFGqAU94VsXU1///NfZlSM4V1vsipO7Hfw0fP", "Alwe").toString(CryptoJS.enc.Utf8),
 }
 
-var prv1 = null, crt1 = null, prv2 = null, crt2 = null, prv3 = null, crt3 = null;
-var prv4 = null, crt4 = null, prv5 = null, crt5 = null, prv6 = null, crt6 = null, prv7 = null, crt7 = null;
+var prv1 = null, crt1 = null, prv2 = null, crt2 = null, prv3 = null, crt3 = null, prv4 = null, crt4 = null;
+var prv5 = null, crt5 = null, prv6 = null, crt6 = null, prv7 = null, crt7 = null, prv8 = null, crt8 = null, prv9 = null, crt9 = null;
 
-$.ajax({
+/*$.ajax({
   url: "https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key=" + keys.STEAM + "&steamids=76561198154675159",
   type: 'GET',
   dataType: 'json',
@@ -82,6 +83,37 @@ $.ajax({
       if (i == 0) mul += 10;
     }
     $('#steamlevel').html(level);
+  },
+  error: function () { }
+});*/
+
+$.ajax({
+  url: "https://api.github.com/users/zAlweNy26?client_id=" + keys.GITHID + "&client_secret=" + keys.GITHUB,
+  type: 'GET',
+  dataType: 'json',
+  success: function (git) {
+    crt8 = JSON.stringify(git);
+    if (prv8 && crt8 && prv8 !== crt8) $('.git-content').load(document.URL + ' .git-content');
+    prv8 = crt8;
+    $('.giturl').attr("href", git.html_url);
+    $('#giticon').attr("src", git.avatar_url);
+    $('#gitnick').html(git.login);
+    $('#gitfollowers').html(git.followers + "<a href='https://github.com/zAlweNy26?tab=followers' target='_blank'> Followers</a>");
+    $('#gitfollowing').html(git.following + "<a href='https://github.com/zAlweNy26?tab=following' target='_blank'> Following</a>");
+    $('#gitrepos').html(git.public_repos + "<a href='https://github.com/zAlweNy26?tab=repositories' target='_blank'> Repositories</a>");
+  },
+  error: function () { }
+});
+
+$.ajax({
+  url: "https://api.github.com/users/zAlweNy26/orgs?client_id=" + keys.GITHID + "&client_secret=" + keys.GITHUB,
+  type: 'GET',
+  dataType: 'json',
+  success: function (git) {
+    crt9 = JSON.stringify(git);
+    if (prv9 && crt9 && prv9 !== crt9) $('.git-content').load(document.URL + ' .git-content');
+    prv9 = crt9;
+    $('#gitorg').attr("src", git[0].avatar_url);
   },
   error: function () { }
 });

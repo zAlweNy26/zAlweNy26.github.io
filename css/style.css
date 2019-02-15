@@ -41,9 +41,9 @@ html {
 }
 
 .my-card, .steam-card, .yt-card, .comps-card, #discord,
-.anime-card, .twitch-card { box-shadow: 0 10px 20px rgba(0,0,0,0.19),0 6px 6px rgba(0,0,0,0.23); }
+.anime-card, .twitch-card, .git-card { box-shadow: 0 10px 20px rgba(0,0,0,0.19),0 6px 6px rgba(0,0,0,0.23); }
 
-.steam-card, .yt-card, .my-card, .anime-card, .twitch-card, .comps-card { 
+.steam-card, .yt-card, .my-card, .anime-card, .twitch-card, .comps-card, .git-card { 
 	position: relative;
 	border-radius: 10px;
 	max-width: 100%;
@@ -62,21 +62,21 @@ html {
 	margin-top: 21px;
 	border-radius: 10px;
 	margin-bottom: 14px;
-	height: 558px;
+	height: 530px;
 	width: 350px;
 }
 
-#steamicon, #twitchicon, #animeicon, #yticon,
-#steamnick, #steamlogoff, #steamdate, #animerate, 
+#steamicon, #twitchicon, #animeicon, #yticon, #giticon,
+#steamnick, #steamlogoff, #steamdate, #animerate, #gitnick,
 #animestart, #animeend, #animeepisodes, #animeeplength, 
 #animensfw, #streamer, #streamerviews, #streamerfollowers, 
-#streamerplaying, #favanime, #animenick { float: left; }
+#streamerplaying, #favanime, #animenick, #gitfollowers, #gitfollowing, #gitrepos { float: left; }
 
 #steamlevel, .my-card-picture img, .icon { border-radius: 50%; }
 
 #steamicon, #twitchicon, .comp, .icon { vertical-align: middle; }
 
-#steamicon, #twitchicon, #animeicon, #yticon {
+#steamicon, #twitchicon, #animeicon, #yticon, #giticon {
 	overflow: hidden;
 	border-radius: 10px;
 }
@@ -98,7 +98,12 @@ html {
 	border: 2px solid rgb(225, 0, 0);
 }
 
-#animeicon { border: 2px solid white; }
+#giticon {
+	width: 104px;
+	height: 104px;
+}
+
+#animeicon, #giticon { border: 2px solid white; }
 
 #steamlevel {
   width: 36px;
@@ -123,11 +128,24 @@ html {
 	font-size: 12px;
 }
 
-#animerate, #animestart, #animeend, .press,
-#animeepisodes, #animeeplength, #animensfw {  font-size: 14px; }
+#gitorg { 
+	width: 48px; 
+	height: 48px;
+	margin-left: 10%;
+	margin-top: -50px;
+}
 
-#streamer, #streamerviews, #steamnick, #steamlogoff, #steamdate,
-#streamerfollowers, #streamerplaying { margin-left: 5px; }
+#gitnick { font-size: 18px; }
+
+#gitfollowers, #gitfollowing, #gitrepos { margin-top: -20px; }
+
+#gitnick, #streamer { font-weight: bold; }
+
+#animerate, #animestart, #animeend, .press,
+#animeepisodes, #animeeplength, #animensfw { font-size: 14px; }
+
+#streamer, #streamerviews, #steamnick, #steamlogoff, #steamdate, #streamerfollowers, 
+#streamerplaying, #gitfollowers, #gitfollowing, #gitrepos, #gitnick { margin-left: 10px; }
 
 #favyt, #favanime { font-size: 20px; }
 
