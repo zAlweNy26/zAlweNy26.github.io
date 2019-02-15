@@ -129,13 +129,13 @@ $.ajax({
     $('.yturl').attr("href", "https://www.youtube.com/channel/" + yt.items[0].id);
     $('#yticon').attr("src", yt.items[0].snippet.thumbnails.medium.url);
     $('#ytnick').html("<span id='favyt'>Favourite Youtuber</span><br>" + yt.items[0].snippet.title);
-    $('#ytsubs').html("<span style='color: rgb(225, 0, 0)'>Subscribers</span><br>" + parseInt(yt.items[0].statistics.subscriberCount).toLocaleString());
-    $('#ytvideos').html("<span style='color: rgb(225, 0, 0)'>Videos</span><br>" + parseInt(yt.items[0].statistics.videoCount).toLocaleString());
-    $('#ytviews').html("<span style='color: rgb(225, 0, 0)'>Views</span><br>" + parseInt(yt.items[0].statistics.viewCount).toLocaleString());
+    $('#ytsubs').html("<span id='infoapi'>Subscribers</span><br>" + parseInt(yt.items[0].statistics.subscriberCount).toLocaleString());
+    $('#ytvideos').html("<span id='infoapi'>Videos</span><br>" + parseInt(yt.items[0].statistics.videoCount).toLocaleString());
+    $('#ytviews').html("<span id='infoapi'>Views</span><br>" + parseInt(yt.items[0].statistics.viewCount).toLocaleString());
   },
   error: function () {}
 });
-//popularityRank ratingRank
+
 $.ajax({
   url: 'https://kitsu.io/api/edge/anime?filter[text]=trigun',
   type: 'GET',
@@ -147,14 +147,14 @@ $.ajax({
     $('.animeurl').attr("href", "https://kitsu.io/anime/" + anime.data[0].attributes.slug);
     $('#animeicon').attr("src", anime.data[0].attributes.posterImage.tiny);
     $('#animenick').html("<span id='favanime'>Favourite Anime</span><br>" + anime.data[0].attributes.titles.en);
-    $('#animerate').html("<span style='color: rgb(225, 0, 0)'>Rating</span><br>" + anime.data[0].attributes.averageRating + " %");
+    $('#animerate').html("<span id='infoapi'>Rating</span><br>" + anime.data[0].attributes.averageRating + " %");
     let datePart1 = anime.data[0].attributes.startDate.match(/\d+/g), year1 = datePart1[0], month1 = datePart1[1], day1 = datePart1[2];
     let datePart2 = anime.data[0].attributes.endDate.match(/\d+/g), year2 = datePart2[0], month2 = datePart2[1], day2 = datePart2[2];
-    $('#animestart').html("<span style='color: rgb(225, 0, 0)'>Start Date</span><br>" + day1 + '/' + month1 + '/' + year1);
-    $('#animeend').html("<span style='color: rgb(225, 0, 0)'>End Date</span><br>" + day2 + '/' + month2 + '/' + year2);
-    $('#animepop').html("<span style='color: rgb(225, 0, 0)'>Popularity Rank</span><br>" + anime.data[0].attributes.popularityRank);
-    $('#animerank').html("<span style='color: rgb(225, 0, 0)'>Rating Rank</span><br>" + anime.data[0].attributes.ratingRank);
-    $('#animeepisodes').html("<span style='color: rgb(225, 0, 0)'>Episodes</span><br>" + anime.data[0].attributes.episodeCount);
+    $('#animestart').html("<span id='infoapi'>Start Date</span><br>" + day1 + '/' + month1 + '/' + year1);
+    $('#animeend').html("<span id='infoapi'>End Date</span><br>" + day2 + '/' + month2 + '/' + year2);
+    $('#animepop').html("<span id='infoapi'>Popularity Rank</span><br>" + anime.data[0].attributes.popularityRank);
+    $('#animerank').html("<span id='infoapi'>Rating Rank</span><br>" + anime.data[0].attributes.ratingRank);
+    $('#animeepisodes').html("<span id='infoapi'>Episodes</span><br>" + anime.data[0].attributes.episodeCount);
   },
   error: function () {}
 });
