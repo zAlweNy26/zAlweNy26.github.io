@@ -188,6 +188,18 @@ html {
 	margin-bottom: -6px;
 }
 
+#myname {
+	margin-top: -20px;
+	color:#00ff2a;
+	text-shadow:
+		1px 1px 0 #00ff2a,
+		2px 2px 0 #00ff2a,
+		3px 3px 0 #303030,
+		4px 4px 0 #303030,
+		5px 5px 0 #303030,
+		6px 6px 0 #303030;
+}
+
 .about, .sub, .tit {
 	background-image: -webkit-gradient(linear, left top, right top, 
 		color-stop(35%, #e81d1d), 
