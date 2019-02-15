@@ -7,6 +7,27 @@ var keys = {
 var prv1 = null, crt1 = null, prv2 = null, crt2 = null, prv3 = null, crt3 = null;
 var prv4 = null, crt4 = null, prv5 = null, crt5 = null, prv6 = null, crt6 = null, prv7 = null, crt7 = null;
 
+var welcomeText = "console.log('Hello Visitor ! :D');";
+
+function animateCharacter(text, n) {
+  if (n != text.length) {
+    $("#s").animate({
+      opacity: 1
+    }, 100);
+    $("#intro h1").html($("#intro h1").html() + text[n]);
+    $("#s").animate({
+      opacity: 0
+    }, 100);
+    setTimeout(function () {
+      animateCharacter(welcomeText, n + 1);
+    }, 100);
+  } else return;
+}
+
+setTimeout(function () {
+  animateCharacter(welcomeText, 0);
+}, 100);
+
 $.ajax({
   url: "https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key=" + keys.STEAM + "&steamids=76561198154675159",
   type: 'GET',
