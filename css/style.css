@@ -185,7 +185,7 @@ html {
 	color: rgb(225, 0, 0);
 }
 
-#myname, .sub, .about, .tit {
+#myname, .sub, .about, .tit, #favyt, #favanime {
 	text-shadow: 1px 1px 0 #252525, 
                2px 2px 0 #252525,
                3px 3px 0 #252525,
