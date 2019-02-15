@@ -45,8 +45,8 @@ html {
 
 #steamicon, #twitchicon, #animeicon, #yticon, #giticon,
 #steamnick, #steamlogoff, #steamdate, #animerate, #gitnick,
-#animestart, #animeend, #animeepisodes, #animeeplength, 
-#animensfw, #streamer, #streamerviews, #streamerfollowers, 
+#animestart, #animeend, #animepop, #animerank, 
+#animeepisodes, #streamer, #streamerviews, #streamerfollowers, 
 #streamerplaying, #favanime, #animenick, #gitfollowers, #gitfollowing, #gitrepos { float: left; }
 
 #steamlevel, .my-card-picture img, .icon { border-radius: 50%; }
@@ -119,7 +119,7 @@ html {
 #gitnick, #streamer { font-weight: bold; }
 
 #animerate, #animestart, #animeend, .press,
-#animeepisodes, #animeeplength, #animensfw { font-size: 14px; }
+#animepop, #animerank, #animeepisodes { font-size: 14px; }
 
 #streamer, #streamerviews, #steamnick, #steamlogoff, #steamdate, #streamerfollowers, 
 #streamerplaying, #gitfollowers, #gitfollowing, #gitrepos, #gitnick { margin-left: 10px; }

@@ -135,7 +135,7 @@ $.ajax({
   },
   error: function () {}
 });
-
+//popularityRank ratingRank
 $.ajax({
   url: 'https://kitsu.io/api/edge/anime?filter[text]=trigun',
   type: 'GET',
@@ -152,12 +152,9 @@ $.ajax({
     let datePart2 = anime.data[0].attributes.endDate.match(/\d+/g), year2 = datePart2[0], month2 = datePart2[1], day2 = datePart2[2];
     $('#animestart').html("<span style='color: rgb(225, 0, 0)'>Start Date</span><br>" + day1 + '/' + month1 + '/' + year1);
     $('#animeend').html("<span style='color: rgb(225, 0, 0)'>End Date</span><br>" + day2 + '/' + month2 + '/' + year2);
+    $('#animepop').html("<span style='color: rgb(225, 0, 0)'>Popularity Rank</span><br>" + anime.data[0].attributes.popularityRank);
+    $('#animerank').html("<span style='color: rgb(225, 0, 0)'>Rating Rank</span><br>" + anime.data[0].attributes.ratingRank);
     $('#animeepisodes').html("<span style='color: rgb(225, 0, 0)'>Episodes</span><br>" + anime.data[0].attributes.episodeCount);
-    $('#animeeplength').html("<span style='color: rgb(225, 0, 0)'>Episodes Length</span><br>" + anime.data[0].attributes.episodeLength + " minutes");
-    let nsfw;
-    if (anime.data[0].attributes.nsfw === "true") nsfw = "Yes";
-    else nsfw = "No";
-    $('#animensfw').html("<span style='color: rgb(225, 0, 0)'>NSFW</span><br>" + nsfw);
   },
   error: function () {}
 });
