@@ -189,15 +189,21 @@ html {
 }
 
 #myname {
-	margin-top: -20px;
+	margin-top: -15px;
 	color:#00ff2a;
-	text-shadow:
-		1px 1px 0 #00ff2a,
-		2px 2px 0 #00ff2a,
-		3px 3px 0 #303030,
-		4px 4px 0 #303030,
-		5px 5px 0 #303030,
-		6px 6px 0 #303030;
+	margin-bottom: 40px;
+	text-shadow: 1px 1px 0 #303030, 
+               2px 2px 0 #303030,
+               3px 3px 0 #303030,
+               4px 4px 0 #303030,
+               5px 5px 0 #303030,
+               6px 6px 1px rgba(0,0,0,.1),
+               0 0 5px rgba(0,0,0,.1),
+               1px 1px 3px rgba(0,0,0,.3),
+               3px 3px 5px rgba(0,0,0,.2),
+               5px 5px 10px rgba(0,0,0,.25),
+               10px 10px 10px rgba(0,0,0,.2),
+               20px 20px 20px rgba(0,0,0,.15);
 }
 
 .about, .sub, .tit {
