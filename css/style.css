@@ -8,36 +8,7 @@
 html { 
   height: 100vh;
   width: 100%;
-	background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
-	background-size: 2000% 2000%;
-	-webkit-animation: rainbow 15s ease infinite;
-	-z-animation: rainbow 15s ease infinite;
-	-o-animation: rainbow 15s ease infinite;
-	animation: rainbow 15s ease infinite;
-}
-
-@-webkit-keyframes rainbow {
-  0%{background-position:0% 82%}
-  50%{background-position:100% 19%}
-  100%{background-position:0% 82%}
-}
-
-@-moz-keyframes rainbow {
-  0%{background-position:0% 82%}
-  50%{background-position:100% 19%}
-  100%{background-position:0% 82%}
-}
-
-@-o-keyframes rainbow {
-  0%{background-position:0% 82%}
-  50%{background-position:100% 19%}
-  100%{background-position:0% 82%}
-}
-
-@keyframes rainbow { 
-  0%{background-position:0% 82%}
-  50%{background-position:100% 19%}
-  100%{background-position:0% 82%}
+	background: url("../img/wallpaper.jpg");
 }
 
 .my-card, .steam-card, .yt-card, .comps-card, #discord,
@@ -182,21 +153,24 @@ html {
 	margin-top: -30px;
 	margin-bottom: -10px;
 	color: #1ABC9C;
+	font-weight: bold;
 }
 
 .tit { 
 	font-size: 32px; 
+	font-weight: bold;
+	color: #1ABC9C;
 	margin-top: -6px;
 	margin-bottom: -6px;
 }
 
 #myname {
 	margin-top: -15px;
-	color:#00ff2a;
+	color:#0E7AA8;
 	margin-bottom: 40px;
 }
 
-#myname, .sub, .about {
+#myname, .sub, .about, .tit {
 	text-shadow: 1px 1px 0 #252525, 
                2px 2px 0 #252525,
                3px 3px 0 #252525,
