@@ -5,8 +5,8 @@ var keys = {
   TWITCH: CryptoJS.AES.decrypt("U2FsdGVkX1/scalSQEqycGqJ8B6uFGqAU94VsXU1///NfZlSM4V1vsipO7Hfw0fP", "Alwe").toString(CryptoJS.enc.Utf8),
 }
 
-var prv1 = null, crt1 = null, prv2 = null, crt2 = null, prv3 = null, crt3 = null, prv4 = null, crt4 = null;
-var prv5 = null, crt5 = null, prv6 = null, crt6 = null, prv7 = null, crt7 = null, prv8 = null, crt8 = null, prv9 = null, crt9 = null;
+var prv1 = null, crt1 = null, prv2 = null, crt2 = null, prv3 = null, crt3 = null, prv4 = null, crt4 = null, prv5 = null, crt5 = null;
+var prv6 = null, crt6 = null, prv7 = null, crt7 = null, prv8 = null, crt8 = null, prv9 = null, crt9 = null, prv0 = null, crt0 = null;
 
 /*$.ajax({
   url: "https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key=" + keys.STEAM + "&steamids=76561198154675159",
@@ -206,6 +206,9 @@ $.ajax({
         type: 'GET',
         dataType: 'json',
         success: function (data) {
+          crt0 = JSON.stringify(data);
+          if (prv0 && crt0 && prv0 !== crt0) $('.twitch-content').load(document.URL + ' .twitch-content');
+          prv0 = crt0;
           $('#streamer').html($('#streamer').text() + " - " + parseInt(viewers).toLocaleString() + "<span style='color: rgb(100, 65, 165)'> viewers</span>");
           $('#streamerplaying').html("<span style='color: rgb(100, 65, 165)'>Playing </span>" + data.data[0].name);
         },
@@ -217,3 +220,39 @@ $.ajax({
   error: function () { },
   beforeSend: function (xhr) { xhr.setRequestHeader('Client-ID', keys.TWITCH); },
 });
+
+$('#myname').ColorPicker({
+  color: '#1AA9B1',
+  onShow: function (colpkr) {
+    $(colpkr).fadeIn(250);
+    return false;
+  },
+  onHide: function (colpkr) {
+    $(colpkr).fadeOut(250);
+    return false;
+  },
+  onChange: function (hsb, hex, rgb) {
+    $('#myname').css('color', '#' + hex);
+  }
+});
+
+var titles = {
+  color: '#1ABC9C',
+  onShow: function (colpkr) {
+    $(colpkr).fadeIn(250);
+    return false;
+  },
+  onHide: function (colpkr) {
+    $(colpkr).fadeOut(250);
+    return false;
+  },
+  onChange: function (hsb, hex, rgb) {
+    $('.sub').css('color', '#' + hex);
+    $('.about').css('color', '#' + hex);
+    $('.tit').css('color', '#' + hex);
+  }
+}
+
+$('.sub').ColorPicker(titles);
+$('.about').ColorPicker(titles);
+$('.tit').ColorPicker(titles);
