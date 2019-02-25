@@ -1,2 +1,5 @@
 # Files that will be hidden in repository
 apikeys.txt
+css/conv.css
+css/conv.css.map
+css/style.scss
