@@ -114,6 +114,7 @@ $.ajax({
     if (prv9 && crt9 && prv9 !== crt9) $('.git-content').load(document.URL + ' .git-content');
     prv9 = crt9;
     $('#gitorg').attr("src", git[0].avatar_url);
+    $('#gitorgurl').attr("href", "https://github.com/" + git[0].login);
   },
   error: function () { }
 });
