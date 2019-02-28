@@ -18,9 +18,9 @@ html {
 }
 
 .my-card, .steam-card, .yt-card, .comps-card, #discord,
-.anime-card, .twitch-card, .git-card { box-shadow: 0 10px 20px rgba(0,0,0,0.19),0 6px 6px rgba(0,0,0,0.23); }
+.anime-card, .twitch-card, .git-card, .skills-card { box-shadow: 0 10px 20px rgba(0,0,0,0.19),0 6px 6px rgba(0,0,0,0.23); }
 
-.steam-card, .yt-card, .my-card, .anime-card, .twitch-card, .comps-card, .git-card { 
+.steam-card, .yt-card, .my-card, .anime-card, .twitch-card, .comps-card, .git-card, .skills-card { 
 	position: relative;
 	border-radius: 10px;
 	max-width: 100%;
@@ -30,6 +30,8 @@ html {
 .no-card { width: 350px; }
 
 .my-card { height: 100%; }
+
+.skills-card { margin-top: 24px; margin-bottom: 24px; }
 
 .anime-card { margin-bottom: 24px; height: 160px; }
 
@@ -65,19 +67,19 @@ html {
 
 #twitchicon {
 	border: 2px solid rgb(60, 45, 90);
-	width: 96px;
-	height: 96px;
+	width: 104px;
+	height: 104px;
 }
 
 #yticon {
-	width: 117px;
-	height: 117px;
+	width: 118px;
+	height: 118px;
 	border: 2px solid rgb(225, 0, 0);
 }
 
 #giticon {
-	width: 104px;
-	height: 104px;
+	width: 112px;
+	height: 112px;
 }
 
 #animeicon, #giticon { border: 2px solid white; }
@@ -106,17 +108,19 @@ html {
 }
 
 #gitorg { 
-	width: 48px; 
-	height: 48px;
-	margin-left: 10%;
-	margin-top: -50px;
+	width: 64px; 
+	height: 64px;
+	margin-top: -25px;
+	position: absolute;
 }
 
-#gitnick { font-size: 18px; }
+#gitnick { margin-top: 5px; }
 
-#gitfollowers, #gitfollowing, #gitrepos { margin-top: -20px; }
+#gitfollowers, #gitfollowing, #gitrepos { margin-top: -15px; }
 
-#gitnick, #streamer { font-weight: bold; }
+#streamerviews, #streamerfollowers, #streamerplaying { margin-top: -20px; }
+
+#gitnick, #streamer { font-weight: bold; font-size: 18px; }
 
 #animerate, #animestart, #animeend, .press,
 #animepop, #animerank, #animeepisodes { font-size: 14px; }
@@ -154,28 +158,28 @@ html {
 	margin-top: 18px;
 	margin-bottom: 18px;
 	display: block;
-	color: #1ABC9C;
+	color: #00FFC8;
 }
 
 .sub {
 	font-size: 28px;
 	margin-top: -30px;
 	margin-bottom: -10px;
-	color: #1ABC9C;
+	color: #00FFC8;
 	font-weight: bold;
 }
 
 .tit { 
 	font-size: 32px; 
 	font-weight: bold;
-	color: #1ABC9C;
+	color: #00FFC8;
 	margin-top: -6px;
 	margin-bottom: -6px;
 }
 
 #myname {
 	margin-top: -15px;
-	color:#1AA9B1;
+	color: #00C8A0;
 	margin-bottom: 40px;
 }
 
@@ -199,3 +203,44 @@ html {
                10px 10px 10px rgba(0,0,0,.2),
                20px 20px 20px rgba(0,0,0,.15);
 }
+
+.progress-wrapper {
+  position: relative;
+}
+
+.progress-value {
+  position: absolute;
+  top: 3px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: calc(1rem / 1.15);
+  line-height: 1rem;
+	font-weight: bold;
+	color: #252525;
+}
+
+#discordicon {
+	position: absolute;
+	margin-top: 10px;
+	margin-left: -140px;
+	width: 32px;
+	height: 36px;
+	color: #7289DA;
+	filter: drop-shadow(4px 4px 0 #5B6DAE);
+	transition: all 0.10s linear 0s;
+}
+
+#discordicon:hover {
+	margin-top: 12px;
+	margin-left: -138px;
+	filter: drop-shadow(2px 2px 0 #5B6DAE);
+	transition: all 0.10s linear 0s;
+}
+
+#discordicon:active {
+	margin-top: 14px;
+	margin-left: -136px;
+	filter: drop-shadow(0 0 0 #5B6DAE);
+	transition: all 0.10s linear 0s;
+}
+

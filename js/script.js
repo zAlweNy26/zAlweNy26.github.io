@@ -223,7 +223,7 @@ $.ajax({
 });
 
 $('#myname').ColorPicker({
-  color: '#1AA9B1',
+  color: '#00C8A0',
   onShow: function (colpkr) {
     $(colpkr).fadeIn(250);
     return false;
@@ -238,7 +238,7 @@ $('#myname').ColorPicker({
 });
 
 var titles = {
-  color: '#1ABC9C',
+  color: '#00FFC8',
   onShow: function (colpkr) {
     $(colpkr).fadeIn(250);
     return false;
