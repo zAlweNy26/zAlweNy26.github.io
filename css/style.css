@@ -17,52 +17,23 @@ html {
   background-repeat: no-repeat;
 }
 
-.my-card, .steam-card, .yt-card, .comps-card, #discord,
-.anime-card, .twitch-card, .git-card, .skills-card { box-shadow: 0 10px 20px rgba(0,0,0,0.19),0 6px 6px rgba(0,0,0,0.23); }
-
-.steam-card, .yt-card, .my-card, .anime-card, .twitch-card, .comps-card, .git-card, .skills-card { 
+.yt-card, .my-card, .anime-card, .twitch-card, .comps-card, .git-card, .skills-card { 
 	position: relative;
 	border-radius: 10px;
 	max-width: 100%;
+	min-width: 400px;
 	background-color: rgb(30, 30, 30);
+	box-shadow: 10px 10px 20px rgba(0,0,0,0.25), 6px 6px 6px rgba(0,0,0,0.50);
 }
 
-.no-card { width: 350px; }
-
-.my-card { height: 100%; }
-
-.skills-card { margin-top: 24px; margin-bottom: 24px; }
-
-.anime-card { margin-bottom: 24px; height: 160px; }
-
-.yt-card { margin-top: 24px; height: 117px; }
-
-#discord {
-	margin-top: 21px;
-	border-radius: 10px;
-	margin-bottom: 14px;
-	height: 530px;
-	width: 350px;
-}
-
-#steamicon, #twitchicon, #animeicon, #yticon, #giticon,
-#steamnick, #steamlogoff, #steamdate, #animerate, #gitnick,
-#animestart, #animeend, #animepop, #animerank, 
+#twitchicon, #animeicon, #yticon, #giticon, #animerate, 
+#gitnick, #animestart, #animeend, #animepop, #animerank, 
 #animeepisodes, #streamer, #streamerviews, #streamerfollowers, 
 #streamerplaying, #favanime, #animenick, #gitfollowers, #gitfollowing, #gitrepos { float: left; }
 
-#steamlevel, .my-card-picture img, .icon { border-radius: 50%; }
-
-#steamicon, #twitchicon, .comp, .icon { vertical-align: middle; }
-
-#steamicon, #twitchicon, #animeicon, #yticon, #giticon {
-	overflow: hidden;
-	border-radius: 10px;
-}
-
-#steamicon {
-	width: 76px;
-	height: 76px;
+.my-card-picture img {
+	width: 128px;
+	height: 128px;
 }
 
 #twitchicon {
@@ -71,48 +42,36 @@ html {
 	height: 104px;
 }
 
-#yticon {
-	width: 118px;
-	height: 118px;
-	border: 2px solid rgb(225, 0, 0);
+#giticon {
+	width: 108px;
+	height: 108px;
 }
 
-#giticon {
-	width: 112px;
-	height: 112px;
+#yticon {
+	width: 114px;
+	height: 114px;
+	border: 2px solid rgb(225, 0, 0);
 }
 
 #animeicon, #giticon { border: 2px solid white; }
 
-#steamlevel {
-  width: 36px;
-  height: 36px;
-  padding: 4px;
-	margin-left: 84%;
-	margin-top: -28px;
-}
+.skills-card, .comps-card { margin-top: 24px; margin-bottom: 24px; }
 
-.my-card-picture img {
-	width: 128px;
-	height: 128px;
-}
+.anime-card { height: 160px; }
 
-#steamlogoff {
-	margin-top: -3px;
-	font-size: 14px;
-}
+.yt-card { height: 114px; }
 
-#steamdate {
-	margin-top: -7px;
-	font-size: 12px;
-}
+.my-card-picture img, .icon { border-radius: 50%; }
 
-#gitorg { 
-	width: 64px; 
-	height: 64px;
-	margin-top: -25px;
-	position: absolute;
-}
+#twitchicon, .comp, .icon { vertical-align: middle; }
+
+#twitchicon, #animeicon, #yticon, #giticon { border-radius: 10px; }
+
+.comp { margin-bottom: 5px; }
+
+.my-card-picture { padding-top:2rem; }
+
+.is-horizontal-center { justify-content: center; }
 
 #gitnick { margin-top: 5px; }
 
@@ -125,8 +84,8 @@ html {
 #animerate, #animestart, #animeend, .press,
 #animepop, #animerank, #animeepisodes { font-size: 14px; }
 
-#streamer, #streamerviews, #steamnick, #steamlogoff, #steamdate, #streamerfollowers, 
-#streamerplaying, #gitfollowers, #gitfollowing, #gitrepos, #gitnick { margin-left: 10px; }
+#streamer, #streamerviews, #streamerfollowers, #streamerplaying, 
+#gitfollowers, #gitfollowing, #gitrepos, #gitnick { margin-left: 10px; }
 
 #favyt, #favanime { 
 	font-size: 20px;
@@ -138,21 +97,6 @@ html {
 	font-size: 20px;
 	color: rgb(225, 0, 0);
 }
-
-#centered { margin-left: 10%; }
-
-.vertical-center {
-	min-height: 100%;
-	min-height: 100vh;
-	display: flex;
-	align-items: center;
-}
-
-.comp { margin-bottom: 5px; }
-
-.my-card-picture { padding-top:2rem; }
-
-.is-horizontal-center { justify-content: center; }
 
 .about {
 	margin-top: 18px;
@@ -204,13 +148,11 @@ html {
                20px 20px 20px rgba(0,0,0,.15);
 }
 
-.progress-wrapper {
-  position: relative;
-}
+.progress-wrapper { position: relative; }
 
 .progress-value {
   position: absolute;
-  top: 3px;
+  top: 2px;
   left: 50%;
   transform: translateX(-50%);
   font-size: calc(1rem / 1.15);
@@ -219,28 +161,38 @@ html {
 	color: #252525;
 }
 
+#gitorg { 
+	width: 64px; 
+	height: 64px;
+	position: absolute;
+	bottom: 20px;
+}
+
 #discordicon {
 	position: absolute;
-	margin-top: 10px;
-	margin-left: -140px;
+	top: 10px;
+  left: 10px;
 	width: 32px;
 	height: 36px;
 	color: #7289DA;
 	filter: drop-shadow(4px 4px 0 #5B6DAE);
+	-webkit-transition: all 0.10s linear 0s;
 	transition: all 0.10s linear 0s;
 }
 
 #discordicon:hover {
-	margin-top: 12px;
-	margin-left: -138px;
+	top: 12px;
+	left: 12px;
 	filter: drop-shadow(2px 2px 0 #5B6DAE);
+	-webkit-transition: all 0.10s linear 0s;
 	transition: all 0.10s linear 0s;
 }
 
 #discordicon:active {
-	margin-top: 14px;
-	margin-left: -136px;
+	top: 14px;
+	left: 14px;
 	filter: drop-shadow(0 0 0 #5B6DAE);
+	-webkit-transition: all 0.10s linear 0s;
 	transition: all 0.10s linear 0s;
 }
 
