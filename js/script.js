@@ -5,87 +5,8 @@ var keys = {
   TWITCH: CryptoJS.AES.decrypt("U2FsdGVkX1/scalSQEqycGqJ8B6uFGqAU94VsXU1///NfZlSM4V1vsipO7Hfw0fP", "Alwe").toString(CryptoJS.enc.Utf8),
 }
 
-var prv1 = null, crt1 = null, prv2 = null, crt2 = null, prv3 = null, crt3 = null, prv4 = null, crt4 = null, prv5 = null, crt5 = null;
-var prv6 = null, crt6 = null, prv7 = null, crt7 = null, prv8 = null, crt8 = null, prv9 = null, crt9 = null, prv0 = null, crt0 = null;
-
-/*$.ajax({
-  url: "https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key=" + keys.STEAM + "&steamids=76561198154675159",
-  type: 'GET',
-  dataType: 'json',
-  beforeSend: function (xhr) {
-    xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
-  },
-  success: function (steam) {
-    crt1 = JSON.stringify(steam);
-    if (prv1 && crt1 && prv1 !== crt1) $('.steam-content').load(document.URL + ' .steam-content');
-    prv1 = crt1;
-    $('.steamurl').attr("href", steam.response.players[0].profileurl);
-    $('#steamicon').attr("src", steam.response.players[0].avatarfull);
-    alert(steam.response.players[0].avatarfull);
-    $('#steamnick').html(steam.response.players[0].personaname);
-    let a = new Date(steam.response.players[0].lastlogoff * 1000);
-    let months = ['January', 'February', 'March', 'April', 'May', 'June',
-      'July', 'August', 'September', 'October', 'November', 'December'];
-    let year = a.getFullYear(), month = months[a.getMonth()], day = a.getDate(), hour = a.getHours(), min = a.getMinutes(), sec = a.getSeconds();
-    if (day < 10) day = "0" + day;
-    if (hour < 10) hour = "0" + hour;
-    if (min < 10) min = "0" + min;
-    if (sec < 10) sec = "0" + sec;
-    let logoff = day + ' ' + month + ' ' + year + ' at ' + hour + ':' + min + ':' + sec, status = "", profilestatus = steam.response.players[0].personastate;
-    if (profilestatus === 0) {
-      status = "rgb(75, 75, 75)";
-      $('#steamlogoff').html("Last log off :");
-      $('#steamdate').html(logoff);
-    }
-    else if (profilestatus === (2 || 3 || 4)) status = "rgb(30, 90, 165)";
-    else if (profilestatus === (1 || 5 || 6)) status = "rgb(45, 130, 235)";
-    if (profilestatus !== 0 && steam.response.players[0].gameid === undefined) {
-      $('#steamlogoff').css({ "color": "rgb(45, 130, 235)" });
-      $('#steamlogoff').html("Online");
-      $('#steamdate').hide();
-    } else if (profilestatus === 1 && steam.response.players[0].gameid !== undefined) {
-      status = "rgb(150, 210, 60)";
-      $('#steamlogoff').css({ "color": status });
-      $('#steamlogoff').html("Playing");
-      $('#steamdate').css({ "color": status });
-      $('#steamdate').html(steam.response.players[0].gameextrainfo);
-    }
-    $('#steamicon').css({ "border": "2px solid " + status });
-  },
-  error: function () { }
-});
-
-$.ajax({
-  url: "https://api.steampowered.com/IPlayerService/GetSteamLevel/v1/?key=" + keys.STEAM + "&steamid=76561198154675159",
-  type: 'GET',
-  dataType: 'json',
-  beforeSend: function (xhr) {
-    xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
-  },
-  success: function (steam) {
-    crt2 = JSON.stringify(steam);
-    if (prv2 && crt2 && prv2 !== crt2) $('#steamlevel').load(document.URL + ' #steamlevel');
-    prv2 = crt2;
-    let colors = ["rgb(155, 155, 155)", "rgb(190, 40, 65)", "rgb(215, 90, 65)", "rgb(255, 205, 35)",
-      "rgb(70, 120, 60)", "rgb(80, 140, 220)", "rgb(120, 80, 200)", "rgb(195, 80, 200)", 
-      "rgb(85, 35, 55)", "rgb(155, 125, 80)", "rgb(155, 155, 155)"], colorlevel = null, level = steam.response.player_level;
-    for (let i = 0, mul = 0; i < 1;) {
-      if (level >= 0 + mul && level <= 9 + mul) {
-        i++;
-        if (level < 10) colorlevel = colors[0];
-        else if (level <= 100) colorlevel = colors[mul / 10];
-        else if (level <= 1000) {
-          let val = parseInt(mul.toString().substring(1), 10);
-          colorlevel = colors[val / 10];
-        }
-        $('#steamlevel').css({ "border": "2px solid " + colorlevel });
-      }
-      if (i == 0) mul += 10;
-    }
-    $('#steamlevel').html(level);
-  },
-  error: function () { }
-});*/
+var prv3 = null, crt3 = null, prv4 = null, crt4 = null, prv5 = null, crt5 = null, prv6 = null, crt6 = null;
+var prv7 = null, crt7 = null, prv8 = null, crt8 = null, prv9 = null, crt9 = null, prv0 = null, crt0 = null;
 
 $.ajax({
   url: "https://api.github.com/users/zAlweNy26?client_id=" + keys.GITHID + "&client_secret=" + keys.GITHUB,
@@ -221,39 +142,3 @@ $.ajax({
   error: function () { },
   beforeSend: function (xhr) { xhr.setRequestHeader('Client-ID', keys.TWITCH); },
 });
-
-$('#myname').ColorPicker({
-  color: '#00C8A0',
-  onShow: function (colpkr) {
-    $(colpkr).fadeIn(250);
-    return false;
-  },
-  onHide: function (colpkr) {
-    $(colpkr).fadeOut(250);
-    return false;
-  },
-  onChange: function (hsb, hex, rgb) {
-    $('#myname').css('color', '#' + hex);
-  }
-});
-
-var titles = {
-  color: '#00FFC8',
-  onShow: function (colpkr) {
-    $(colpkr).fadeIn(250);
-    return false;
-  },
-  onHide: function (colpkr) {
-    $(colpkr).fadeOut(250);
-    return false;
-  },
-  onChange: function (hsb, hex, rgb) {
-    $('.sub').css('color', '#' + hex);
-    $('.about').css('color', '#' + hex);
-    $('.tit').css('color', '#' + hex);
-  }
-}
-
-$('.sub').ColorPicker(titles);
-$('.about').ColorPicker(titles);
-$('.tit').ColorPicker(titles);
