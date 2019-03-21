@@ -59,7 +59,10 @@ html {
 
 .skills-card { margin-top: 24px; margin-bottom: 24px; }
 
-.projects-card { margin-top: 24px; }
+.projects-card { 
+	margin-top: 24px;
+	min-height: 345px;
+}
 
 .my-card-picture img, .icon { border-radius: 50%; }
 
