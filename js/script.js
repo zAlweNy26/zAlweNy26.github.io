@@ -1,12 +1,11 @@
 var keys = {
   GITHID: CryptoJS.AES.decrypt("U2FsdGVkX1+xyv2ntQdFAFn3Aeqn8lmYLtMTqif5qfmB/i3JMAjvCi3ylT/yIJt0", "Alwe").toString(CryptoJS.enc.Utf8),
   GITHUB: CryptoJS.AES.decrypt("U2FsdGVkX1+OgGHSsIc81/93c3G2dg/BpC0ZFANjn+VeXZM7fJ20QxMZBWwv8N2f1tQTBeoOC9pCafqtjAe93g==", "Alwe").toString(CryptoJS.enc.Utf8),
-  GOOGLE: CryptoJS.AES.decrypt("U2FsdGVkX1+sCE5TTd3uCSuLkC3Drt+lMBIIlcHCYMzI2GDERUzblmRJgJq42m7g/xDQSjsKOavi/IBYVt8mnw==", "Alwe").toString(CryptoJS.enc.Utf8),
-  TWITCH: CryptoJS.AES.decrypt("U2FsdGVkX1/scalSQEqycGqJ8B6uFGqAU94VsXU1///NfZlSM4V1vsipO7Hfw0fP", "Alwe").toString(CryptoJS.enc.Utf8),
+  TWITCH: CryptoJS.AES.decrypt("U2FsdGVkX1/scalSQEqycGqJ8B6uFGqAU94VsXU1///NfZlSM4V1vsipO7Hfw0fP", "Alwe").toString(CryptoJS.enc.Utf8)
 }
 
-var prv3 = null, crt3 = null, prv4 = null, crt4 = null, prv5 = null, crt5 = null, prv6 = null, crt6 = null;
-var prv7 = null, crt7 = null, prv8 = null, crt8 = null, prv9 = null, crt9 = null, prv0 = null, crt0 = null;
+var prv0 = null, crt0 = null, prv5 = null, crt5 = null, prv6 = null, crt6 = null;
+var prv7 = null, crt7 = null, prv8 = null, crt8 = null, prv9 = null, crt9 = null;
 
 $.ajax({
   url: "https://api.github.com/users/zAlweNy26?client_id=" + keys.GITHID + "&client_secret=" + keys.GITHUB,
@@ -38,47 +37,6 @@ $.ajax({
     $('#gitorgurl').attr("href", "https://github.com/" + git[0].login);
   },
   error: function () { }
-});
-
-$.ajax({
-  url: "https://www.googleapis.com/youtube/v3/channels?part=snippet%2Cstatistics&forUsername=PlayerInsideIT&key=" + keys.GOOGLE,
-  type: 'GET',
-  dataType: 'json',
-  success: function (yt) {
-    crt3 = JSON.stringify(yt);
-    if (prv3 && crt3 && prv3 !== crt3) $('.yt-content').load(document.URL + ' .yt-content');
-    prv3 = crt3;
-    $('.yturl').attr("href", "https://www.youtube.com/channel/" + yt.items[0].id);
-    $('#yticon').attr("src", yt.items[0].snippet.thumbnails.medium.url);
-    $('#ytnick').html("<span id='favyt'>Favourite Youtuber</span><br>" + yt.items[0].snippet.title);
-    $('#ytsubs').html("<span id='infoapi'>Subscribers</span><br>" + parseInt(yt.items[0].statistics.subscriberCount).toLocaleString());
-    $('#ytvideos').html("<span id='infoapi'>Videos</span><br>" + parseInt(yt.items[0].statistics.videoCount).toLocaleString());
-    $('#ytviews').html("<span id='infoapi'>Views</span><br>" + parseInt(yt.items[0].statistics.viewCount).toLocaleString());
-  },
-  error: function () {}
-});
-
-$.ajax({
-  url: 'https://kitsu.io/api/edge/anime?filter[text]=trigun',
-  type: 'GET',
-  dataType: 'json',
-  success: function (anime) {
-    crt4 = JSON.stringify(anime);
-    if (prv4 && crt4 && prv4 !== crt4) $('.anime-content').load(document.URL + ' .anime-content');
-    prv4 = crt4;
-    $('.animeurl').attr("href", "https://kitsu.io/anime/" + anime.data[0].attributes.slug);
-    $('#animeicon').attr("src", anime.data[0].attributes.posterImage.tiny);
-    $('#animenick').html("<span id='favanime'>Favourite Anime</span><br>" + anime.data[0].attributes.titles.en);
-    $('#animerate').html("<span id='infoapi'>Rating</span><br>" + anime.data[0].attributes.averageRating + " %");
-    let datePart1 = anime.data[0].attributes.startDate.match(/\d+/g), year1 = datePart1[0], month1 = datePart1[1], day1 = datePart1[2];
-    let datePart2 = anime.data[0].attributes.endDate.match(/\d+/g), year2 = datePart2[0], month2 = datePart2[1], day2 = datePart2[2];
-    $('#animestart').html("<span id='infoapi'>Start Date</span><br>" + day1 + '/' + month1 + '/' + year1);
-    $('#animeend').html("<span id='infoapi'>End Date</span><br>" + day2 + '/' + month2 + '/' + year2);
-    $('#animepop').html("<span id='infoapi'>Popularity Rank</span><br>" + anime.data[0].attributes.popularityRank);
-    $('#animerank').html("<span id='infoapi'>Rating Rank</span><br>" + anime.data[0].attributes.ratingRank);
-    $('#animeepisodes').html("<span id='infoapi'>Episodes</span><br>" + anime.data[0].attributes.episodeCount);
-  },
-  error: function () {}
 });
 
 $.ajax({

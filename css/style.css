@@ -17,123 +17,99 @@ html {
   background-repeat: no-repeat;
 }
 
-.yt-card, .my-card, .anime-card, .twitch-card, .comps-card, .git-card, .skills-card { 
+.hero { margin-top: -24px; }
+
+.my-card-picture { padding-top: 2rem; }
+
+.is-horizontal-center { justify-content: center; }
+
+.my-card, .twitch-card, .comps-card, .git-card, .skills-card, .projects-card { 
 	position: relative;
 	border-radius: 10px;
 	max-width: 100%;
-	min-width: 400px;
+	min-width: 375px;
 	background-color: rgb(30, 30, 30);
 	box-shadow: 10px 10px 20px rgba(0,0,0,0.25), 6px 6px 6px rgba(0,0,0,0.50);
 }
 
-#twitchicon, #animeicon, #yticon, #giticon, #animerate, 
-#gitnick, #animestart, #animeend, #animepop, #animerank, 
-#animeepisodes, #streamer, #streamerviews, #streamerfollowers, 
-#streamerplaying, #favanime, #animenick, #gitfollowers, #gitfollowing, #gitrepos { float: left; }
+#twitchicon, #giticon, #gitnick, #streamer, #streamerviews, #streamerfollowers, 
+#streamerplaying, #gitfollowers, #gitfollowing, #gitrepos { float: left; }
 
 .my-card-picture img {
 	width: 128px;
 	height: 128px;
 }
 
-#twitchicon {
-	border: 2px solid rgb(60, 45, 90);
-	width: 104px;
-	height: 104px;
+#twitchicon { border: 2px solid rgb(60, 45, 90); }
+
+#giticon { border: 2px solid white; }
+
+#giticon, #twitchicon {
+	width: 100px;
+	height: 100px;
 }
 
-#giticon {
-	width: 108px;
-	height: 108px;
+#gitorg { 
+	width: 64px; 
+	height: 64px;
+	position: absolute;
+	bottom: 20px;
+	right: 50px;
 }
 
-#yticon {
-	width: 114px;
-	height: 114px;
-	border: 2px solid rgb(225, 0, 0);
+.skills-card { margin-top: 24px; margin-bottom: 24px; }
+
+.projects-card { 
+	margin-top: 24px;
+	height: 345px;
 }
-
-#animeicon, #giticon { border: 2px solid white; }
-
-.skills-card, .comps-card { margin-top: 24px; margin-bottom: 24px; }
-
-.anime-card { height: 160px; }
-
-.yt-card { height: 114px; }
 
 .my-card-picture img, .icon { border-radius: 50%; }
 
+.icon { width: 30px; height: 30px; }
+
 #twitchicon, .comp, .icon { vertical-align: middle; }
 
-#twitchicon, #animeicon, #yticon, #giticon { border-radius: 10px; }
+#twitchicon, #giticon { border-radius: 10px; }
 
 .comp { margin-bottom: 5px; }
 
-.my-card-picture { padding-top:2rem; }
-
-.is-horizontal-center { justify-content: center; }
-
-#gitnick { margin-top: 5px; }
-
-#gitfollowers, #gitfollowing, #gitrepos { margin-top: -15px; }
+#gitfollowers, #gitfollowing, #gitrepos { margin-top: -25px; }
 
 #streamerviews, #streamerfollowers, #streamerplaying { margin-top: -20px; }
 
 #gitnick, #streamer { font-weight: bold; font-size: 18px; }
 
-#animerate, #animestart, #animeend, .press,
-#animepop, #animerank, #animeepisodes { font-size: 14px; }
-
 #streamer, #streamerviews, #streamerfollowers, #streamerplaying, 
 #gitfollowers, #gitfollowing, #gitrepos, #gitnick { margin-left: 10px; }
-
-#favyt, #favanime { 
-	font-size: 20px;
-	margin-top: 5px;
-}
-
-#ytnick, #animenick {
-	font-weight: bold;
-	font-size: 20px;
-	color: rgb(225, 0, 0);
-}
 
 .about {
 	margin-top: 18px;
 	margin-bottom: 18px;
 	display: block;
-	color: rgb(0, 215, 170);
 }
 
 .sub {
 	font-size: 28px;
 	margin-top: -30px;
 	margin-bottom: -10px;
-	color: rgb(0, 215, 170);
 	font-weight: bold;
 }
 
 .tit { 
 	font-size: 32px; 
 	font-weight: bold;
-	color: rgb(0, 215, 170);
 	margin-top: -6px;
 	margin-bottom: -6px;
 }
 
 #myname {
 	margin-top: -15px;
-	color: rgb(0, 160, 125);
 	margin-bottom: 40px;
 }
 
-#infoapi {
-	font-weight: bold;
-	font-size: 14px;
-	color: rgb(225, 0, 0);
-}
-
-#myname, .sub, .about, .tit, #favyt, #favanime {
+#myname, .sub, .about, .tit {
+	color: rgb(0, 215, 170);
 	text-shadow: 1px 1px 0 #252525, 
                2px 2px 0 #252525,
                3px 3px 0 #252525,
@@ -161,23 +137,15 @@ html {
 	color: #252525;
 }
 
-#gitorg { 
-	width: 64px; 
-	height: 64px;
-	position: absolute;
-	bottom: 20px;
-}
-
 #discordicon {
 	position: absolute;
 	top: 10px;
   left: 10px;
 	width: 32px;
 	height: 36px;
-	color: #7289DA;
 	filter: drop-shadow(4px 4px 0 #5B6DAE);
-	-webkit-transition: all 0.10s linear 0s;
-	transition: all 0.10s linear 0s;
+	-webkit-transition: all 0.3s linear 0s;
+	transition: all 0.3s linear 0s;
 }
 
 #discordicon:hover {
@@ -195,4 +163,3 @@ html {
 	-webkit-transition: all 0.10s linear 0s;
 	transition: all 0.10s linear 0s;
 }
-
