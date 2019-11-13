@@ -1,4 +1,3 @@
 # Files that will be hidden in repository
-apikeys.js
 apikeys.txt
 .env

@@ -1,3 +1,9 @@
+var keys = {
+  GITHID: CryptoJS.AES.decrypt("U2FsdGVkX1+xyv2ntQdFAFn3Aeqn8lmYLtMTqif5qfmB/i3JMAjvCi3ylT/yIJt0", "Alwe").toString(CryptoJS.enc.Utf8),
+  GITHUB: CryptoJS.AES.decrypt("U2FsdGVkX1+OgGHSsIc81/93c3G2dg/BpC0ZFANjn+VeXZM7fJ20QxMZBWwv8N2f1tQTBeoOC9pCafqtjAe93g==", "Alwe").toString(CryptoJS.enc.Utf8),
+  TWITCH: CryptoJS.AES.decrypt("U2FsdGVkX1/scalSQEqycGqJ8B6uFGqAU94VsXU1///NfZlSM4V1vsipO7Hfw0fP", "Alwe").toString(CryptoJS.enc.Utf8)
+}
+
 var prv0 = null, crt0 = null, prv5 = null, crt5 = null, prv6 = null, crt6 = null;
 var prv7 = null, crt7 = null, prv8 = null, crt8 = null, prv9 = null, crt9 = null;
 
