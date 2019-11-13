@@ -15,7 +15,6 @@ html {
 	background-attachment: fixed;
 	background-position: center;
 	background-repeat: no-repeat;
-	overflow-y: hidden;
 }
 
 .hero { margin-top: -24px; }
