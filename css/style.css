@@ -149,26 +149,18 @@ html {
 #discordicon {
 	position: absolute;
 	top: 10px;
-  left: 10px;
+  	left: 10px;
 	width: 32px;
-	height: 36px;
+	height: 32px;
 	filter: drop-shadow(4px 4px 0 #5B6DAE);
-	-webkit-transition: all 0.3s linear 0s;
-	transition: all 0.3s linear 0s;
+	-webkit-transition: all 0.1s linear 0s;
+	transition: all 0.1s linear 0s;
 }
 
 #discordicon:hover {
-	top: 12px;
-	left: 12px;
-	filter: drop-shadow(2px 2px 0 #5B6DAE);
-	-webkit-transition: all 0.10s linear 0s;
-	transition: all 0.10s linear 0s;
-}
-
-#discordicon:active {
 	top: 14px;
 	left: 14px;
 	filter: drop-shadow(0 0 0 #5B6DAE);
-	-webkit-transition: all 0.10s linear 0s;
-	transition: all 0.10s linear 0s;
+	-webkit-transition: all 0.1s linear 0s;
+	transition: all 0.1s linear 0s;
 }
