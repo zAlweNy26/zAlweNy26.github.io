@@ -1,5 +1,10 @@
 # Files that will be hidden in repository
 apikeys.txt
-prova.css
+main.css
+main.css.map
+main.scss
 prova.html
+main.js
+Sicily.png
+Portrait.jpg
 .env
