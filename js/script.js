@@ -15,12 +15,11 @@ $.ajax({
     crt8 = JSON.stringify(git);
     if (prv8 && crt8 && prv8 !== crt8) $('.git-content').load(document.URL + ' .git-content');
     prv8 = crt8;
-    $('.giturl').attr("href", git.html_url);
     $('#giticon').attr("src", git.avatar_url);
     $('#gitnick').html(git.login);
-    $('#gitfollowers').html(git.followers + "<a href='https://github.com/zAlweNy26?tab=followers' target='_blank'> Followers</a>");
-    $('#gitfollowing').html(git.following + "<a href='https://github.com/zAlweNy26?tab=following' target='_blank'> Following</a>");
-    $('#gitrepos').html(git.public_repos + "<a href='https://github.com/zAlweNy26?tab=repositories' target='_blank'> Repositories</a>");
+    $('#gitfollowers').html(git.followers + "  <a href='https://github.com/zAlweNy26?tab=followers' target='_blank'>Followers</a>");
+    $('#gitfollowing').html(git.following + "  <a href='https://github.com/zAlweNy26?tab=following' target='_blank'>Following</a>");
+    $('#gitrepos').html(git.public_repos + "  <a href='https://github.com/zAlweNy26?tab=repositories' target='_blank'>Repositories</a>");
   },
   error: function () { }
 });
@@ -34,7 +33,7 @@ $.ajax({
     if (prv9 && crt9 && prv9 !== crt9) $('.git-content').load(document.URL + ' .git-content');
     prv9 = crt9;
     $('#gitorg').attr("src", git[0].avatar_url);
-    $('#gitorgurl').attr("href", "https://github.com/" + git[0].login);
+	$('#gitorgurl').attr("href", "https://github.com/" + git[0].login);
   },
   error: function () { }
 });
@@ -50,7 +49,6 @@ $.ajax({
     $('#twitchicon').attr("src", data.data[0].profile_image_url);
     $('#streamer').html(data.data[0].display_name);
     $('#streamerviews').html(parseInt(data.data[0].view_count).toLocaleString() + "<span style='color: rgb(100, 65, 165)'> total views</span>");
-	//window.alert(data.data[0].id);
   },
   error: function () { },
   beforeSend: function (xhr) { xhr.setRequestHeader('Client-ID', keys.TWITCH); },
