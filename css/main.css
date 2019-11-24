@@ -1,0 +1,468 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap");
+body {
+  margin: 0;
+  font-family: 'Montserrat';
+  font-size: 20px;
+  background: #202020;
+  text-align: center;
+  color: #202020;
+}
+
+@-webkit-keyframes beatHeart {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  25% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+  40% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  60% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes beatHeart {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  25% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+  40% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  60% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@-webkit-keyframes scaleUp {
+  0% {
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+    opacity: 0;
+    -webkit-transform-origin: 50% 0%;
+            transform-origin: 50% 0%;
+  }
+  25% {
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+    opacity: 0.25;
+    -webkit-transform-origin: 50% 0%;
+            transform-origin: 50% 0%;
+  }
+  50% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 0.5;
+    -webkit-transform-origin: 50% 0%;
+            transform-origin: 50% 0%;
+  }
+  75% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+    opacity: 0.75;
+    -webkit-transform-origin: 50% 0%;
+            transform-origin: 50% 0%;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+    -webkit-transform-origin: 50% 0%;
+            transform-origin: 50% 0%;
+  }
+}
+
+@keyframes scaleUp {
+  0% {
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+    opacity: 0;
+    -webkit-transform-origin: 50% 0%;
+            transform-origin: 50% 0%;
+  }
+  25% {
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+    opacity: 0.25;
+    -webkit-transform-origin: 50% 0%;
+            transform-origin: 50% 0%;
+  }
+  50% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 0.5;
+    -webkit-transform-origin: 50% 0%;
+            transform-origin: 50% 0%;
+  }
+  75% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+    opacity: 0.75;
+    -webkit-transform-origin: 50% 0%;
+            transform-origin: 50% 0%;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+    -webkit-transform-origin: 50% 0%;
+            transform-origin: 50% 0%;
+  }
+}
+
+@-webkit-keyframes scaleDown {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+    -webkit-transform-origin: 50% 0%;
+            transform-origin: 50% 0%;
+  }
+  100% {
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+    opacity: 0;
+    -webkit-transform-origin: 50% 0%;
+            transform-origin: 50% 0%;
+  }
+}
+
+@keyframes scaleDown {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+    -webkit-transform-origin: 50% 0%;
+            transform-origin: 50% 0%;
+  }
+  100% {
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+    opacity: 0;
+    -webkit-transform-origin: 50% 0%;
+            transform-origin: 50% 0%;
+  }
+}
+
+.inner {
+  margin: 20px;
+}
+
+.inner .block {
+  -webkit-box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25), 6px 6px 6px rgba(0, 0, 0, 0.5);
+          box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25), 6px 6px 6px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(160deg, #01ffcd 0%, #00ff00 100%);
+  padding: 1em;
+  border-radius: 20px;
+}
+
+.inner h2 {
+  margin: 0;
+}
+
+.inner #portrait {
+  width: 145px;
+  height: 145px;
+  border-radius: 50%;
+}
+
+.inner #socials {
+  margin: 0;
+}
+
+.inner #socials span {
+  display: inline-block;
+}
+
+.inner .icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  vertical-align: middle;
+}
+
+.inner .center {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  -ms-grid-rows: 1fr fit-content(130px) 0fr;
+      grid-template-rows: 1fr fit-content(130px) 0fr;
+      grid-template-areas: "skills" "popup" "popuppers";
+}
+
+.inner .center #skills {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: skills;
+  color: white;
+  padding: 1em;
+  margin-bottom: 40px;
+  overflow: auto;
+  -webkit-box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25), 6px 6px 6px rgba(0, 0, 0, 0.5);
+          box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25), 6px 6px 6px rgba(0, 0, 0, 0.5);
+  border: 5px solid transparent;
+  border-radius: 20px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#202020), to(#202020)) padding-box, -webkit-gradient(linear, left top, right top, from(#01ffcd), to(#00ff00)) border-box;
+  background: linear-gradient(#202020, #202020) padding-box, linear-gradient(to right, #01ffcd, #00ff00) border-box;
+}
+
+.inner .center #skills h2 {
+  margin: 10px 0 20px 0;
+}
+
+.inner .center #skills .skill progress {
+  color: linear-gradient(to right, #01ffcd, #00ff00);
+  background: white;
+  border-radius: 15px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  height: 20px;
+  margin: 10px;
+  width: 300px;
+}
+
+.inner .center #skills .skill progress::-webkit-progress-bar {
+  background: white;
+  border-radius: 15px;
+}
+
+.inner .center #skills .skill progress::-webkit-progress-value {
+  background: -webkit-gradient(linear, left top, right top, from(#01ffcd), to(#00ff00));
+  background: linear-gradient(to right, #01ffcd, #00ff00);
+  border-radius: 15px;
+}
+
+.inner .center #skills .skill progress::-moz-progress-bar {
+  background: linear-gradient(to right, #01ffcd, #00ff00);
+  border-radius: 15px;
+}
+
+.inner .center #skills .skill span {
+  color: #202020;
+  font-size: 0.8rem;
+  font-weight: bold;
+  position: absolute;
+  margin-top: 13px;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  left: 50%;
+}
+
+.inner .center #popup {
+  opacity: 0;
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  grid-area: popup;
+  border: 5px solid transparent;
+  -webkit-box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25), 6px 6px 6px rgba(0, 0, 0, 0.5);
+          box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25), 6px 6px 6px rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  background: #202020;
+  margin: -20px 0 20px 0;
+  color: white;
+  background: -webkit-gradient(linear, left top, left bottom, from(#202020), to(#202020)) padding-box, -webkit-gradient(linear, left top, right top, from(#01ffcd), to(#00ff00)) border-box;
+  background: linear-gradient(#202020, #202020) padding-box, linear-gradient(to right, #01ffcd, #00ff00) border-box;
+}
+
+.inner .center #popup::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  border: 20px solid transparent;
+  border-top-color: #00ff00;
+  border-bottom: 0;
+  left: 46%;
+  margin-bottom: -25px;
+}
+
+.inner .center #popup a:link {
+  color: white;
+}
+
+.inner .center #popup a:visited {
+  color: gray;
+}
+
+.inner .center #popup a:hover {
+  color: lightgray;
+}
+
+.inner .center #popup a:active {
+  color: blue;
+}
+
+.inner .center #popup #profileicon {
+  border-radius: 12px 0 0 12px;
+  width: 120px;
+  height: 120px;
+  float: left;
+}
+
+.inner .center #popup #gitorg {
+  width: 64px;
+  height: 64px;
+  position: fixed;
+  display: none;
+  right: 25px;
+}
+
+.inner .center #popup #desc, .inner .center #popup #info1, .inner .center #popup #info2 {
+  font-size: 16px;
+  margin: 0 0 0 10px;
+  float: left;
+}
+
+.inner .center #popup #name {
+  float: left;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 10px 0 -10px 10px;
+}
+
+.inner .center #popuppers {
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
+  grid-area: popuppers;
+}
+
+.inner .center #popuppers .popup {
+  width: 64px;
+  height: 64px;
+  margin-left: 2vw;
+  margin-right: 2vw;
+  border-radius: 50%;
+}
+
+.inner .right {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  -ms-grid-rows: 1.25fr fit-content(200px);
+      grid-template-rows: 1.25fr fit-content(200px);
+  row-gap: 20px;
+      grid-template-areas: "pc" "projects";
+}
+
+.inner .right a:link {
+  color: blue;
+}
+
+.inner .right a:visited {
+  color: #202020;
+}
+
+.inner .right a:hover {
+  color: black;
+}
+
+.inner .right a:active {
+  color: blue;
+}
+
+.inner .right .pc {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: pc;
+}
+
+.inner .right .pc #components .comp {
+  vertical-align: middle;
+}
+
+.inner .right .pc #components span {
+  display: block;
+  margin: 8px;
+}
+
+.inner .right .pc #components span:last-of-type {
+  margin-bottom: 35px;
+}
+
+.inner .right .projects {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  grid-area: projects;
+  padding: 1.3em;
+}
+
+@media only screen and (min-width: 768px) {
+  body {
+    font-size: 18px;
+  }
+}
+
+@media only screen and (max-width: 1279px) {
+  .center {
+    margin-top: 40px !important;
+  }
+  progress {
+    width: 65vw !important;
+  }
+  #popup, #popuppers {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .inner {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 0.5fr 2fr 2fr 2fr 0.5fr;
+        grid-template-columns: 0.5fr 2fr 2fr 2fr 0.5fr;
+    -ms-grid-rows: 1fr;
+        grid-template-rows: 1fr;
+    -webkit-column-gap: 20px;
+            column-gap: 20px;
+        grid-template-areas: ". left center right .";
+  }
+  .left {
+    -ms-grid-row: 1;
+    -ms-grid-column: 2;
+    grid-area: left;
+  }
+  .center {
+    -ms-grid-row: 1;
+    -ms-grid-column: 3;
+    grid-area: center;
+  }
+  .right {
+    -ms-grid-row: 1;
+    -ms-grid-column: 4;
+    grid-area: right;
+  }
+}
+
+@media only screen and (min-width: 3840px) {
+  body {
+    font-size: 30px;
+  }
+  .icon {
+    width: 96px !important;
+    height: 96px !important;
+  }
+}
+/*# sourceMappingURL=main.css.map */
