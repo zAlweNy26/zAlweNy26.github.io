@@ -8,10 +8,10 @@ $("#gh").hover(
         $("#popup").css({
             'animation' : 'scaleUp 0.75s both'
         });
-        /*$("#popup::after").css({
-            'border-right' : '0',
-            'margin-left' : 'calc(14vw - 100%)',
-        });*/
+        $("#popup::after").css({
+            'border-top-color' : '#01ffcd',
+            'left' : '25%',
+        });
     }, function() {
         $("#popup").css({
             'animation' : 'scaleDown 0.5s both',
@@ -29,10 +29,10 @@ $("#tw").hover(
         $("#popup").css({
             'animation' : 'scaleUp 0.75s both'
         });
-        /*$("#popup::after").css({
-            'border-left' : '0',
-            'margin-left' : 'calc(14vw + 100%)',
-        });*/
+        $("#popup::after").css({
+            'border-top-color' : '#00ff00',
+            'left' : '75%',
+        });
     }, function() {
         $("#popup").css({
             'animation' : 'scaleDown 0.5s both',
