@@ -1,3 +1,22 @@
+function animateProgress($progressBar, val, currentVal) {
+    currentVal = currentVal || 0;
+    var step = val * 15 / 1000;
+    function animate(currentVal) {
+        currentVal += step;
+        $progressBar.val(currentVal);
+        currentVal < val && requestAnimationFrame(function() {
+            animate(currentVal);
+        });
+    }
+    animate(currentVal);
+}
+
+window.onload = function() {
+    $("progress").each(function() {
+        animateProgress($(this), $(this).val());
+    });
+};
+
 $("#gh").hover(
     function() {
         $('#profileicon').attr("src", gitprofileicon);

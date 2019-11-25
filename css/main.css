@@ -286,18 +286,16 @@ body {
   color: white;
   background: -webkit-gradient(linear, left top, left bottom, from(#202020), to(#202020)) padding-box, -webkit-gradient(linear, left top, right top, from(#01ffcd), to(#00ff00)) border-box;
   background: linear-gradient(#202020, #202020) padding-box, linear-gradient(to right, #01ffcd, #00ff00) border-box;
-}
-
-.inner .center #popup::after {
-  content: '';
-  border: 20px solid transparent;
-  border-top-color: #01FF67;
-  border-bottom: 0;
-  position: absolute;
-  left: 50%;
-  bottom: -25%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  /*&::after {
+                content: '';
+                border: 20px solid transparent;
+                border-top-color: #01FF67;
+                border-bottom: 0;
+                position: absolute;
+                left: 50%;
+                bottom: -25%;
+                transform: translate(-50%, -50%);
+            }*/
 }
 
 .inner .center #popup a:link {
