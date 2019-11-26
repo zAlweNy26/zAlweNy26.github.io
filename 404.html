@@ -1,15 +1,38 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>zAlweNy26 - Profile ERROR</title>
+    <title>zAlweNy26 - Profile | 404</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/icon" href="img/favicon.png" />
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+    <link rel="stylesheet" href="css/error.css">
   </head>
   <body>
-    Che ci fai qui ? Gay !
+    <p id="error404"></p>
+    <script src="https://cdn.jsdelivr.net/npm/typeit@6.1.1/dist/typeit.min.js"></script>
+    <script>
+      const instance = new TypeIt('#error404', {
+        speed: 50,
+        waitUntilVisible: true,
+        afterComplete: (instance) => {
+          setTimeout(function(){ window.location = "https://zalweny26.github.io"; }, 3000);
+        },
+      }).type('Se sei finito qui,')
+      .pause(750)
+      .type(' probabilmente non sai neanche incollare un link,')
+      .break()
+      .pause(750)
+      .type('oppure cercavi qualcosa di nascosto nel mio sito.')
+      .pause(1000)
+      .type(' Illuso.')
+      .pause(1500)
+      .options({speed: 25})
+      .delete()
+      .options({speed: 50})
+      .type("Esiste solo <strong class='gradient'>zalweny26.github.io</strong> !")
+      .go();
+    </script>
   </body>
 </html>
