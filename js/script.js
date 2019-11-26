@@ -15,9 +15,9 @@ $.ajax({
   success: function (git) {
     gitprofileicon = git.avatar_url;
     gitname = git.login;
-    gitdesc = git.public_repos + " <span style='color: lightgrey'>Repositories</span>";
-    gitinfo1 = git.following + " <span style='color: lightgrey'>Following</span>";
-    gitinfo2 = git.followers + " <span style='color: lightgrey'>Followers</span>";
+    gitdesc = git.public_repos + " <span style='color: #808080'>Repositories</span>";
+    gitinfo1 = git.following + " <span style='color: #808080'>Following</span>";
+    gitinfo2 = git.followers + " <span style='color: #808080'>Followers</span>";
   },
   error: function () { }
 });

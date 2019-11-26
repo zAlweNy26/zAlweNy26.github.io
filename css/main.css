@@ -1,9 +1,33 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap");
+html[data-theme='light'] {
+  --bg: #FFFFFF;
+  --bg-panel: #FFFFFF;
+  --color: #202020;
+  --color-panel: #202020;
+  --medium-color: #808080;
+}
+
+html[data-theme='dark'] {
+  --bg: #202020;
+  --bg-panel: #202020;
+  --color: #202020;
+  --color-panel: #FFFFFF;
+  --medium-color: #202020;
+}
+
+html.transition, html.transition *,
+html.transition *:before, html.transition *:after {
+  -webkit-transition: all 1s !important;
+  transition: all 1s !important;
+  -webkit-transition-delay: 0 !important;
+          transition-delay: 0 !important;
+}
+
 body {
   margin: 0;
   font-family: 'Montserrat';
   font-size: 20px;
-  background: #202020;
+  background: var(--bg);
   text-align: center;
   color: #202020;
 }
@@ -201,6 +225,34 @@ body {
   vertical-align: middle;
 }
 
+.inner .left {
+  position: relative;
+}
+
+.inner .left #switch {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  border: 0;
+  border-radius: 50%;
+  padding: 5px;
+  background: #202020;
+  cursor: pointer;
+}
+
+.inner .left #switch i:before {
+  background: -webkit-gradient(linear, left top, left bottom, from(#01FFCD), to(#00FF00));
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: initial;
+}
+
+.inner .left #switch i {
+  font-size: 24px;
+  color: white;
+  display: initial;
+}
+
 .inner .center {
   display: -ms-grid;
   display: grid;
@@ -215,7 +267,7 @@ body {
   -ms-grid-row: 1;
   -ms-grid-column: 1;
   grid-area: skills;
-  color: white;
+  color: var(--color-panel);
   padding: 1em;
   margin-bottom: 40px;
   overflow: auto;
@@ -223,8 +275,8 @@ body {
           box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25), 6px 6px 6px rgba(0, 0, 0, 0.5);
   border: 5px solid transparent;
   border-radius: 20px;
-  background: -webkit-gradient(linear, left top, left bottom, from(#202020), to(#202020)) padding-box, -webkit-gradient(linear, left top, right top, from(#01ffcd), to(#00ff00)) border-box;
-  background: linear-gradient(#202020, #202020) padding-box, linear-gradient(to right, #01ffcd, #00ff00) border-box;
+  background: -webkit-gradient(linear, left top, left bottom, from(var(--bg-panel)), to(var(--bg-panel))) padding-box, -webkit-gradient(linear, left top, right top, from(#01ffcd), to(#00ff00)) border-box;
+  background: linear-gradient(var(--bg-panel), var(--bg-panel)) padding-box, linear-gradient(to right, #01ffcd, #00ff00) border-box;
 }
 
 .inner .center #skills h2 {
@@ -233,7 +285,7 @@ body {
 
 .inner .center #skills .skill progress {
   color: linear-gradient(to right, #01ffcd, #00ff00);
-  background: white;
+  background: var(--color-panel);
   border-radius: 15px;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -245,7 +297,7 @@ body {
 }
 
 .inner .center #skills .skill progress::-webkit-progress-bar {
-  background: white;
+  background: var(--color-panel);
   border-radius: 15px;
 }
 
@@ -261,7 +313,7 @@ body {
 }
 
 .inner .center #skills .skill span {
-  color: #202020;
+  color: var(--medium-color);
   font-size: 0.8rem;
   font-weight: bold;
   position: absolute;
@@ -280,12 +332,12 @@ body {
   -webkit-box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25), 6px 6px 6px rgba(0, 0, 0, 0.5);
           box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25), 6px 6px 6px rgba(0, 0, 0, 0.5);
   border-radius: 20px;
-  background: #202020;
+  background: var(--bg-panel);
   margin: -20px 0 20px 0;
   position: relative;
-  color: white;
-  background: -webkit-gradient(linear, left top, left bottom, from(#202020), to(#202020)) padding-box, -webkit-gradient(linear, left top, right top, from(#01ffcd), to(#00ff00)) border-box;
-  background: linear-gradient(#202020, #202020) padding-box, linear-gradient(to right, #01ffcd, #00ff00) border-box;
+  color: var(--color-panel);
+  background: -webkit-gradient(linear, left top, left bottom, from(var(--bg-panel)), to(var(--bg-panel))) padding-box, -webkit-gradient(linear, left top, right top, from(#01ffcd), to(#00ff00)) border-box;
+  background: linear-gradient(var(--bg-panel), var(--bg-panel)) padding-box, linear-gradient(to right, #01ffcd, #00ff00) border-box;
   /*&::after {
                 content: '';
                 border: 20px solid transparent;
@@ -296,22 +348,6 @@ body {
                 bottom: -25%;
                 transform: translate(-50%, -50%);
             }*/
-}
-
-.inner .center #popup a:link {
-  color: white;
-}
-
-.inner .center #popup a:visited {
-  color: gray;
-}
-
-.inner .center #popup a:hover {
-  color: lightgray;
-}
-
-.inner .center #popup a:active {
-  color: blue;
 }
 
 .inner .center #popup #profileicon {
@@ -326,11 +362,13 @@ body {
   height: 64px;
   position: fixed;
   display: none;
-  right: 25px;
+  right: 20px;
+  top: 30px;
 }
 
 .inner .center #popup #desc, .inner .center #popup #info1, .inner .center #popup #info2 {
   font-size: 16px;
+  font-weight: bold;
   margin: 0 0 0 10px;
   float: left;
 }
@@ -421,7 +459,8 @@ body {
 
 @media only screen and (max-width: 1279px) {
   .center {
-    margin-top: 40px !important;
+    margin-top: 20px !important;
+    margin-bottom: -20px !important;
   }
   #popup, #popuppers {
     display: none;

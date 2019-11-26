@@ -17,6 +17,14 @@ window.onload = function() {
     });
 };
 
+$("#switch").click(function() {
+    document.documentElement.classList.add('transition');
+    window.setTimeout(() => {
+        document.documentElement.classList.remove('transition');
+    }, 1000);
+    $("html").attr("data-theme", $("html").attr("data-theme") == "dark" ? "light" : "dark");
+});
+
 $("#gh").hover(
     function() {
         $('#profileicon').attr("src", gitprofileicon);
@@ -24,13 +32,16 @@ $("#gh").hover(
         $('#desc').html(gitdesc);
         $('#info1').html(gitinfo1);
         $('#info2').html(gitinfo2);
+        $("#gitorg").css({
+            'display' : 'initial'
+        });
         $("#popup").css({
             'animation' : 'scaleUp 0.75s both'
         });
-        $("#popup::after").css({
+        /*$("#popup::after").css({
             'border-top-color' : '#01ffcd',
             'left' : '25%',
-        });
+        });*/
     }, function() {
         $("#popup").css({
             'animation' : 'scaleDown 0.5s both',
@@ -40,6 +51,9 @@ $("#gh").hover(
 
 $("#tw").hover(
     function() {
+        $("#gitorg").css({
+            'display' : 'none'
+        });
         $('#profileicon').attr("src", twitchprofileicon);
         $('#name').html(twitchname);
         $('#desc').html(twitchdesc);
@@ -48,10 +62,10 @@ $("#tw").hover(
         $("#popup").css({
             'animation' : 'scaleUp 0.75s both'
         });
-        $("#popup::after").css({
+        /*$("#popup::after").css({
             'border-top-color' : '#00ff00',
             'left' : '75%',
-        });
+        });*/
     }, function() {
         $("#popup").css({
             'animation' : 'scaleDown 0.5s both',
