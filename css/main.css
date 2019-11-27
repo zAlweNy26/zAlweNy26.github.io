@@ -236,20 +236,13 @@ body {
   border: 0;
   border-radius: 50%;
   padding: 5px;
-  background: #202020;
+  background: var(--bg-panel);
   cursor: pointer;
-}
-
-.inner .left #switch i:before {
-  background: -webkit-gradient(linear, left top, left bottom, from(#01FFCD), to(#00FF00));
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  display: initial;
 }
 
 .inner .left #switch i {
   font-size: 24px;
-  color: white;
+  color: var(--color-panel);
   display: initial;
 }
 

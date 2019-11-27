@@ -1,6 +1,4 @@
 # Files that will be hidden in repository
-error.css.map
 error.scss
-main.css.map
 main.scss
 .env
