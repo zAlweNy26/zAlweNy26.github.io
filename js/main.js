@@ -12,6 +12,7 @@ function animateProgress($progressBar, val, currentVal) {
 }
 
 window.onload = function() {
+    if ($(window).width() < 1280) $(".flip").addClass("is-flipped");
     $("progress").each(function() {
         animateProgress($(this), $(this).val());
     });
@@ -23,6 +24,11 @@ $("#switch").click(function() {
         document.documentElement.classList.remove('transition');
     }, 1000);
     $("html").attr("data-theme", $("html").attr("data-theme") == "dark" ? "light" : "dark");
+});
+
+$(".flip").click(function() {
+    if ($(".flip").hasClass("is-flipped")) $(".flip").removeClass('is-flipped');
+    else $(".flip").addClass('is-flipped');
 });
 
 $("#gh").hover(
