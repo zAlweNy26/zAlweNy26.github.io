@@ -494,7 +494,9 @@ body {
   .center {
     margin-top: 20px !important;
     row-gap: 20px;
-    margin-bottom: 20px !important;
+    -ms-grid-rows: 1fr 64px !important;
+        grid-template-rows: 1fr 64px !important;
+        grid-template-areas: "skills" "popuppers" !important;
   }
   .flip {
     pointer-events: none;
@@ -503,7 +505,13 @@ body {
     display: none;
   }
   #popuppers {
-    margin-top: -55px;
+    margin-top: -25px;
+  }
+  #skills {
+    -webkit-transform: unset !important;
+            transform: unset !important;
+    -webkit-backface-visibility: visible !important;
+    backface-visibility: visible !important;
   }
   #skills p {
     padding: 1em 1em 3em 1em;

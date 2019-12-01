@@ -12,10 +12,11 @@ function animateProgress($progressBar, val, currentVal) {
 }
 
 window.onload = function() {
-    if ($(window).width() < 1280) $(".flip").addClass("is-flipped");
-    $("progress").each(function() {
-        animateProgress($(this), $(this).val());
-    });
+    if ($(window).width() < 1280) {
+        $("progress").each(function() {
+            animateProgress($(this), $(this).val());
+        });
+    }
 };
 
 $("#switch").click(function() {
@@ -28,7 +29,12 @@ $("#switch").click(function() {
 
 $(".flip").click(function() {
     if ($(".flip").hasClass("is-flipped")) $(".flip").removeClass('is-flipped');
-    else $(".flip").addClass('is-flipped');
+    else {
+        $(".flip").addClass('is-flipped');
+        $("progress").each(function() {
+            animateProgress($(this), $(this).val());
+        });
+    }
 });
 
 $("#gh").hover(
@@ -50,7 +56,7 @@ $("#gh").hover(
         });*/
     }, function() {
         $("#popup").css({
-            'animation' : 'scaleDown 0.5s both',
+            'animation' : 'scaleDown 0.75s both',
         });
     }
 );
@@ -74,7 +80,7 @@ $("#tw").hover(
         });*/
     }, function() {
         $("#popup").css({
-            'animation' : 'scaleDown 0.5s both',
+            'animation' : 'scaleDown 0.75s both',
         });
     }
 );
