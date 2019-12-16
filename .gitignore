@@ -1,4 +1,5 @@
 # Files that will be hidden in repository
 error.scss
 main.scss
+MyPortfolio.xd
 .env

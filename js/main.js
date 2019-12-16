@@ -1,86 +1,103 @@
-function animateProgress($progressBar, val, currentVal) {
-    currentVal = currentVal || 0;
-    var step = val * 15 / 1000;
-    function animate(currentVal) {
-        currentVal += step;
-        $progressBar.val(currentVal);
-        currentVal < val && requestAnimationFrame(function() {
-            animate(currentVal);
+$(document).ready(function () {
+    let burger = false;
+
+    $('.hamburger').click(function() {
+        $('.hamburger').toggleClass('is-active');
+        if (burger) {
+            $('header').css({
+                'animation': 'closeBurger 0.5s ease-in-out forwards'
+            });
+        } else {
+            $('header').css({
+                'animation': 'openBurger 0.5s ease-in-out forwards'
+            });
+        }
+        burger = !burger;
+    });
+
+    let links = ["#intro", "#about", "#skills", "#projects"]
+
+    for (let index = 0; index < links.length; index++) {
+        $('a[href^="' + links[index] + '"]').click(function() {
+            var offsetTop = $(links[index]).offset().top;
+            if (offsetTop && Math.floor(offsetTop) != $(document).scrollTop()) {
+                $('html,body').animate({
+                    scrollTop: offsetTop - 64
+                }, 1000, function() {
+                    if ($("#burger").is(":visible") && index > 0) {
+                        $('header').css({
+                            'animation': 'closeBurger 0.5s ease-in-out forwards'
+                        });
+                        $('.hamburger').removeClass('is-active');
+                        burger = false;
+                    }
+                    if (index == 2) {
+                        $(".bar").each(function() {
+                            $(this)[0].style.strokeDasharray = 410;
+                            $(this)[0].style.strokeDashoffset = 410;
+                            var progress = $(this).parents(".skillcircle").attr("data-pct") / 100;
+                            var dashoffset = CIRCUMFERENCE * (1 - progress);
+                            $(this).animate({
+                                'stroke-dashoffset': dashoffset,
+                            }, 1000);
+                        });
+                    }
+                });
+                return false;
+            }
         });
     }
-    animate(currentVal);
-}
 
-window.onload = function() {
-    if ($(window).width() < 1280) {
-        $("progress").each(function() {
-            animateProgress($(this), $(this).val());
+    $('#discord div').hover(function () {
+        $("#discord div").animate({
+           width: '135px'
+        }, { duration: 0, queue: false });
+        $("#discord div i").animate({
+           opacity: 1
+        }, { duration: 750, queue: false });
+        $('#discord div i, #discord div a').css({
+            'text-shadow': '0 0 15px #202020, 0 0 20px #202020'
+        });
+    }, function () {
+        $("#discord div").animate({
+           width: '100px'
+        }, { duration: 0, queue: false });
+        $("#discord div i").animate({
+           opacity: 0
+        }, { duration: 500, queue: false });
+        $('#discord div i, #discord div a').css({
+            'text-shadow': 'none'
+        });
+    });
+
+    if ($(window).scrollTop() == 0) {
+        $('#clipFill circle').css({
+            'animation': 'fillIntro 1.75s ease-in-out'
+        });
+        $('#intro p').css({
+            'animation': 'showIntroText 2s ease-in-out'
         });
     }
-};
 
-$("#switch").click(function() {
-    document.documentElement.classList.add('transition');
-    window.setTimeout(() => {
-        document.documentElement.classList.remove('transition');
-    }, 1000);
-    $("html").attr("data-theme", $("html").attr("data-theme") == "dark" ? "light" : "dark");
+    $('#info').hover(function() {
+        $('#iconsby').css({
+            'animation': 'fromTopRightCorner 0.5s ease-in-out forwards'
+        });
+        }, function() {
+            $('#iconsby').css({
+                'animation': 'toTopRightCorner 0.5s ease-in-out forwards'
+            });
+        }
+    );
+
+    var RADIUS = 65;
+    var CIRCUMFERENCE = 2 * Math.PI * RADIUS;
+
+    $(".skillcircle").each(function() {
+        $(this).find(".bar")[0].style.strokeDasharray = CIRCUMFERENCE;
+        var progress = $(this).attr("data-pct") / 100;
+        var dashoffset = CIRCUMFERENCE * (1 - progress);        
+        $(this).find(".bar")[0].style.strokeDashoffset = dashoffset;
+        $(this).find(".perc").text($(this).attr("data-pct") + " %");
+    });
 });
-
-$(".flip").click(function() {
-    if ($(".flip").hasClass("is-flipped")) $(".flip").removeClass('is-flipped');
-    else {
-        $(".flip").addClass('is-flipped');
-        $("progress").each(function() {
-            animateProgress($(this), $(this).val());
-        });
-    }
-});
-
-$("#gh").hover(
-    function() {
-        $('#profileicon').attr("src", gitprofileicon);
-        $('#name').html(gitname);
-        $('#desc').html(gitdesc);
-        $('#info1').html(gitinfo1);
-        $('#info2').html(gitinfo2);
-        $("#gitorg").css({
-            'display' : 'initial'
-        });
-        $("#popup").css({
-            'animation' : 'scaleUp 0.75s both'
-        });
-        /*$("#popup::after").css({
-            'border-top-color' : '#01ffcd',
-            'left' : '25%',
-        });*/
-    }, function() {
-        $("#popup").css({
-            'animation' : 'scaleDown 0.75s both',
-        });
-    }
-);
-
-$("#tw").hover(
-    function() {
-        $("#gitorg").css({
-            'display' : 'none'
-        });
-        $('#profileicon').attr("src", twitchprofileicon);
-        $('#name').html(twitchname);
-        $('#desc').html(twitchdesc);
-        $('#info1').html(twitchinfo1);
-        $('#info2').html(twitchinfo2);
-        $("#popup").css({
-            'animation' : 'scaleUp 0.75s both'
-        });
-        /*$("#popup::after").css({
-            'border-top-color' : '#00ff00',
-            'left' : '75%',
-        });*/
-    }, function() {
-        $("#popup").css({
-            'animation' : 'scaleDown 0.75s both',
-        });
-    }
-);

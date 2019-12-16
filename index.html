@@ -1,168 +1,369 @@
 <!DOCTYPE html>
-<html data-theme="dark">
-  <head>
-    <title>zAlweNy26 - Profile</title>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" type="image/icon" href="img/favicon.png"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" type="image/icon" href="images/favicon.png"/>
+    <title>zAlweNy26 - Portfolio</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+    <link rel="stylesheet" href="css/hamburgers.css">
     <link rel="stylesheet" href="css/main.css">
-  </head>
-  <body>
-    <div class="container">
-      <div class="inner">
-        <div class="block left">
-          <img id="portrait" src="img/Portrait.jpg" alt="[Ex LoL Player]">
-          <button type="button" id="switch"><i class="fas fa-palette"></i></button>
-          <h1>Daniele Nicosia</h1>
-          <h2>a.k.a. zAlweNy26</h2>
-          <p>
-            Hi, visitor ! I'm Daniele Nicosia (also known as <b>zAlweNy26</b>) ! I'm <b>18</b> years old, I'm from <b>Sicily</b>, Italy 
-            and I <i style="color: red;" class="fa fa-heart" aria-hidden="true"></i> coding and playing videogames !
-          </p>
-          <h3>About programming :</h3>
-          <p>
-            The programming languages I usually use are C#, Java, JavaScript ! 
-            In the past I also used the most famous languages (C and C++) and a bit of Python.
-            I also know HTML5, CSS3 and I also experienced some PHP and SQL.
-            My <i style="color: yellow;" class="fa fa-star" aria-hidden="true"></i> one is <b>C#</b>, I like making apps with it because
-            I find it easy to understand !
-          </p>
-          <h3>About videogames :</h3>
-          <p>
-            I generally like all kinds of games, but I specifically
-            really enjoy Survival/Adventure games and I <i style="color: red;" class="fa fa-heart" aria-hidden="true"></i> all kinds of RPG games !!!
-            I'm also an old player of <b>League Of Legends</b>, a MOBA that I played a lot in the past !
-            I like playing with people, but I generally like singleplayer games as well <i class="fas fa-laugh-beam" aria-hidden="true"></i>
-            My <i style="color: yellow;" class="fa fa-star" aria-hidden="true"></i> videogame is <b>Rocket League</b>, I really like it !
-          </p>
-          <p id="socials">
-            These are my socials :
-            <span>
-              <a href="https://t.me/zAlweNy26"><img class="icon" alt="TG" src="img/telegram.png"></a>
-              <a href="https://www.instagram.com/dany_alwe/"><img class="icon" alt="IG" src="img/instagram.png"></a>
-              <a href="https://myanimelist.net/animelist/zAlweNy26"><img class="icon" alt="AL" src="img/mal.jpg"></a>
-              <a href="https://steamcommunity.com/id/zalweny26/"><img class="icon" alt="IG" src="img/steam.png"></a>
+</head>
+<body>
+    <div id="burger">
+        <a href="https://discord.gg/cM3C8Qm" target="_blank"><i class="fab fa-discord fa-lg"></i></a>
+        <a href="#intro"><i class="fas fa-home fa-lg"></i></a>
+        <button class="hamburger hamburger--squeeze" type="button">
+            <span class="hamburger-box">
+                <span class="hamburger-inner"></span>
             </span>
-          </p>
-        </div>
-        <div class="center">
-          <div class="flip">
-            <img id="sicily" src="img/Sicily.svg"/>
-            <div id="skills">
-              <h2>My programming skills :</h2>
-              <div class="skill">
-                <span>C# - 70 %</span>
-                <progress value="70" max="100"></progress>              
-              </div>
-              <div class="skill">
-                <span>JavaScript - 65 %</span>
-                <progress value="65" max="100"></progress>
-              </div>
-              <div class="skill">
-                <span>Java - 60 %</span>
-                <progress value="60" max="100"></progress>
-              </div>
-              <div class="skill">
-                <span>C - 50 %</span>
-                <progress value="50" max="100"></progress>              
-              </div>
-              <div class="skill">
-                <span>C++ - 40 %</span>
-                <progress value="40" max="100"></progress>
-              </div>
-              <div class="skill">
-                <span>Python - 30 %</span>
-                <progress value="30" max="100"></progress>              
-              </div>
-              <div class="skill">
-                <span>Dart - 10 %</span>
-                <progress value="10" max="100"></progress>
-              </div>
-              <div class="skill">
-                <span>GoLang - 0 %</span>
-                <progress value="0" max="100"></progress>
-              </div>
-              <div class="skill">
-                <span>HTML5 - 85 %</span>
-                <progress value="85" max="100"></progress>
-              </div>
-              <div class="skill">
-                <span>CSS3 - 65 %</span>
-                <progress value="65" max="100"></progress>
-              </div>
-              <p>I know HTML and CSS aren't programming<br>languages but I decided to add them anyway.</p>
+        </button>
+    </div>
+    <header>
+        <a id="home" href="#intro">Home</a>
+        <nav>
+            <ul class="navs">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+            </ul>
+        </nav>
+        <div id="discord">
+            <div>
+                <i class="fab fa-discord fa-lg"></i>
+                <a href="https://discord.gg/cM3C8Qm" target="_blank">Discord</a>
             </div>
-          </div>
-          <div id="popup">
-            <a href="" target="_blank" id="profileurl">
-              <img id="profileicon" alt="Profile Icon" src="">
-            </a>
-            <p id="name"></p><br><br>
-            <img id="gitorg" alt="GitHub Org Image" src="">
-            <p id="desc"></p><br>
-            <p id="info1"></p><br>
-            <p id="info2"></p>
-          </div>
-          <div id="popuppers">
-            <span>
-              <a href="https://github.com/zAlweNy26"><img class="popup" id="gh" alt="GH" src="img/github.png"></a>
-              <a href="https://discord.gg/cM3C8Qm"><img style="width: 64px; height: 64px;" alt="DC" src="img/discord.png"></a>
-              <a href="https://www.twitch.tv/MarcoMerrino"><img class="popup" id="tw" alt="TW" src="img/twitch.png"></a>
-            </span>
-          </div>
         </div>
-        <div class="right">
-          <div class="block pc">
-            <h2>My PC's components :</h2>
-            <p id="components">
-              <span><a href="https://www.lg.com/it/supporto/supporto-prodotto/lg-W2230S-Blu" target="_blank">
-              <img class="comp" src="img/monitor.png"></a>&nbsp;&nbsp;&nbsp;LG Flatron W2230S 1920x1080 Full HD 60Hz</span>
-              <span><a href="https://www.microsoft.com/it-it/p/windows-10-pro/df77x4d43rkt/48DN" target="_blank">
-              <img class="comp" src="img/os.png"></a>&nbsp;&nbsp;&nbsp;Windows 10 Pro Education 64-bit</span>
-              <span><a href="https://www.amd.com/en/products/cpu/amd-ryzen-5-2600x" target="_blank">
-              <img class="comp" src="img/cpu.png"></a>&nbsp;&nbsp;&nbsp;AMD Ryzen 5 2600X 3.6 GHz 16 MB Cache</span>
-              <span><a href="https://www.msi.com/Motherboard/X470-GAMING-PRO/Overview" target="_blank">
-              <img class="comp" src="img/mobo.png"></a>&nbsp;&nbsp;&nbsp;MSI X470 Gaming Pro</span>
-              <span><a href="https://www.hyperxgaming.com/it/memory/FURY-ddr4" target="_blank">
-              <img class="comp" src="img/ram.png"></a>&nbsp;&nbsp;&nbsp;<b>[x4]</b> 4 GB DDR4 Kingston HyperX 2400 MHz</span>
-              <span><a href="https://www.msi.com/Graphics-card/Radeon-RX-Vega-56-Air-Boost-8G-OC" target="_blank">
-              <img class="comp" src="img/gpu.png"></a>&nbsp;&nbsp;&nbsp;MSI Radeon RX Vega 56 Air Boost 8G OC</span>
-              <span><a href="https://www.kingston.com/it/ssd/a400-solid-state-drive?partnum=SA400S37/240G" target="_blank">
-              <img class="comp" src="img/ssd.png"></a>&nbsp;&nbsp;&nbsp;240 GB Kingston SA400</span>
-              <span><a href="https://www.seagate.com/it/it/internal-hard-drives/hdd/barracuda/#specs-3-5" target="_blank">
-              <img class="comp" src="img/hd.png"></a>&nbsp;&nbsp;&nbsp;<b>[x2]</b> 1 TB Saegate Barracuda 7300 RPM</span>
-              <span><a href="https://www.corsair.com/it/it/Categorie/Prodotti/Alimentatori/txm-series-2017-config/p/CP-9020132-EU" target="_blank">
-              <img class="comp" src="img/psu.png"></a>&nbsp;&nbsp;&nbsp;Corsair TX650M 650 Watt 80 Plus Gold</span>
-              <span><a href="https://it.sharkoon.com/product/TG5" target="_blank">
-              <img class="comp" src="img/case.png"></a>&nbsp;&nbsp;&nbsp;Sharkoon TG5 RGB Midi-Tower</span>
-              <b id="info">Press an icon for more details on the product.</b>
-            </p>
-          </div>
-          <div class="projects">
-            <h2>Projects I made :</h2>
+    </header>
+    <div id="content">
+        <div id="intro">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1366 614.4">
+                <defs>
+                    <style>
+                        #svgCurve {
+                            transform: scale(1, 0.8);
+                        }
+                    </style>
+                    <clipPath id="clipFill">
+                        <circle cx="0" cy="0" r="1366" />
+                    </clipPath>
+                    <linearGradient id="CyanLime" y1="-0.064" x2="1" gradientUnits="objectBoundingBox">
+                        <stop offset="0" stop-color="#00ffcd"/>
+                        <stop offset="1" stop-color="lime"/>
+                    </linearGradient>
+                </defs>
+                <path id="svgCurve" d="M1366, 0s0, 384-683, 384S0, 768, 0, 768V0Z"/>
+                <use xlink:href="#svgCurve" fill="#202020"/>
+                <use clip-path="url(#clipFill)" xlink:href="#svgCurve" fill="url(#CyanLime)"/>
+            </svg>          
+            <h1>Welcome to my website,<br>here you can find<br>something about me !</h1>
             <p>
-              <a href="https://t.me/AlweNoBot" target="_blank"><img class="icon" src="img/telegram.png"></a> <b>@AlweNoBot</b> 
-              made in <b>JavaScript</b> with the Telegraf module. (Currently <b>offline</b>)<br><br>
-              <a href="https://discord.gg/cM3C8Qm" target="_blank">
-              <img style="width: 32px; height: 32px; vertical-align: middle;" src="img/discord.png"></a> <b>AlweNoBot</b> 
-              made in <b>JavaScript</b> with the Akairo module (check it out on my Discord Server). (Currently <b>offline</b>)<br><br>
-              <a href="https://github.com/zAlweNy26/AlweCSharpProjects/blob/master/Applications/CodiceFiscale.exe" target="_blank">
-              <img style="width: 32px; height: 32px; vertical-align: middle; border-radius: 5px;" src="img/codfis.png"></a> <b>Italian Fiscal Code Calculator</b> 
-              made in <b>C#</b> with the database of municipalities<br>provided by 
-              <a href="https://github.com/matteocontrini/comuni-json" target="_blank">Matteo Contrini</a>.
+                I'm Daniele Nicosia<br>but I'm also known as zAlweNy26.<br> I'm 18 years old based in <span id="sicily">Sicily</span>, <span id="italy">Italy</span><br>
+                and I <i style="color: red;" class="fa fa-heart"></i> coding and playing videogames ! 
             </p>
-          </div>
         </div>
-      </div>
+        <div id="about" class="section">
+            <div id="aboutcont">
+                <div id="moreabout">
+                    <h1 class="tit">But, more precisely...</h1>
+                    <p>
+                        I'm a guy who discovered the magical world of programming at the age of 12.<br>
+                        Obviously the first programs I did were stupid and maybe even useless (who has never tried to make a calculator ?) 
+                        but it was thanks to my consistency that I understood that programming was something else. 
+                        I certainly can't say I'm a master of programming, but I like to try to create something new and who knows, maybe succeed !
+                    </p>
+                </div>
+                <div id="pchw">
+                    <p>My PC's components :</p>
+                    <div id="info"><i class="fas fa-info"></i></div>
+                    <div id="iconsby">
+                        Icons made by<br><a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons
+                        </a> from<br><a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+                    </div>
+                    <p><a href="https://www.lg.com/it/supporto/supporto-prodotto/lg-W2230S-Blu" target="_blank">
+                    <img class="comp" src="images/monitor.png"></a>&nbsp;&nbsp;&nbsp;LG Flatron W2230S 1920x1080 Full HD 60Hz</p>
+                    <p><a href="https://www.microsoft.com/it-it/p/windows-10-pro/df77x4d43rkt/48DN" target="_blank">
+                    <img class="comp" src="images/os.png"></a>&nbsp;&nbsp;&nbsp;Windows 10 Pro Education 64-bit</p>
+                    <p><a href="https://www.amd.com/en/products/cpu/amd-ryzen-5-2600x" target="_blank">
+                    <img class="comp" src="images/cpu.png"></a>&nbsp;&nbsp;&nbsp;AMD Ryzen 5 2600X 3.6 GHz 16 MB Cache</p>
+                    <p><a href="https://www.msi.com/Motherboard/X470-GAMING-PRO/Overview" target="_blank">
+                    <img class="comp" src="images/mobo.png"></a>&nbsp;&nbsp;&nbsp;MSI X470 Gaming Pro</p>
+                    <p><a href="https://www.hyperxgaming.com/it/memory/FURY-ddr4" target="_blank">
+                    <img class="comp" src="images/ram.png"></a>&nbsp;&nbsp;&nbsp;<span><strong>[x4]</strong></span> 4 GB DDR4 Kingston HyperX 2400 MHz</p>
+                    <p><a href="https://www.msi.com/Graphics-card/Radeon-RX-Vega-56-Air-Boost-8G-OC" target="_blank">
+                    <img class="comp" src="images/gpu.png"></a>&nbsp;&nbsp;&nbsp;MSI Radeon RX Vega 56 Air Boost 8G OC</p>
+                    <p><a href="https://www.kingston.com/it/ssd/a400-solid-state-drive?partnum=SA400S37/240G" target="_blank">
+                    <img class="comp" src="images/ssd.png"></a>&nbsp;&nbsp;&nbsp;240 GB Kingston SA400</p>
+                    <p><a href="https://www.seagate.com/it/it/internal-hard-drives/hdd/barracuda/#specs-3-5" target="_blank">
+                    <img class="comp" src="images/hd.png"></a>&nbsp;&nbsp;&nbsp;<span><strong>[x2]</strong></span> 1 TB Saegate Barracuda 7300 RPM</p>
+                    <p><a href="https://www.corsair.com/it/it/Categorie/Prodotti/Alimentatori/txm-series-2017-config/p/CP-9020132-EU" target="_blank">
+                    <img class="comp" src="images/psu.png"></a>&nbsp;&nbsp;&nbsp;Corsair TX650M 650 Watt 80 Plus Gold</p>
+                    <p><a href="https://it.sharkoon.com/product/TG5" target="_blank">
+                    <img class="comp" src="images/case.png"></a>&nbsp;&nbsp;&nbsp;Sharkoon TG5 RGB Midi-Tower</p>
+                    <p>Press an icon for more details on the product.</p>
+                </div>
+            </div>
+            <div id="aboutsvg">
+                <img src="images/AboutMe.svg" alt="AboutMe">
+            </div>
+        </div>
+        <div id="favgamemobile" class="section">
+            <img src="images/RocketLeague.jpg" alt="RocketLeague">
+            <div>
+                <p>
+                    I generally like all kinds of games, but I specifically really enjoy survival/adventure games and all kinds of role-play games !!!<br>
+                    I'm also an old player of League Of Legends, a MOBA that I played a lot in the past (to which I am tempted to start playing again).<br>
+                    I like playing with people, but I generally like singleplayer games as well !<br>
+                    My <i style="color: yellow;" class="fas fa-star"></i> videogame right now is Rocket League,
+                    although I don't follow football and I'm not interested in cars, for some strange reason this game satisfies me !<br>
+                    If you want to check if we have any games in common, go to my <a href="https://steamcommunity.com/id/zalweny26" target="_blank">Steam profile</a> !
+                </p>
+            </div>
+        </div>
+        <div id="favgame" class="section">
+            <div id="game"></div>
+            <div id="bgtext">
+                <p>
+                    I generally like all kinds of games, but I specifically really enjoy survival/adventure games and all kinds of role-play games !!!<br>
+                    I'm also an old player of League Of Legends, a MOBA that I played a lot in the past (to which I am tempted to start playing again).<br>
+                    I like playing with people, but I generally like singleplayer games as well !<br>
+                    My <i style="color: yellow;" class="fas fa-star"></i> videogame right now is Rocket League,
+                    although I don't follow football and I'm not interested in cars, for some strange reason this game satisfies me !<br>
+                    If you want to check if we have any games in common, go to my <a href="https://steamcommunity.com/id/zalweny26" target="_blank">Steam profile</a> !
+                </p>
+            </div>
+        </div>
+        <div id="skills" class="section">
+            <div id="skillsvg">
+                <img src="images/TypingCode.svg" alt="TypingCode">
+            </div>
+            <div id="skillcont">
+                <div id="moreskill">
+                    <h1 class="tit">About programming :</h1>
+                    <p>
+                        The programming languages I usually use are C#, Java and JavaScript !<br>
+                        In the past I also used the most famous languages (C and C++) and a bit of Python.<br>
+                        I also know HTML5, CSS3 (otherwise how could this site be made ?) and I also experienced some PHP and SQL.<br>
+                        My <i style="color: yellow;" class="fas fa-star"></i> one is C# because I find it easy to understand and I like making apps with it !<br>
+                        Anyway, I would like to see a growth of Flutter because it has the ability to become a very powerful language to write mobile applications for iOS and Android with only one code !
+                    </p>
+                </div>
+                <div id="langskills">
+                    <div class="skillcircle" data-pct="55">
+                        <p class="lang">C#</p>
+                        <p class="perc"></p>
+                        <svg class="skillbar" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 150 150">
+                            <linearGradient id="barGradient" x2="1" y2="1" gradientUnits="objectBoundingBox">
+                                <stop offset="0" stop-color="#00ffcd"/>
+                                <stop offset="1" stop-color="lime"/>
+                            </linearGradient>
+                            <circle r="65" cx="75" cy="75" fill="transparent" stroke-width="15" stroke="#FFFFFF"></circle>
+                            <circle class="bar" r="65" cx="75" cy="75" fill="transparent" 
+                                stroke-width="15" stroke="url(#barGradient)" stroke-linecap="round"></circle>
+                        </svg>
+                    </div>
+                    <div class="skillcircle" data-pct="50">
+                        <p class="lang">JavaScript</p>
+                        <p class="perc"></p>
+                        <svg class="skillbar" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 150 150">
+                            <linearGradient id="barGradient" x2="1" y2="1" gradientUnits="objectBoundingBox">
+                                <stop offset="0" stop-color="#00ffcd"/>
+                                <stop offset="1" stop-color="lime"/>
+                            </linearGradient>
+                            <circle r="65" cx="75" cy="75" fill="transparent" stroke-width="15" stroke="#FFFFFF"></circle>
+                            <circle class="bar" r="65" cx="75" cy="75" fill="transparent" 
+                                stroke-width="15" stroke="url(#barGradient)" stroke-linecap="round"></circle>
+                        </svg>
+                    </div>
+                    <div class="skillcircle" data-pct="50">
+                        <p class="lang">Java</p>
+                        <p class="perc"></p>
+                        <svg class="skillbar" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 150 150">
+                            <linearGradient id="barGradient" x2="1" y2="1" gradientUnits="objectBoundingBox">
+                                <stop offset="0" stop-color="#00ffcd"/>
+                                <stop offset="1" stop-color="lime"/>
+                            </linearGradient>
+                            <circle r="65" cx="75" cy="75" fill="transparent" stroke-width="15" stroke="#FFFFFF"></circle>
+                            <circle class="bar" r="65" cx="75" cy="75" fill="transparent" 
+                                stroke-width="15" stroke="url(#barGradient)" stroke-linecap="round"></circle>
+                        </svg>
+                    </div>
+                    <div class="skillcircle" data-pct="45">
+                        <p class="lang">C</p>
+                        <p class="perc"></p>
+                        <svg class="skillbar" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 150 150">
+                            <linearGradient id="barGradient" x2="1" y2="1" gradientUnits="objectBoundingBox">
+                                <stop offset="0" stop-color="#00ffcd"/>
+                                <stop offset="1" stop-color="lime"/>
+                            </linearGradient>
+                            <circle r="65" cx="75" cy="75" fill="transparent" stroke-width="15" stroke="#FFFFFF"></circle>
+                            <circle class="bar" r="65" cx="75" cy="75" fill="transparent" 
+                                stroke-width="15" stroke="url(#barGradient)" stroke-linecap="round"></circle>
+                        </svg>
+                    </div>
+                    <div class="skillcircle" data-pct="40">
+                        <p class="lang">C++</p>
+                        <p class="perc"></p>
+                        <svg class="skillbar" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 150 150">
+                            <linearGradient id="barGradient" x2="1" y2="1" gradientUnits="objectBoundingBox">
+                                <stop offset="0" stop-color="#00ffcd"/>
+                                <stop offset="1" stop-color="lime"/>
+                            </linearGradient>
+                            <circle r="65" cx="75" cy="75" fill="transparent" stroke-width="15" stroke="#FFFFFF"></circle>
+                            <circle class="bar" r="65" cx="75" cy="75" fill="transparent" 
+                                stroke-width="15" stroke="url(#barGradient)" stroke-linecap="round"></circle>
+                        </svg>
+                    </div>
+                    <div class="skillcircle" data-pct="30">
+                        <p class="lang">Python</p>
+                        <p class="perc"></p>
+                        <svg class="skillbar" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 150 150">
+                            <linearGradient id="barGradient" x2="1" y2="1" gradientUnits="objectBoundingBox">
+                                <stop offset="0" stop-color="#00ffcd"/>
+                                <stop offset="1" stop-color="lime"/>
+                            </linearGradient>
+                            <circle r="65" cx="75" cy="75" fill="transparent" stroke-width="15" stroke="#FFFFFF"></circle>
+                            <circle class="bar" r="65" cx="75" cy="75" fill="transparent" 
+                                stroke-width="15" stroke="url(#barGradient)" stroke-linecap="round"></circle>
+                        </svg>
+                    </div>
+                    <div class="skillcircle" data-pct="15">
+                        <p class="lang">Dart</p>
+                        <p class="perc"></p>
+                        <svg class="skillbar" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 150 150">
+                            <linearGradient id="barGradient" x2="1" y2="1" gradientUnits="objectBoundingBox">
+                                <stop offset="0" stop-color="#00ffcd"/>
+                                <stop offset="1" stop-color="lime"/>
+                            </linearGradient>
+                            <circle r="65" cx="75" cy="75" fill="transparent" stroke-width="15" stroke="#FFFFFF"></circle>
+                            <circle class="bar" r="65" cx="75" cy="75" fill="transparent" 
+                                stroke-width="15" stroke="url(#barGradient)" stroke-linecap="round"></circle>
+                        </svg>
+                    </div>
+                    <div class="skillcircle" data-pct="1">
+                        <p class="lang">GoLang</p>
+                        <p class="perc"></p>
+                        <svg class="skillbar" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 150 150">
+                            <linearGradient id="barGradient" x2="1" y2="1" gradientUnits="objectBoundingBox">
+                                <stop offset="0" stop-color="#00ffcd"/>
+                                <stop offset="1" stop-color="lime"/>
+                            </linearGradient>
+                            <circle r="65" cx="75" cy="75" fill="transparent" stroke-width="15" stroke="#FFFFFF"></circle>
+                            <circle class="bar" r="65" cx="75" cy="75" fill="transparent" 
+                                stroke-width="15" stroke="url(#barGradient)" stroke-linecap="round"></circle>
+                        </svg>
+                    </div>
+                    <div class="skillcircle" data-pct="85">
+                        <p class="lang">HTML5</p>
+                        <p class="perc"></p>
+                        <svg class="skillbar" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 150 150">
+                            <linearGradient id="barGradient" x2="1" y2="1" gradientUnits="objectBoundingBox">
+                                <stop offset="0" stop-color="#00ffcd"/>
+                                <stop offset="1" stop-color="lime"/>
+                            </linearGradient>
+                            <circle r="65" cx="75" cy="75" fill="transparent" stroke-width="15" stroke="#FFFFFF"></circle>
+                            <circle class="bar" r="65" cx="75" cy="75" fill="transparent" 
+                                stroke-width="15" stroke="url(#barGradient)" stroke-linecap="round"></circle>
+                        </svg>
+                    </div>
+                    <div class="skillcircle" data-pct="70">
+                        <p class="lang">CSS3</p>
+                        <p class="perc"></p>
+                        <svg class="skillbar" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 150 150">
+                            <linearGradient id="barGradient" x2="1" y2="1" gradientUnits="objectBoundingBox">
+                                <stop offset="0" stop-color="#00ffcd"/>
+                                <stop offset="1" stop-color="lime"/>
+                            </linearGradient>
+                            <circle r="65" cx="75" cy="75" fill="transparent" stroke-width="15" stroke="#FFFFFF"></circle>
+                            <circle class="bar" r="65" cx="75" cy="75" fill="transparent" 
+                                stroke-width="15" stroke="url(#barGradient)" stroke-linecap="round"></circle>
+                        </svg>
+                    </div>
+                </div>
+            </div>            
+        </div>
+        <div id="projects" class="section">
+            <div id="projectsleft">
+                <div id="projectstitle">
+                    <h1 class="tit">... and these are my projects !</h1>
+                </div>
+                <div id="projectsgrid">
+                    <div class="projectblock">
+                        <div class="name">
+                            <a href="https://t.me/AlweNoBot" target="_blank">@AlweNoBot</a>
+                        </div>
+                        <div class="info">
+                            <p>
+                                A Telegram Bot made in <a>JavaScript</a> with the <a href="https://telegraf.js.org" target="_blank">Telegraf</a> module.<br>
+                                (Currently offline)
+                            </p>
+                        </div>
+                    </div>
+                    <div class="projectblock">
+                        <div class="name">
+                            <a href="https://discordapp.com/oauth2/authorize?client_id=389455294025039872&permissions=8&scope=bot" target="_blank">AlweNoBot#8363</a>
+                        </div>
+                        <div class="info">
+                            <p>
+                                A Discord Bot made in <a>JavaScript</a> with the <a href="https://discord-akairo.github.io" target="_blank">Akairo</a>  module.<br> (Currently offline)
+                            </p>
+                        </div>
+                    </div>
+                    <div class="projectblock">
+                        <div class="name">
+                            <a href="https://github.com/zAlweNy26/AlweCSharpProjects/blob/master/Games/Tris.exe" target="_blank">Tic / TicTacToe</a>
+                        </div>
+                        <div class="info">
+                            <p>
+                                A very common game to play against someone or against the computer made in <a>C#</a> with my personal style !
+                            </p>
+                        </div>
+                    </div>
+                    <div class="projectblock">
+                        <div class="name">
+                            <a href="https://github.com/zAlweNy26/AlweCSharpProjects/blob/master/Games/Forza4.exe" target="_blank">Force 4 / Connect 4</a>
+                        </div>
+                        <div class="info">
+                            <p>
+                                A very famous game to play against someone or against the computer made in <a>C#</a> with my personal style !
+                            </p>
+                        </div>
+                    </div>
+                    <div class="projectblock">
+                        <div class="name">
+                            <a href="https://github.com/zAlweNy26/AlweCSharpProjects/blob/master/Games/AcronymGame.exe" target="_blank">AcronymGame</a>
+                        </div>
+                        <div class="info">
+                            <p>
+                                A <a>C#</a> funny game where you have to write a funny and meaningful sentence starting from an acronym !
+                            </p>
+                        </div>
+                    </div>
+                    <div class="projectblock">
+                        <div class="name">
+                            <a href="https://github.com/zAlweNy26/AlweCSharpProjects/blob/master/Applications/CodiceFiscale.exe" target="_blank">FiscalCodeCalc</a>
+                        </div>
+                        <div class="info">
+                            <p>
+                                A <a>C#</a> program to calculate the italian fiscal code with a database provided by <a href="https://github.com/matteocontrini/comuni-json" target="_blank">Matteo Contrini</a>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div id="github">
+                    <h1 class="tit">Check them out on my <a href="https://github.com/zAlweNy26/AlweCSharpProjects" target="_blank">GitHub</a> !</h1>
+                </div>
+            </div>
+            <div id="projectsvg">
+                <img src="images/CompletedProjects.svg" alt="CompletedProjects">
+            </div>
+        </div>
     </div>
     <script
-			src="https://code.jquery.com/jquery-3.4.1.js"
-			integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-			crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
-    <script src="js/script.js" type="text/javascript"></script>
-    <script src="js/main.js" type="text/javascript"></script>
-  </body>
+        src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous"></script>
+    <script src="js/main.js"></script>
+</body>
 </html>
