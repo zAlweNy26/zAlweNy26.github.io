@@ -23,7 +23,7 @@ $(document).ready(function () {
             if (offsetTop && Math.floor(offsetTop) != $(document).scrollTop()) {
                 $('html,body').animate({
                     scrollTop: offsetTop - 64
-                }, 1000, function() {
+                }, (Math.abs(Math.floor(offsetTop) - $(document).scrollTop())) / 2, function() {
                     if ($("#burger").is(":visible") && index > 0) {
                         $('header').css({
                             'animation': 'closeBurger 0.5s ease-in-out forwards'

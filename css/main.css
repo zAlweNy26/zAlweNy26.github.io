@@ -68,8 +68,6 @@
   }
   to {
     opacity: 0;
-    top: 0px;
-    right: 0px;
   }
 }
 
@@ -81,8 +79,6 @@
   }
   to {
     opacity: 0;
-    top: 0px;
-    right: 0px;
   }
 }
 
@@ -234,6 +230,7 @@ header #discord div a {
 #intro p #sicily {
   background: linear-gradient(45deg, #fff100 50%, #ed141e 50%);
   background-clip: text;
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -241,6 +238,7 @@ header #discord div a {
   background: -webkit-gradient(linear, left top, right top, color-stop(33%, #009246), color-stop(33%, #ffffff), color-stop(64%, #ffffff), color-stop(64%, #ce2b37));
   background: linear-gradient(90deg, #009246 33%, #ffffff 33%, #ffffff 64%, #ce2b37 64%);
   background-clip: text;
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -336,6 +334,7 @@ header #discord div a {
   background: -webkit-gradient(linear, left top, right top, from(#01ffcd), to(#00ff00));
   background: linear-gradient(to right, #01ffcd 0%, #00ff00 100%);
   background-clip: text;
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -437,6 +436,7 @@ header #discord div a {
   background: -webkit-gradient(linear, left top, right top, from(#0f1d2f), to(#178dbb));
   background: linear-gradient(90deg, #0f1d2f 0%, #178dbb 100%);
   background-clip: text;
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -610,6 +610,7 @@ header #discord div a {
   background: -webkit-gradient(linear, left top, right top, from(#01ffcd), to(#00ff00));
   background: linear-gradient(to right, #01ffcd 0%, #00ff00 100%);
   background-clip: text;
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -627,6 +628,7 @@ header #discord div a {
 #projects #projectsleft #github a {
   background: radial-gradient(circle, white 0%, white 35%, black 36%, black 100%);
   background-clip: text;
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
