@@ -22,7 +22,7 @@ $(document).ready(function () {
             var offsetTop = $(links[index]).offset().top;
             if (offsetTop && Math.floor(offsetTop) != $(document).scrollTop()) {
                 $('html,body').animate({
-                    scrollTop: offsetTop - 64
+                    scrollTop: offsetTop - 74
                 }, (Math.abs(Math.floor(offsetTop) - $(document).scrollTop())) / 2, function() {
                     if ($("#burger").is(":visible") && index > 0) {
                         $('header').css({
