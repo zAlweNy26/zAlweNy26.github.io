@@ -16,4 +16,9 @@ p, h1 {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+a {
+  text-decoration: none;
+  font-weight: bold;
+}
 /*# sourceMappingURL=privacy.css.map */
