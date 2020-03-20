@@ -1,4 +1,6 @@
 $(document).ready(function () {
+    $("body").niceScroll({cursoropacitymin: 0, cursoropacitymax: 0});
+
     let burger = false;
 
     $('.hamburger').click(function() {
