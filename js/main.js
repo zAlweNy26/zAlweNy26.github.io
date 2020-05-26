@@ -17,6 +17,13 @@ $(document).ready(function () {
         burger = !burger;
     });
 
+    var today = new Date();
+    var birthDate = new Date("2001/02/20");
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) age--;
+    $('#age').html(age);
+
     let links = ["#intro", "#about", "#skills", "#projects"]
 
     for (let index = 0; index < links.length; index++) {
@@ -49,28 +56,6 @@ $(document).ready(function () {
             }
         });
     }
-
-    $('#discord div').hover(function () {
-        $("#discord div").animate({
-           width: '135px'
-        }, { duration: 0, queue: false });
-        $("#discord div i").animate({
-           opacity: 1
-        }, { duration: 750, queue: false });
-        $('#discord div i, #discord div a').css({
-            'text-shadow': '0 0 15px #202020, 0 0 20px #202020'
-        });
-    }, function () {
-        $("#discord div").animate({
-           width: '100px'
-        }, { duration: 0, queue: false });
-        $("#discord div i").animate({
-           opacity: 0
-        }, { duration: 500, queue: false });
-        $('#discord div i, #discord div a').css({
-            'text-shadow': 'none'
-        });
-    });
 
     if ($(window).scrollTop() == 0) {
         $('#clipFill circle').css({
