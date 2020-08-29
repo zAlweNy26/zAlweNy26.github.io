@@ -46,7 +46,7 @@
 
 @keyframes openBurger {
     from {
-        margin-top: -150px;
+        margin-top: -180px;
     } 
     to {
         margin-top: 0px;
@@ -58,7 +58,7 @@
         margin-top: 0px;
     } 
     to {
-        margin-top: -150px;
+        margin-top: -180px;
     }
 }
 
@@ -86,7 +86,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-weight: 600;
+    font-weight: 700;
     width: 100%;
     background: linear-gradient(135deg, #01ffcd 0%,#00ff00 100%);
     padding: 20px 5%;
@@ -457,10 +457,12 @@ header {
 
             .tit {
                 a {
-                    background: radial-gradient(circle, white 0%, white 35%, black 36%, black 100%);
+                    color: black;
+                    -webkit-text-stroke: 1px white;
+                    /*background: radial-gradient(circle, white 0%, white 35%, black 36%, black 100%);
                     background-clip: text;
                     -webkit-background-clip: text;
-                    -webkit-text-fill-color: transparent;
+                    -webkit-text-fill-color: transparent;*/
                 }
             }
 
@@ -498,6 +500,14 @@ header {
     }
 }
 
+footer {
+    color: #FFFFFF;
+    background: #303030;
+    margin-top: 130px;
+    padding: 10px;
+    text-align: center;
+}
+
 @media screen and (max-width: 767px) {
     #burger {
         width: 100%;
@@ -523,7 +533,7 @@ header {
         padding: 0;
         border: 3px solid transparent;
         border-top: 0;
-        margin-top: -150px;
+        margin-top: -180px;
         display: flex;
         position: fixed;
         width: 100%;

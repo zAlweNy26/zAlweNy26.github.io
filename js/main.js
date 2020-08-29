@@ -24,7 +24,7 @@ $(document).ready(function () {
     if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) age--;
     $('#age').html(age);
 
-    let links = ["#intro", "#about", "#skills", "#projects"]
+    let links = ["#intro", "#about", "#skills", "#projects", "#contacts"]
 
     for (let index = 0; index < links.length; index++) {
         $('a[href^="' + links[index] + '"]').click(function() {
