@@ -162,10 +162,27 @@ header {
 header a {
   -webkit-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
+  outline: none;
+  /*&:hover {
+            text-shadow: 0 0 30px #202020, 0 0 20px #202020;
+        }*/
 }
 
-header a:hover {
-  text-shadow: 0 0 30px #202020, 0 0 20px #202020;
+header a::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #000;
+  -webkit-transition: width .4s;
+  transition: width .4s;
+  margin-top: 5px;
+}
+
+header a:hover::after {
+  width: 100%;
+  -webkit-transition: width .4s;
+  transition: width .4s;
 }
 
 header .navs {
@@ -226,7 +243,7 @@ header #discord a i {
 .tit, .myapp {
   margin: 30px 0;
   text-align: center;
-  font-size: 2.5em;
+  font-size: 2em;
 }
 
 #about {
@@ -263,6 +280,12 @@ header #discord a i {
   grid-area: moreabout;
 }
 
+#about #aboutcont #moreabout p {
+  margin-left: 5%;
+  margin-right: 5%;
+  text-align: center;
+}
+
 #about #aboutcont #pchw {
   -ms-grid-row: 2;
   -ms-grid-column: 1;
@@ -273,6 +296,8 @@ header #discord a i {
   border: 5px solid transparent;
   display: inline-block;
   position: relative;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
   padding: 10px 30px;
   border-radius: 20px;
   background: -webkit-gradient(linear, left top, left bottom, from(#202020), to(#202020)) padding-box, -webkit-gradient(linear, left top, right top, from(#01ffcd), to(#00ff00)) border-box;
@@ -457,6 +482,12 @@ header #discord a i {
   grid-area: moreskill;
 }
 
+#skills #skillcont #moreskill p {
+  margin-left: 5%;
+  margin-right: 5%;
+  text-align: center;
+}
+
 #skills #skillcont #langskills {
   -ms-grid-row: 2;
   -ms-grid-column: 1;
@@ -515,7 +546,6 @@ header #discord a i {
       grid-template-areas: "projectsleft projectsvg";
   -webkit-column-gap: 50px;
           column-gap: 50px;
-  margin-bottom: -5vw;
 }
 
 #projects #projectsleft {
@@ -600,6 +630,12 @@ header #discord a i {
   -ms-grid-row: 3;
   -ms-grid-column: 1;
   grid-area: github;
+  margin-top: 50px;
+  margin-bottom: 7.5%;
+}
+
+#projects #projectsleft #github h1 {
+  margin-top: 5%;
 }
 
 #projects #projectsleft #github .tit a {
@@ -616,6 +652,8 @@ header #discord a i {
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  cursor: pointer;
+  border-bottom: 2px solid #00E678;
 }
 
 #projects #projectsleft #github #appbutton {
@@ -626,7 +664,7 @@ header #discord a i {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 50%;
+  width: 35%;
   height: auto;
 }
 
@@ -646,7 +684,6 @@ header #discord a i {
 footer {
   color: #FFFFFF;
   background: #303030;
-  margin-top: 130px;
   padding: 10px;
   text-align: center;
 }
@@ -675,6 +712,20 @@ footer {
   }
   #home, #discord, header {
     display: none;
+  }
+  #github {
+    padding: 2.5%;
+    font-size: 0.75em;
+  }
+  #appbutton {
+    display: block;
+  }
+  #appbutton img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 75% !important;
+    height: auto;
   }
   header {
     -webkit-box-pack: center;

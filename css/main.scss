@@ -93,10 +93,26 @@ header {
 
     a {
         transition: all 0.3s ease 0s;
-    }
+        outline: none;
 
-    a:hover {
-        text-shadow: 0 0 30px #202020, 0 0 20px #202020;
+        &::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: #000;
+            transition: width .4s;
+            margin-top: 5px;
+        }
+        
+        &:hover::after {
+            width: 100%;
+            transition: width .4s;
+        }
+
+        /*&:hover {
+            text-shadow: 0 0 30px #202020, 0 0 20px #202020;
+        }*/
     }
 
     .navs {
@@ -157,7 +173,7 @@ header {
 .tit, .myapp {
     margin: 30px 0;
     text-align: center;
-    font-size: 2.5em;
+    font-size: 2em;
 }
 
 #about {
@@ -176,7 +192,15 @@ header {
         row-gap: 30px;
         grid-template-areas: "moreabout" "pchw";
 
-        #moreabout { grid-area: moreabout; }
+        #moreabout { 
+            grid-area: moreabout; 
+            
+            p {
+                margin-left: 5%;
+                margin-right: 5%;
+                text-align: center;
+            }
+        }
 
         #pchw { 
             grid-area: pchw;
@@ -185,6 +209,8 @@ header {
             border: 5px solid transparent;
             display: inline-block;
             position: relative;
+            margin-left: 2.5%;
+            margin-right: 2.5%;
             padding: 10px 30px;
             border-radius: 20px;
             background: 
@@ -343,7 +369,15 @@ header {
         row-gap: 50px;
         grid-template-areas: "moreskill" "langskills";
         
-        #moreskill { grid-area: moreskill; }
+        #moreskill { 
+            grid-area: moreskill; 
+
+            p {
+                margin-left: 5%;
+                margin-right: 5%;
+                text-align: center;
+            }
+        }
 
         #langskills {
             grid-area: langskills;
@@ -387,7 +421,6 @@ header {
 	grid-template-rows: 1fr;
     grid-template-areas: "projectsleft projectsvg";
     column-gap: 50px;
-    margin-bottom: -5vw;
 	
 	#projectsleft {
 		grid-area: projectsleft;
@@ -454,6 +487,12 @@ header {
         
         #github {
             grid-area: github;
+            margin-top: 50px;
+            margin-bottom: 7.5%;
+
+            h1 {
+                margin-top: 5%;
+            }
 
             .tit {
                 a {
@@ -472,6 +511,8 @@ header {
                     background-clip: text;
                     -webkit-background-clip: text;
                     -webkit-text-fill-color: transparent;
+                    cursor: pointer;
+                    border-bottom: 2px solid #00E678;
                 }
             }
 
@@ -482,7 +523,7 @@ header {
                     display: block;
                     margin-left: auto;
                     margin-right: auto;
-                    width: 50%;
+                    width: 35%;
                     height: auto;
                 }
             }
@@ -503,7 +544,6 @@ header {
 footer {
     color: #FFFFFF;
     background: #303030;
-    margin-top: 130px;
     padding: 10px;
     text-align: center;
 }
@@ -526,6 +566,23 @@ footer {
 
     #home, #discord, header {
         display: none;
+    }
+
+    #github {
+        padding: 2.5%;
+        font-size: 0.75em;
+    }
+
+    #appbutton {
+        display: block;
+
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 75% !important;
+            height: auto;
+        }
     }
 
     header {
