@@ -46,7 +46,7 @@
 
 @keyframes openBurger {
     from {
-        margin-top: -180px;
+        margin-top: -205px;
     } 
     to {
         margin-top: 0px;
@@ -58,7 +58,7 @@
         margin-top: 0px;
     } 
     to {
-        margin-top: -180px;
+        margin-top: -205px;
     }
 }
 
@@ -590,7 +590,7 @@ footer {
         padding: 0;
         border: 3px solid transparent;
         border-top: 0;
-        margin-top: -180px;
+        margin-top: -205px;
         display: flex;
         position: fixed;
         width: 100%;
@@ -602,6 +602,10 @@ footer {
 
         a {
             color: white !important;
+    
+            &::after {
+                content: none;
+            }
         }
 
         li {

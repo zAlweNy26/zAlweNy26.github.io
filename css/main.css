@@ -88,7 +88,7 @@
 
 @-webkit-keyframes openBurger {
   from {
-    margin-top: -180px;
+    margin-top: -205px;
   }
   to {
     margin-top: 0px;
@@ -97,7 +97,7 @@
 
 @keyframes openBurger {
   from {
-    margin-top: -180px;
+    margin-top: -205px;
   }
   to {
     margin-top: 0px;
@@ -109,7 +109,7 @@
     margin-top: 0px;
   }
   to {
-    margin-top: -180px;
+    margin-top: -205px;
   }
 }
 
@@ -118,7 +118,7 @@
     margin-top: 0px;
   }
   to {
-    margin-top: -180px;
+    margin-top: -205px;
   }
 }
 
@@ -734,7 +734,7 @@ footer {
     padding: 0;
     border: 3px solid transparent;
     border-top: 0;
-    margin-top: -180px;
+    margin-top: -205px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -747,6 +747,9 @@ footer {
   }
   header a {
     color: white !important;
+  }
+  header a::after {
+    content: none;
   }
   header li {
     display: block !important;
