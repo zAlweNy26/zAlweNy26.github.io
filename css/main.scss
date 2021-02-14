@@ -124,7 +124,7 @@ header {
         }
     }
 
-    #discord a i {
+    #linkedin a i {
         vertical-align: middle;
         font-weight: initial;
     }
@@ -564,7 +564,7 @@ footer {
         z-index: 20;
     }
 
-    #home, #discord, header {
+    #home, #linkedin, header {
         display: none;
     }
 
@@ -632,7 +632,7 @@ footer {
     }
 }
 
-@media screen and (max-width: 1919px) {
+@media screen and (max-width: 1885px) {
     #about, #skills, #projects {
         display: initial !important;
     }

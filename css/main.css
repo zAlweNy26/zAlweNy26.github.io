@@ -194,7 +194,7 @@ header .navs li {
   padding: 0 30px;
 }
 
-header #discord a i {
+header #linkedin a i {
   vertical-align: middle;
   font-weight: initial;
 }
@@ -710,7 +710,7 @@ footer {
     top: 0;
     z-index: 20;
   }
-  #home, #discord, header {
+  #home, #linkedin, header {
     display: none;
   }
   #github {
@@ -772,7 +772,7 @@ footer {
   }
 }
 
-@media screen and (max-width: 1919px) {
+@media screen and (max-width: 1885px) {
   #about, #skills, #projects {
     display: initial !important;
   }
