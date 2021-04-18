@@ -144,7 +144,7 @@ header {
         position: absolute;
         color: #FFFFFF;
         font-size: 4vw;
-        top: 52%;
+        top: 50%;
         right: 5%;
         text-align: right;
         width: 100%;
@@ -219,11 +219,11 @@ header {
 
             #info {
                 position: absolute;
-                top: 0;
-                right: 0;
+                top: -2px;
+                right: -2px;
                 width: 48px;
                 cursor: pointer;
-                border-radius: 0 10px 0 20px;
+                border-radius: 0 15px 0 15px;
                 background: lime border-box;
 
                 i {
@@ -236,7 +236,7 @@ header {
                 position: absolute;
                 border-radius: 20px;
                 top: 25px;
-                right: 68px;
+                right: 65px;
                 opacity: 0;
                 border: 5px solid transparent;                    
                 padding: 15px;
