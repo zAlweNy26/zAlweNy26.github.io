@@ -353,10 +353,7 @@ header {
 
 #skills {
     color: white;
-    margin-left: 5%;
-    margin-right: 5%;
-    text-align: center;
-    /*display: grid;
+    display: grid;
     column-gap: 50px;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
@@ -366,14 +363,14 @@ header {
   
     #skillcont { 
         grid-area: skillcont;
-        display: grid;
+        /*display: grid;
         grid-template-columns: 1fr;
         grid-template-rows: max-content max-content;
         row-gap: 50px;
-        grid-template-areas: "moreskill" "langskills";
+        grid-template-areas: "moreskill" "langskills";*/
         
         #moreskill { 
-            grid-area: moreskill; 
+            //grid-area: moreskill; 
 
             p {
                 margin-left: 5%;
@@ -382,7 +379,7 @@ header {
             }
         }
 
-        #langskills {
+        /*#langskills {
             grid-area: langskills;
             display: flex;
             flex-wrap: wrap;
@@ -413,8 +410,8 @@ header {
                     align-self: center;
                 }
             }
-        }
-    }*/
+        }*/
+    }
 }
 
 #projects {
@@ -490,8 +487,8 @@ header {
         
         #github {
             grid-area: github;
-            margin-top: 50px;
-            margin-bottom: 7.5%;
+            //margin-top: 50px;
+            //margin-bottom: 7.5%;
 
             h1 {
                 margin-top: 5%;
