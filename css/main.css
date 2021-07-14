@@ -444,95 +444,68 @@ header #linkedin a i {
 
 #skills {
   color: white;
-  display: -ms-grid;
-  display: grid;
-  -webkit-column-gap: 50px;
-          column-gap: 50px;
-  -ms-grid-columns: 1fr 1fr;
-      grid-template-columns: 1fr 1fr;
-  -ms-grid-rows: 1fr;
-      grid-template-rows: 1fr;
-      grid-template-areas: "skillsvg skillcont";
-}
-
-#skills #skillsvg {
-  -ms-grid-row: 1;
-  -ms-grid-column: 1;
-  grid-area: skillsvg;
-}
-
-#skills #skillcont {
-  -ms-grid-row: 1;
-  -ms-grid-column: 2;
-  grid-area: skillcont;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 1fr;
-      grid-template-columns: 1fr;
-  -ms-grid-rows: max-content max-content;
-      grid-template-rows: -webkit-max-content -webkit-max-content;
-      grid-template-rows: max-content max-content;
-  row-gap: 50px;
-      grid-template-areas: "moreskill" "langskills";
-}
-
-#skills #skillcont #moreskill {
-  -ms-grid-row: 1;
-  -ms-grid-column: 1;
-  grid-area: moreskill;
-}
-
-#skills #skillcont #moreskill p {
   margin-left: 5%;
   margin-right: 5%;
   text-align: center;
-}
+  /*display: grid;
+    column-gap: 50px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "skillsvg skillcont";
 
-#skills #skillcont #langskills {
-  -ms-grid-row: 2;
-  -ms-grid-column: 1;
-  grid-area: langskills;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-}
+    #skillsvg { grid-area: skillsvg; }
+  
+    #skillcont { 
+        grid-area: skillcont;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: max-content max-content;
+        row-gap: 50px;
+        grid-template-areas: "moreskill" "langskills";
+        
+        #moreskill { 
+            grid-area: moreskill; 
 
-#skills #skillcont #langskills .skillcircle {
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  position: relative;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  font-size: 25px;
-  margin: 25px 10px;
-}
+            p {
+                margin-left: 5%;
+                margin-right: 5%;
+                text-align: center;
+            }
+        }
 
-#skills #skillcont #langskills .skillcircle .lang {
-  text-align: center;
-  margin-bottom: 10px;
-}
+        #langskills {
+            grid-area: langskills;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
 
-#skills #skillcont #langskills .skillcircle .perc {
-  top: 52.5%;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
-  position: absolute;
-}
+            .skillcircle {
+                display: inline-flex;
+                position: relative;
+                flex-direction: column;
+                font-size: 25px;
+                margin: 25px 10px;
 
-#skills #skillcont #langskills .skillcircle .skillbar {
-  width: 125px;
-  height: 125px;
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
+                .lang {
+                    text-align: center;
+                    margin-bottom: 10px;
+                }
+
+                .perc {
+                    top: 52.5%;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    position: absolute;
+                }
+
+                .skillbar {
+                    width: 125px;
+                    height: 125px;
+                    align-self: center;
+                }
+            }
+        }
+    }*/
 }
 
 #projects {

@@ -353,7 +353,10 @@ header {
 
 #skills {
     color: white;
-    display: grid;
+    margin-left: 5%;
+    margin-right: 5%;
+    text-align: center;
+    /*display: grid;
     column-gap: 50px;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
@@ -411,7 +414,7 @@ header {
                 }
             }
         }
-    }
+    }*/
 }
 
 #projects {
