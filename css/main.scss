@@ -73,7 +73,7 @@ body {
     background: #202020;
     font-size: 1.25em;
     font-weight: 600;
-    padding-top: 64px;
+    padding-top: 48px;
     color: #202020;
 
     a {
@@ -89,7 +89,7 @@ header {
     font-weight: 700;
     width: 100%;
     background: linear-gradient(135deg, #01ffcd 0%,#00ff00 100%);
-    padding: 20px 5%;
+    padding: 10px 5%;
 
     a {
         transition: all 0.3s ease 0s;
@@ -178,7 +178,6 @@ header {
 
 #about {
     color: white;
-    display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
     column-gap: 50px;
@@ -289,7 +288,10 @@ header {
         }
     }
 
-    #aboutsvg { grid-area: aboutsvg; }
+    #aboutsvg { 
+        display: none;
+        grid-area: aboutsvg; 
+    }
 }
 
 #favgamemobile {
@@ -353,13 +355,15 @@ header {
 
 #skills {
     color: white;
-    display: grid;
     column-gap: 50px;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
     grid-template-areas: "skillsvg skillcont";
 
-    #skillsvg { grid-area: skillsvg; }
+    #skillsvg { 
+        display: none;
+        grid-area: skillsvg; 
+    }
   
     #skillcont { 
         grid-area: skillcont;
@@ -416,7 +420,6 @@ header {
 
 #projects {
     color: white;
-	display: grid;
 	grid-template-columns: 1fr 0.5fr;
 	grid-template-rows: 1fr;
     grid-template-areas: "projectsleft projectsvg";
@@ -497,19 +500,15 @@ header {
             .tit {
                 a {
                     color: black;
-                    -webkit-text-stroke: 1px white;
-                    /*background: radial-gradient(circle, white 0%, white 35%, black 36%, black 100%);
-                    background-clip: text;
-                    -webkit-background-clip: text;
-                    -webkit-text-fill-color: transparent;*/
+                    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
                 }
             }
 
             .myapp {
                 a {
                     background: #00E678;
-                    background-clip: text;
                     -webkit-background-clip: text;
+                    background-clip: text;
                     -webkit-text-fill-color: transparent;
                     cursor: pointer;
                     border-bottom: 2px solid #00E678;
@@ -531,6 +530,7 @@ header {
 	}
 	
 	#projectsvg { 
+        display: none;
         grid-area: projectsvg;
         
         img {
@@ -539,6 +539,24 @@ header {
             transform: translateY(-50%);
         }
     }
+}
+
+.bottom-wave {
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.bottom-wave svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 100px;
+}
+
+.bottom-wave .shape-fill {
+    fill: #303030;
 }
 
 footer {
@@ -632,12 +650,12 @@ footer {
     }
 }
 
-@media screen and (max-width: 1885px) {
+@media screen and (min-width: 1885px) {
     #about, #skills, #projects {
-        display: initial !important;
+        display: grid !important;
     }
 
     #aboutsvg, #skillsvg, #projectsvg {
-        display: none;
+        display: initial !important;
     }
 }
