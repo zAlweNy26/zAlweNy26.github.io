@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Daniele ti ama</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/icon" href="images/me.png"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+    <link rel="stylesheet" href="css/love.css">
+  </head>
+  <body>
+    <p id="truelove"></p>
+    <div class="center"><div id="heart"><i style="color: red;" class="fa fa-heart"></i></div></div>
+    <script src="https://unpkg.com/typeit@8.4.0/dist/index.umd.js"></script>
+    <script>
+      const instance = new TypeIt('#truelove', {
+        speed: 30,
+        waitUntilVisible: true,
+        deleteSpeed: 10,
+        afterComplete: (instance) => {
+          setTimeout(function() { document.getElementById("heart").classList.add("showed"); }, 1000);
+        },
+      })
+      .type('Se sei finita qui, ')
+      .pause(500)
+      .type('molto probabilmente (ma che dico, sicuramente!) colui che ti ci ha fatto finire, ')
+      .pause(500)
+      .type('ti ama.')
+      .pause(1000)
+      .break()
+      .type('Ma non un amore del tipo che un giorno si stanca e ti manda a quel paese, nono, per niente! ')
+      .pause(750)
+      .type('Qui si parla di un amore sincero, oltre al "semplice" legame emotivo che si può formare tra due persone. ')
+      .pause(1000)
+      .type('Un amore tale che può spingere chi ti ha mandato qui, ')
+      .pause(500)
+      .type('persino a sposarti (e vedi che è tanta roba!).')
+      .pause(1000)
+      .break()
+      .type('Difficile dire quanto lui ti ami, ')
+      .pause(500)
+      .type('soprattutto perchè la linguista sei tu, ')
+      .pause(500)
+      .type('lui al massimo può scriverti una fila interminabile di 0 ed 1 a formare parole di dubbioso senso, ')
+      .pause(500)
+      .type('del genere "ciao, io te sempre xdxd" e direi che non è il caso.')
+      .pause(1500)
+      .delete()
+      .type('Lo sappiamo entrambi che a volte può sembrare un po\' scorbutico, ')
+      .pause(500)
+      .type('uno "scorfano brontolone" e che riesce a farti innervosire per cose che alla fine, ')
+      .pause(500)
+      .type('se ci pensi attentamente, ')
+      .pause(500)
+      .type('sono scemenze.')
+      .pause(1000)
+      .break()
+      .type('Sappi però (se ancora non l\'hai ben chiaro nella tua testolina) che lui ti ama sempre ')
+      .type('allo stesso modo dal giorno in cui ti dichiarò il suo amore, ')
+      .type('e che per lui tu sei fantastica, radiosa e frizzantina (o schizzata dir si voglia) come fosse quel fatidico ')
+      .type('giorno di metà aprile (non mi ha voluto dire il giorno preciso, probabilmente non se lo ricorda) ')
+      .type('mentre lavavate i piatti e passavate il tempo a fare battute sconce su qualsiasi cosa si muovesse intorno a voi, ')
+      .pause(500)
+      .type('incuranti di ciò che gli altri potevano pensare.')
+      .pause(1500)
+      .delete()
+      .type('Anche quando capita che quella a sbagliare sei tu (dai forza, che sei umana anche tu, occhilino-occhilino eheheh), ')
+      .pause(500)
+      .type('probabilmente quell\'idiota invece di prenderti a parole come dovrebbe (noooo, mi dissocioooo), ')
+      .pause(500)
+      .type('ti invita ad un dialogo civile e pacifico volto a risolvere litigi che, nel 100% dei casi, si vengono a creare in una coppia.')
+      .pause(1500)
+      .delete()
+      .type('Se sei arrivata fin qui quasi sicuramente starai pensando, ')
+      .pause(500)
+      .type('"perchè questo scemo parla di sè in terza persona?" ')
+      .pause(500)
+      .type('e ora qui ci dovrebbe essere qualche risposta filosofica che faccia intuire ')
+      .pause(500)
+      .type('quanto possa essere colto l\'interlocutore con cui stai avendo a che fare... ')
+      .pause(750)
+      .type('ma la verità è che faceva figo quando ho iniziato a scrivere questo messaggio e quindi niente... ')
+      .pause(750)
+      .type('ti amo ♥')
+      .go();
+    </script>
+  </body>
+</html>

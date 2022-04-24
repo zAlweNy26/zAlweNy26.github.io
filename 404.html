@@ -5,31 +5,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" type="image/icon" href="img/favicon.png"/>
+    <link rel="shortcut icon" type="image/icon" href="images/me.png"/>
     <link rel="stylesheet" href="css/error.css">
   </head>
   <body>
     <p id="error404"></p>
-    <script src="https://cdn.jsdelivr.net/npm/typeit@6.1.1/dist/typeit.min.js"></script>
+    <script src="https://unpkg.com/typeit@8.4.0/dist/index.umd.js"></script>
     <script>
       const instance = new TypeIt('#error404', {
         speed: 50,
         waitUntilVisible: true,
+        deleteSpeed: 20,
         afterComplete: (instance) => {
-          setTimeout(function(){ window.location = "https://zalweny26.github.io"; }, 3000);
+          setTimeout(function() { window.location = "https://zalweny26.github.io"; }, 1500);
         },
-      }).type('Se sei finito qui,')
+      })
+      .type('Se sei finito qui, ')
       .pause(750)
-      .type(' probabilmente non sai neanche incollare un link,')
+      .type('probabilmente non sai neanche incollare un link, ')
       .break()
       .pause(750)
-      .type('oppure cercavi qualcosa di nascosto nel mio sito.')
+      .type('oppure cercavi qualcosa di nascosto nel mio sito. ')
       .pause(1000)
-      .type(' Illuso.')
+      .type('Illuso.')
       .pause(1500)
-      .options({speed: 25})
       .delete()
-      .options({speed: 50})
       .type("Esiste solo <strong class='gradient'>zalweny26.github.io</strong> !")
       .go();
     </script>
