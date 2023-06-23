@@ -6,7 +6,7 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/',
+  base: '/zalweny26.github.io/',
   plugins: [
     vue(),
     AutoImport({
