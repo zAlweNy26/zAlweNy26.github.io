@@ -31,7 +31,7 @@ const toggleDark = useToggle(isDark)
         </button>
         <div class="avatar p-1.5">
             <div class="rounded-full shadow-lg shadow-primary w-32 outline-primary outline outline-4 outline-offset-2">
-                <img src="me.png" />
+                <img src="/me.png" />
             </div>
         </div>
         <div class="flex flex-col justify-center items-center">
