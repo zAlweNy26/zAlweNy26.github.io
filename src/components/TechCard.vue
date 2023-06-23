@@ -2,10 +2,13 @@
 const techStack: [number, string][] = [
     [1, 'JavaScript'],
     [2, 'Flutter'],
+    [2, 'Dart'],
     [1, 'Node.js'],
     [1, 'MySQL'],
     [3, 'Python'],
     [1, 'CSS'],
+    [3, 'C'],
+    [3, 'C++'],
     [2, 'C#'],
     [1, 'Vue'],
     [2, 'Java'],

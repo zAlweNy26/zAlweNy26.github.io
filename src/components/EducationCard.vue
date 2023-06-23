@@ -10,6 +10,11 @@ const education = [
         place: 'University of Palermo',
         title: 'Bachelor\'s Degree in Computer Science'
     },
+    {
+        time: 'February 2023 - June 2023',
+        place: 'University of Debrecen',
+        title: 'Erasmus+ Program'
+    }
 ]
 </script>
 

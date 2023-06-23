@@ -68,7 +68,7 @@ const projects = [
   {
     name: 'HobbyHub',
     description: 'App to track your hobbies all in one (Games, Books, TV Series, Movies, Anime, Comics, ecc...)',
-    url: 'https://livingdextracker-fd.web.app',
+    url: 'https://github.com/zAlweNy26/HobbyHub',
     image: 'https://placehold.co/400'
   },
 ]
@@ -90,11 +90,11 @@ const projects = [
         :company="stats.company"
         :email="stats.email"
       />
-      <TechCard />
       <ExperienceCard />
       <EducationCard />
     </div>
     <div class="flex flex-col gap-4">
+      <TechCard />
       <div class="flex flex-col gap-2 bg-base-200 p-4 rounded-2xl">
         <div class="flex justify-between items-center">
           <p class="text-xl font-semibold">GitHub Repositories</p>
