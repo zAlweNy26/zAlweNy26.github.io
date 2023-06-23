@@ -1,6 +1,4 @@
 <script setup lang="ts">
-//TODO: Inspired by https://github.com/arifszn/gitprofile
-
 const ghNick = 'zAlweNy26'
 
 const getStats = useMemoize(
@@ -75,54 +73,74 @@ const projects = [
 </script>
 
 <template>
-  <div class="grid grid-cols-1 lg:p-4 md:grid-cols-2 lg:grid-cols-[0.5fr_1fr] gap-4">
-    <div class="flex flex-col gap-4">
-      <ProfileCard
-        :location="stats.location"
-        :hireable="stats.hireable"
-        :description="stats.bio"
-        :avatar="stats.avatar"
-        :followers="stats.followers"
-        :following="stats.following"
-      />
-      <AboutCard />
-      <ContactsCard
-        :company="stats.company"
-        :email="stats.email"
-      />
-      <ExperienceCard />
-      <EducationCard />
-    </div>
-    <div class="flex flex-col gap-4">
-      <TechCard />
-      <div class="flex flex-col gap-2 bg-base-200 p-4 rounded-2xl">
-        <div class="flex justify-between items-center">
-          <p class="text-xl font-semibold">GitHub Repositories</p>
-          <a :href="`https://github.com/${ghNick}?tab=repositories`" class="link no-underline link-primary">See all</a>
+  <div class="flex gap-4 flex-col">
+    <div class="grid lg:p-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-[0.5fr_1fr] gap-4">
+      <div class="flex flex-col gap-4">
+        <ProfileCard
+          :location="stats.location"
+          :hireable="stats.hireable"
+          :description="stats.bio"
+          :avatar="stats.avatar"
+          :followers="stats.followers"
+          :following="stats.following"
+        />
+        <AboutCard />
+        <ContactsCard
+          :company="stats.company"
+          :email="stats.email"
+        />
+        <ExperienceCard />
+        <EducationCard />
+      </div>
+      <div class="flex flex-col gap-4">
+        <TechCard />
+        <div class="flex flex-col gap-2 bg-base-200 p-4 rounded-2xl">
+          <div class="flex justify-between items-center">
+            <p class="text-xl font-semibold">GitHub Repositories</p>
+            <a :href="`https://github.com/${ghNick}?tab=repositories`" class="link no-underline link-primary">See all</a>
+          </div>
+          <div class="grid gap-4 grid-cols-1 lg:grid-cols-2">
+            <RepoCard v-for="repo in repos"
+              :name="repo.name"
+              :url="repo.html_url"
+              :description="repo.description"
+              :language="repo.language"
+              :stars="repo.stargazers_count"
+              :forks="repo.forks_count"
+              :watchers="repo.watchers_count"
+            />
+          </div>
         </div>
-        <div class="grid gap-4 grid-cols-1 lg:grid-cols-2">
-          <RepoCard v-for="repo in repos"
-            :name="repo.name"
-            :url="repo.html_url"
-            :description="repo.description"
-            :language="repo.language"
-            :stars="repo.stargazers_count"
-            :forks="repo.forks_count"
-            :watchers="repo.watchers_count"
-          />
+        <div class="flex flex-col gap-2 bg-base-200 p-4 rounded-2xl">
+          <p class="text-xl font-semibold">Personal Projects</p>
+          <div class="grid gap-4 grid-cols-1 lg:grid-cols-2">
+            <ProjectCard v-for="project in projects"
+              :name="project.name"
+              :url="project.url"
+              :description="project.description"
+              :image="project.image"
+            />
+          </div>
         </div>
       </div>
-      <div class="flex flex-col gap-2 bg-base-200 p-4 rounded-2xl">
-        <p class="text-xl font-semibold">Personal Projects</p>
-        <div class="grid gap-4 grid-cols-1 lg:grid-cols-2">
-          <ProjectCard v-for="project in projects"
-            :name="project.name"
-            :url="project.url"
-            :description="project.description"
-            :image="project.image"
-          />
-        </div>
-      </div>
     </div>
+    <div class="flex flex-col justify-center items-center bg-base-200 rounded-xl p-4 self-center font-semibold">
+      <p>
+        Inspired by
+        <a href="https://github.com/arifszn/gitprofile" target="_blank" class="link link-info no-underline">
+          GitProfile
+        </a>
+      </p>
+      <p>
+        Made with
+        <a href="https://vuejs.org" target="_blank" class="link link-primary no-underline">
+          Vue.js
+        </a>
+        and ❤️
+      </p>
+    </div>
+    <p class="self-center font-medium text-xs text-primary-focus">
+      Copyright © 2023 Daniele Nicosia
+    </p>
   </div>
 </template>

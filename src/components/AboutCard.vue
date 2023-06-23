@@ -14,9 +14,10 @@ if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) age--
             <span id="sicily">Sicily</span>, 
             <span id="italy">Italy</span>.
             I first discovered the magical world of programming at the age of 12.
-            Obviously the first programs I did were nothing special, (Visual Basic in my ❤️)
+            Obviously the first programs I did were nothing special (Visual Basic in my ❤️),
             but it was thanks to my consistency that I understood that programming 
             was something else, something more powerful than this.
+            So here I am now, ready to get involved!
         </p>
     </div>
 </template>

@@ -14,7 +14,7 @@ const contacts = [
     },
     {
         icon: 'ph:buildings-fill',
-        text: 'Company',
+        text: 'Organization',
         value: company ?? 'None'
     },
     {

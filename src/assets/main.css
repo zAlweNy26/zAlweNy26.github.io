@@ -65,6 +65,10 @@ body {
 }
 
 @layer components {
+  .btn {
+    @apply rounded-xl
+  }
+
   .mockup-window {
     @apply pt-4;
   }

@@ -9,14 +9,14 @@ declare module 'vue' {
   export interface GlobalComponents {
     AboutCard: typeof import('./src/components/AboutCard.vue')['default']
     ContactsCard: typeof import('./src/components/ContactsCard.vue')['default']
-    copy: typeof import('./src/components/ExperienceCard copy.vue')['default']
     EducationCard: typeof import('./src/components/EducationCard.vue')['default']
     ExperienceCard: typeof import('./src/components/ExperienceCard.vue')['default']
     Icon: typeof import('@iconify/vue')['Icon']
-    MainContainer: typeof import('./src/components/MainContainer.vue')['default']
     ProfileCard: typeof import('./src/components/ProfileCard.vue')['default']
     ProjectCard: typeof import('./src/components/ProjectCard.vue')['default']
     RepoCard: typeof import('./src/components/RepoCard.vue')['default']
+    RouterLink: typeof import('vue-router')['RouterLink']
+    RouterView: typeof import('vue-router')['RouterView']
     TechCard: typeof import('./src/components/TechCard.vue')['default']
   }
 }

@@ -4,6 +4,10 @@
     "target": "ESNext",
     "module": "ESNext",
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "types": [
+      "vite/client",
+      "node"
+    ],
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": false,
@@ -17,6 +21,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
+      "@views/*": ["src/views/*"],
       "@components/*": ["src/components/*"],
       "@assets/*": ["src/assets/*"],
       "@helpers/*": ["src/helpers/*"]
