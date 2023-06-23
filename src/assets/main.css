@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+
+@tailwind base;
+
+body {
+  scrollbar-width: 10px;
+  scrollbar-color: hsl(var(--b1)) hsl(var(--n));
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--n));
+  border-radius: 10px;
+}
+
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: "Poppins", sans-serif;
+  }
+
+  .timeline {
+    @apply flex flex-col gap-2 relative;
+  }
+
+  .timeline::before {
+    @apply content-[''] h-full w-0.5 left-0.5 rounded-full inline-block absolute bg-base-300;
+  }
+
+  .timeline > div {
+    @apply ml-4 relative;
+  }
+
+  .timeline > div::before {
+    @apply content-[''] w-2 h-2 -left-4 top-1/2 -translate-y-1/2 rounded-full bg-primary inline-block absolute;
+  }
+
+  .timeline > div > :first-child {
+    @apply text-neutral-focus/75;
+  }
+
+  .timeline > div > :nth-child(2) {
+    @apply font-semibold;
+  }
+
+  #sicily {
+    background: linear-gradient(45deg, #fff100 50%, #ed141e 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    @apply bg-clip-text font-semibold;
+  }
+
+  #italy {
+    background: linear-gradient(90deg, #009246 33%, #ffffff 33%, #ffffff 61%, #ce2b37 61%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    @apply bg-clip-text font-semibold;
+  }
+}
+
+@layer components {
+  .mockup-window {
+    @apply pt-4;
+  }
+
+  .mockup-window:before {
+    box-shadow: 1.4em 0 #FF605C, 2.8em 0 #FFBD44, 4.2em 0 #00CA4E;
+    @apply opacity-100 -mb-4;
+  }
+}
