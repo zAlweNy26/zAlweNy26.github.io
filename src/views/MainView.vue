@@ -61,13 +61,13 @@ const projects = [
     name: 'LivingDexTracker',
     description: 'Website for Pokemon collectors who want to keep track of their progress as they work to complete their Pokedex.',
     url: 'https://livingdextracker-fd.web.app',
-    image: 'https://placehold.co/400'
+    image: '/livingdextracker.svg'
   },
   {
     name: 'HobbyHub',
     description: 'App to track your hobbies all in one (Games, Books, TV Series, Movies, Anime, Comics, ecc...)',
     url: 'https://github.com/zAlweNy26/HobbyHub',
-    image: 'https://placehold.co/400'
+    image: '/hobbyhub.svg'
   },
 ]
 </script>
