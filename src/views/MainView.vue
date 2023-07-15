@@ -55,7 +55,7 @@ const projects = [
     name: 'Ambo',
     description: 'Digital bingo game, for when you don\'t feel like carrying the box! It also includes grimaces for some Italian regional dialects.',
     url: 'https://ambo-game.web.app',
-    image: 'https://placehold.co/400'
+    image: '/ambo.svg'
   },
   {
     name: 'LivingDexTracker',
