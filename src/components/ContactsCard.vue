@@ -23,11 +23,6 @@ const contacts = [
         value: 'zAlweNy26'
     },
     {
-        icon: 'simple-icons:twitter',
-        text: 'Twitter',
-        value: 'zAlweNy26'
-    },
-    {
         icon: 'simple-icons:linkedin',
         text: 'LinkedIn',
         value: 'daniele-nicosia'
@@ -36,7 +31,17 @@ const contacts = [
         icon: 'simple-icons:discord',
         text: 'Discord',
         value: 'alwe'
-    }
+    },
+    {
+        icon: 'simple-icons:twitter',
+        text: 'Twitter',
+        value: 'zAlweNy26'
+    },
+    {
+        icon: 'simple-icons:instagram',
+        text: 'Instagram',
+        value: 'dany_alwe'
+    },
 ]
 </script>
 

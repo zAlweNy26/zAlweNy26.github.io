@@ -17,7 +17,8 @@ const techStack: [number, string][] = [
     [3, 'Svelte'],
     [2, 'Kotlin'],
     [1, 'Tailwind'],
-    [2, 'TypeScript'],
+    [3, 'TypeScript'],
+    [2, 'Git'],
 ]
 </script>
 
