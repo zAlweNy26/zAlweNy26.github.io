@@ -124,7 +124,7 @@ const projects = [
         </div>
       </div>
     </div>
-    <div class="flex flex-col justify-center items-center bg-base-200 rounded-xl p-4 self-center font-semibold">
+    <div class="flex flex-col justify-center items-center bg-base-200 rounded-xl p-4 text-xs self-center font-semibold">
       <p>
         Inspired by
         <a href="https://github.com/arifszn/gitprofile" target="_blank" class="link link-info no-underline">
