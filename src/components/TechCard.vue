@@ -6,6 +6,7 @@ const techStack: [number, string][] = [
     [1, 'Node.js'],
     [1, 'MySQL'],
     [3, 'Python'],
+    [2, 'React'],
     [1, 'CSS'],
     [3, 'C'],
     [3, 'C++'],

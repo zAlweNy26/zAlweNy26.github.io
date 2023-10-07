@@ -95,6 +95,17 @@ const projects = [
       <div class="flex flex-col gap-4">
         <TechCard />
         <div class="flex flex-col gap-2 bg-base-200 p-4 rounded-2xl">
+          <p class="text-xl font-semibold">Personal Projects</p>
+          <div class="grid gap-4 grid-cols-1 lg:grid-cols-2">
+            <ProjectCard v-for="project in projects"
+              :name="project.name"
+              :url="project.url"
+              :description="project.description"
+              :image="project.image"
+            />
+          </div>
+        </div>
+        <div class="flex flex-col gap-2 bg-base-200 p-4 rounded-2xl">
           <div class="flex justify-between items-center">
             <p class="text-xl font-semibold">GitHub Repositories</p>
             <a :href="`https://github.com/${ghNick}?tab=repositories`" class="link no-underline link-primary">See all</a>
@@ -108,17 +119,6 @@ const projects = [
               :stars="repo.stargazers_count"
               :forks="repo.forks_count"
               :watchers="repo.watchers_count"
-            />
-          </div>
-        </div>
-        <div class="flex flex-col gap-2 bg-base-200 p-4 rounded-2xl">
-          <p class="text-xl font-semibold">Personal Projects</p>
-          <div class="grid gap-4 grid-cols-1 lg:grid-cols-2">
-            <ProjectCard v-for="project in projects"
-              :name="project.name"
-              :url="project.url"
-              :description="project.description"
-              :image="project.image"
             />
           </div>
         </div>
