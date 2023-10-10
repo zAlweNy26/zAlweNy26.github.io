@@ -49,7 +49,7 @@ const projects = [
     name: 'Sensorify',
     description: 'An application that allows you to take advantage of all the sensors present in the device in which it is installed, allowing you to take measurements for what you need quickly and easily.',
     url: 'https://play.google.com/store/apps/details?id=it.alwe.sensorify',
-    image: 'https://play-lh.googleusercontent.com/XyAfBsE6tPRowwgGpMmRchFco_dZNvb0aw7AIyjWk_Dcz079W4zS98T4cAHY3WH0WME=w240-h480-rw'
+    image: '/sensorify.png'
   },
   {
     name: 'Ambo',
