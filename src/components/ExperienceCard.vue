@@ -3,7 +3,22 @@ const experiences = [
     {
         time: 'April 2023 - Present',
         position: 'Core Contributor',
-        company: 'Cheshire Cat Admin GUI'
+        company: 'Cheshire Cat AI'
+    },
+    {
+        time: 'October 2023 - Present',
+        position: 'IT Consultant',
+        company: 'Cheshire Cat AI'
+    },
+    {
+        time: 'November 2023 - Present',
+        position: 'Junior Front-End Developer',
+        company: 'SMarT - Strategy Marketing Technology'
+    },
+    {
+        time: 'June 2024 - Present',
+        position: 'Univerity Internship (200h)',
+        company: 'SMarT - Strategy Marketing Technology'
     }
 ]
 </script>
