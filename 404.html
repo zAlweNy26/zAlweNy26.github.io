@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/_nuxt/entry.0kO4UcuE.css" crossorigin><link rel="modulepreload" as="script" crossorigin href="/_nuxt/DF3oVSaL.js"><meta property="og:type" content="website"><script type="module" src="/_nuxt/DF3oVSaL.js" crossorigin></script><script>"use strict";(()=>{const t=window,e=document.documentElement,c=["dark","light"],n=getStorageValue("localStorage","nuxt-color-mode")||"system";let i=n==="system"?u():n;const r=e.getAttribute("data-color-mode-forced");r&&(i=r),l(i),t["__NUXT_COLOR_MODE__"]={preference:n,value:i,getColorScheme:u,addColorScheme:l,removeColorScheme:d};function l(o){const s=""+o+"",a="";e.classList?e.classList.add(s):e.className+=" "+s,a&&e.setAttribute("data-"+a,o)}function d(o){const s=""+o+"",a="";e.classList?e.classList.remove(s):e.className=e.className.replace(new RegExp(s,"g"),""),a&&e.removeAttribute("data-"+a)}function f(o){return t.matchMedia("(prefers-color-scheme"+o+")")}function u(){if(t.matchMedia&&f("").media!=="not all"){for(const o of c)if(f(":"+o).matches)return o}return"light"}})();function getStorageValue(t,e){switch(t){case"localStorage":return window.localStorage.getItem(e);case"sessionStorage":return window.sessionStorage.getItem(e);case"cookie":return getCookie(e);default:return null}}function getCookie(t){const c=("; "+window.document.cookie).split("; "+t+"=");if(c.length===2)return c.pop()?.split(";").shift()}</script><meta name="robots" content="noindex, nofollow" /></head><body><div id="__nuxt" class="isolate"></div><div id="__nuxt-loader"><style>
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/_nuxt/entry.BJMgE0pA.css" crossorigin><link rel="modulepreload" as="script" crossorigin href="/_nuxt/CpBUAjWk.js"><meta property="og:type" content="website"><script type="module" src="/_nuxt/CpBUAjWk.js" crossorigin></script><script>"use strict";(()=>{const t=window,e=document.documentElement,c=["dark","light"],n=getStorageValue("localStorage","nuxt-color-mode")||"system";let i=n==="system"?u():n;const r=e.getAttribute("data-color-mode-forced");r&&(i=r),l(i),t["__NUXT_COLOR_MODE__"]={preference:n,value:i,getColorScheme:u,addColorScheme:l,removeColorScheme:d};function l(o){const s=""+o+"",a="";e.classList?e.classList.add(s):e.className+=" "+s,a&&e.setAttribute("data-"+a,o)}function d(o){const s=""+o+"",a="";e.classList?e.classList.remove(s):e.className=e.className.replace(new RegExp(s,"g"),""),a&&e.removeAttribute("data-"+a)}function f(o){return t.matchMedia("(prefers-color-scheme"+o+")")}function u(){if(t.matchMedia&&f("").media!=="not all"){for(const o of c)if(f(":"+o).matches)return o}return"light"}})();function getStorageValue(t,e){switch(t){case"localStorage":return window.localStorage.getItem(e);case"sessionStorage":return window.sessionStorage.getItem(e);case"cookie":return getCookie(e);default:return null}}function getCookie(t){const c=("; "+window.document.cookie).split("; "+t+"=");if(c.length===2)return c.pop()?.split(";").shift()}</script><meta name="robots" content="noindex, nofollow" /></head><body><div id="__nuxt" class="isolate"></div><div id="__nuxt-loader"><style>
   @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
 
   * {
@@ -160,24 +160,19 @@
     }
 
     hexToRgb(hex) {
-      // Remove the leading '#' if it's present
       hex = hex.replace(/^#/, '')
 
-      // If the hex code is 3 characters, expand it to 6 characters
-      if (hex.length === 3) {
+      if (hex.length === 3)
         hex = hex
           .split('')
           .map((char) => char + char)
           .join('')
-      }
 
-      // Parse the r, g, b values from the hex string
       const bigint = Number.parseInt(hex, 16)
-      const r = (bigint >> 16) & 255 // Extract the red component
-      const g = (bigint >> 8) & 255 // Extract the green component
-      const b = bigint & 255 // Extract the blue component
+      const r = (bigint >> 16) & 255
+      const g = (bigint >> 8) & 255
+      const b = bigint & 255
 
-      // Return the RGB values as a string separated by spaces
       return `${r} ${g} ${b}`
     }
 
@@ -246,10 +241,10 @@
       this.circles.forEach((circle, i) => {
         // Handle the alpha value
         const edge = [
-          circle.x + circle.translateX - circle.size, // distance from left edge
-          this.canvasSize.w - circle.x - circle.translateX - circle.size, // distance from right edge
-          circle.y + circle.translateY - circle.size, // distance from top edge
-          this.canvasSize.h - circle.y - circle.translateY - circle.size, // distance from bottom edge
+          circle.x + circle.translateX - circle.size,
+          this.canvasSize.w - circle.x - circle.translateX - circle.size,
+          circle.y + circle.translateY - circle.size,
+          this.canvasSize.h - circle.y - circle.translateY - circle.size,
         ]
 
         const closestEdge = edge.reduce((a, b) => Math.min(a, b))
@@ -267,16 +262,13 @@
         circle.translateY +=
           (this.mouse.y / (this.options.staticity / circle.magnetism) - circle.translateY) / this.options.ease
 
-        // circle gets out of the canvas
         if (
           circle.x < -circle.size ||
           circle.x > this.canvasSize.w + circle.size ||
           circle.y < -circle.size ||
           circle.y > this.canvasSize.h + circle.size
         ) {
-          // remove the circle from the array
           this.circles.splice(i, 1)
-          // create a new circle
           const newCircle = this.circleParams()
           this.drawCircle(newCircle)
         } else {
@@ -298,21 +290,17 @@
     }
 
     destroy() {
-      // Clean up event listeners
       window.removeEventListener('resize', this.handleResize)
       document.removeEventListener('mousemove', this.handleMouseMove)
 
-      // Cancel animation
       if (this.animationId) cancelAnimationFrame(this.animationId)
 
-      // Remove canvas
       if (this.canvas && this.canvas.parentNode) this.canvas.parentNode.removeChild(this.canvas)
     }
 
-    // Public methods to update options
     updateOptions(newOptions) {
       this.options = { ...this.options, ...newOptions }
-      this.initCanvas()
+      this.drawParticles()
     }
   }
 
@@ -336,4 +324,4 @@
   window.addEventListener('beforeunload', () => {
     particles.destroy()
   })
-</script></div><div id="teleports"></div><script>window.__NUXT_SITE_CONFIG__={_priority:{name:-10,env:-15},env:"production",name:"portfolio"}</script><script type="application/json" data-nuxt-data="nuxt-app" data-ssr="false" id="__NUXT_DATA__">[{"prerenderedAt":1,"serverRendered":2},1755532157302,false]</script><script>window.__NUXT__={};window.__NUXT__.config={public:{version:"0.0.0",githubToken:"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","seo-utils":{canonicalQueryWhitelist:["page","sort","filter","search","q","category","tag"],canonicalLowercase:true}},app:{baseURL:"/",buildId:"67252529-7fd9-4fb8-9f11-a1cd7df80845",buildAssetsDir:"/_nuxt/",cdnURL:""}}</script></body></html>
+</script></div><div id="teleports"></div><script>window.__NUXT_SITE_CONFIG__={_priority:{name:-10,env:-15},env:"production",name:"portfolio"}</script><script type="application/json" data-nuxt-data="nuxt-app" data-ssr="false" id="__NUXT_DATA__">[{"prerenderedAt":1,"serverRendered":2},1755533401208,false]</script><script>window.__NUXT__={};window.__NUXT__.config={public:{version:"0.0.0",githubToken:"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","seo-utils":{canonicalQueryWhitelist:["page","sort","filter","search","q","category","tag"],canonicalLowercase:true}},app:{baseURL:"/",buildId:"452a141f-88e2-4d57-9685-93e44ec9aaf1",buildAssetsDir:"/_nuxt/",cdnURL:""}}</script></body></html>
