@@ -8,6 +8,7 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
+    "publish": "bunx gh-pages --dotfiles -d .output/public",
     "postinstall": "nuxt prepare",
     "changelog": "changelogen --release",
     "clean": "nuxi cleanup && bun run postinstall",

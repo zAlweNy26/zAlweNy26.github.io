@@ -16,8 +16,8 @@ const isDark = computed({
   get() {
     return colorMode.value === 'dark'
   },
-  set(_isDark) {
-    colorMode.preference = _isDark ? 'dark' : 'light'
+  set(value) {
+    colorMode.preference = value ? 'dark' : 'light'
   },
 })
 
@@ -50,11 +50,15 @@ const octokit = new Octokit()
 
 const { data: profile } = await useAsyncData(async () => {
   const res = await octokit.rest.users.getByUsername({ username })
-  return {
-    ...res.data,
-    fetchedAt: new Date(),
-  }
+  return res.data
 }, {
+  transform: data => ({
+    ...data,
+    name: data.name || 'Daniele Nicosia',
+    email: data.email || 'alwe.dev@gmail.com',
+    location: data.location || 'Cremona, Italy',
+    fetchedAt: new Date(),
+  }),
   getCachedData,
   default: () => ({
     name: 'Daniele Nicosia',
