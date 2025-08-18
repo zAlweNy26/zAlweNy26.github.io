@@ -61,21 +61,19 @@
     right: 0;
     bottom: 0;
     left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 </style>
 <div class="container">
   <span class="gradient-text">Loading...</span>
-  <div id="particles"></div>
+  <div id="particles">
+    <canvas id="particleCanvas"></canvas>
+  </div>
 </div>
 <script>
   class ParticleCanvas {
     constructor(container, options = {}) {
       this.container = typeof container === 'string' ? document.querySelector(container) : container
 
-      // Default options
       this.options = {
         color: '#FFF',
         quantity: 100,
@@ -84,16 +82,14 @@
         ...options,
       }
 
-      // Canvas setup
-      this.canvas = null
-      this.context = null
+      this.canvas = document.getElementById('particleCanvas')
+      this.context = this.canvas.getContext('2d')
       this.circles = []
       this.mouse = { x: 0, y: 0 }
       this.canvasSize = { w: 0, h: 0 }
       this.pixelRatio = window.devicePixelRatio || 1
       this.animationId = null
 
-      // Bind methods
       this.handleResize = this.handleResize.bind(this)
       this.handleMouseMove = this.handleMouseMove.bind(this)
       this.animate = this.animate.bind(this)
@@ -102,23 +98,12 @@
     }
 
     init() {
-      this.createCanvas()
       this.setupEventListeners()
       this.initCanvas()
       this.animate()
     }
 
-    createCanvas() {
-      this.canvas = document.createElement('canvas')
-      this.canvas.style.display = 'block'
-      this.canvas.style.width = '100%'
-      this.canvas.style.height = '100%'
-      this.container.appendChild(this.canvas)
-      this.context = this.canvas.getContext('2d')
-    }
-
     setupEventListeners() {
-      window.addEventListener('resize', this.handleResize)
       document.addEventListener('mousemove', this.handleMouseMove)
     }
 
@@ -147,14 +132,19 @@
     }
 
     resizeCanvas() {
-      if (this.container && this.canvas && this.context) {
+      if (this.canvas && this.context) {
         this.circles.length = 0
-        this.canvasSize.w = this.container.offsetWidth
-        this.canvasSize.h = this.container.offsetHeight
+        // Use the maximum available size, but fallback to container if smaller
+        const maxWidth = Math.max(window.innerWidth, document.documentElement.clientWidth)
+        const maxHeight = Math.max(window.innerHeight, document.documentElement.clientHeight)
+
+        this.canvasSize.w = maxWidth
+        this.canvasSize.h = maxHeight
         this.canvas.width = this.canvasSize.w * this.pixelRatio
         this.canvas.height = this.canvasSize.h * this.pixelRatio
         this.canvas.style.width = `${this.canvasSize.w}px`
         this.canvas.style.height = `${this.canvasSize.h}px`
+        this.context.setTransform(1, 0, 0, 1, 0, 0)
         this.context.scale(this.pixelRatio, this.pixelRatio)
       }
     }
@@ -290,7 +280,6 @@
     }
 
     destroy() {
-      window.removeEventListener('resize', this.handleResize)
       document.removeEventListener('mousemove', this.handleMouseMove)
 
       if (this.animationId) cancelAnimationFrame(this.animationId)
@@ -316,10 +305,6 @@
     const isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
     modeIndicator.textContent = isDark ? 'Dark Mode' : 'Light Mode'
   }
-
-  window.addEventListener('resize', () => {
-    particles.handleResize()
-  })
 
   window.addEventListener('beforeunload', () => {
     particles.destroy()
