@@ -160,24 +160,19 @@
     }
 
     hexToRgb(hex) {
-      // Remove the leading '#' if it's present
       hex = hex.replace(/^#/, '')
 
-      // If the hex code is 3 characters, expand it to 6 characters
-      if (hex.length === 3) {
+      if (hex.length === 3)
         hex = hex
           .split('')
           .map((char) => char + char)
           .join('')
-      }
 
-      // Parse the r, g, b values from the hex string
       const bigint = Number.parseInt(hex, 16)
-      const r = (bigint >> 16) & 255 // Extract the red component
-      const g = (bigint >> 8) & 255 // Extract the green component
-      const b = bigint & 255 // Extract the blue component
+      const r = (bigint >> 16) & 255
+      const g = (bigint >> 8) & 255
+      const b = bigint & 255
 
-      // Return the RGB values as a string separated by spaces
       return `${r} ${g} ${b}`
     }
 
@@ -246,10 +241,10 @@
       this.circles.forEach((circle, i) => {
         // Handle the alpha value
         const edge = [
-          circle.x + circle.translateX - circle.size, // distance from left edge
-          this.canvasSize.w - circle.x - circle.translateX - circle.size, // distance from right edge
-          circle.y + circle.translateY - circle.size, // distance from top edge
-          this.canvasSize.h - circle.y - circle.translateY - circle.size, // distance from bottom edge
+          circle.x + circle.translateX - circle.size,
+          this.canvasSize.w - circle.x - circle.translateX - circle.size,
+          circle.y + circle.translateY - circle.size,
+          this.canvasSize.h - circle.y - circle.translateY - circle.size,
         ]
 
         const closestEdge = edge.reduce((a, b) => Math.min(a, b))
@@ -267,16 +262,13 @@
         circle.translateY +=
           (this.mouse.y / (this.options.staticity / circle.magnetism) - circle.translateY) / this.options.ease
 
-        // circle gets out of the canvas
         if (
           circle.x < -circle.size ||
           circle.x > this.canvasSize.w + circle.size ||
           circle.y < -circle.size ||
           circle.y > this.canvasSize.h + circle.size
         ) {
-          // remove the circle from the array
           this.circles.splice(i, 1)
-          // create a new circle
           const newCircle = this.circleParams()
           this.drawCircle(newCircle)
         } else {
@@ -298,21 +290,17 @@
     }
 
     destroy() {
-      // Clean up event listeners
       window.removeEventListener('resize', this.handleResize)
       document.removeEventListener('mousemove', this.handleMouseMove)
 
-      // Cancel animation
       if (this.animationId) cancelAnimationFrame(this.animationId)
 
-      // Remove canvas
       if (this.canvas && this.canvas.parentNode) this.canvas.parentNode.removeChild(this.canvas)
     }
 
-    // Public methods to update options
     updateOptions(newOptions) {
       this.options = { ...this.options, ...newOptions }
-      this.initCanvas()
+      this.drawParticles()
     }
   }
 

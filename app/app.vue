@@ -46,7 +46,7 @@ useSeoMeta({
   twitterCard: 'summary',
 })
 
-const octokit = new Octokit({ auth: useRuntimeConfig().public.githubToken })
+const octokit = new Octokit()
 
 const { data: profile } = await useAsyncData(async () => {
   const res = await octokit.rest.users.getByUsername({ username })
