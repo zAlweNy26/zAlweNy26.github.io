@@ -119,7 +119,7 @@ function handlePrint() {
                 <h2 class="text-base md:text-lg font-medium print:text-base">
                   Junior Web Developer
                 </h2>
-                <div class="flex flex-wrap items-center gap-2 text-sm">
+                <div v-if="profile.followers > 0 || profile.following > 0" class="flex flex-wrap items-center gap-2 text-sm">
                   <UIcon name="i-hugeicons-user-group" class="size-5" />
                   <p><strong>{{ profile.followers }}</strong> followers</p>
                   <UChip standalone inset size="2xs" />
@@ -199,7 +199,7 @@ function handlePrint() {
           </template>
           <ExperienceSection v-for="(experience, index) in professionalExperiences" :key="index" :experience />
         </UCard>
-        <UCard as="section" variant="subtle" class="print:bg-transparent" :ui="{ body: 'grid grid-cols-2 md:grid-cols-3 gap-4' }">
+        <UCard v-if="repos.list.length > 0" as="section" variant="subtle" class="print:bg-transparent" :ui="{ body: 'grid grid-cols-2 md:grid-cols-3 gap-4' }">
           <template #header>
             <h3 class="text-xl md:text-2xl font-bold text-highlighted leading-loose">
               Personal Projects
