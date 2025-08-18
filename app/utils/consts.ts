@@ -20,7 +20,7 @@ export const professionalExperiences: ProfessionalExperience[] = [
     location: 'Remote',
     position: 'Lead Frontend Developer',
     startDate: new Date('2023-11-01'),
-    description: `Served as Lead Frontend Developer for the product Mimir, overseeing frontend architecture and development while ensuring consistency with UX/UI design.
+    description: `Served as Lead Frontend Developer for the product **[Mimìr](https://mimir.bot)**, overseeing frontend architecture and development while ensuring consistency with UX/UI design.
 - Developed the web interface using **Nuxt.js** and **TypeScript**
 - Coordinated with designers through **Figma** projects
 - Introduced modern development practices (componentization, code reviews, CI/CD), improving code quality and scalability`,

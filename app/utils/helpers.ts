@@ -1,11 +1,47 @@
 import type { NuxtApp } from '#app'
+import type { CompileContext, Token } from 'micromark-util-types'
 import { micromark } from 'micromark'
 import { gfm, gfmHtml } from 'micromark-extension-gfm'
+import { gfmAutolinkLiteral, gfmAutolinkLiteralHtml } from 'micromark-extension-gfm-autolink-literal'
+import { sanitizeUri } from 'micromark-util-sanitize-uri'
 
+function anchorFromToken(this: CompileContext, token: Token, protocol?: string) {
+  const url = this.sliceSerialize(token)
+  const match = /\[([^\]]+)\]\(([^)]+)\)/.exec(url)
+  if (match && match.length === 3) {
+    this.tag(`<a href="${sanitizeUri((protocol || '') + match[2])}" target="_blank">`)
+    this.raw(this.encode(match[1]!))
+    this.tag('</a>')
+  }
+  else {
+    this.tag(`<a href="${sanitizeUri((protocol || '') + url)}" target="_blank">`)
+    this.raw(this.encode(url))
+    this.tag('</a>')
+  }
+}
+
+/**
+ * A utility object for rendering markdown text.
+ */
 export const markdown = Object.freeze({
   render: (text: string) => micromark(text, {
-    extensions: [gfm()],
-    htmlExtensions: [gfmHtml()],
+    extensions: [gfm(), gfmAutolinkLiteral()],
+    htmlExtensions: [gfmHtml(), gfmAutolinkLiteralHtml(), {
+      exit: {
+        link(token) {
+          anchorFromToken.call(this, token)
+        },
+        literalAutolinkHttp(token) {
+          anchorFromToken.call(this, token)
+        },
+        literalAutolinkEmail(token) {
+          anchorFromToken.call(this, token, 'mailto:')
+        },
+        literalAutolinkWww(token) {
+          anchorFromToken.call(this, token, 'http://')
+        },
+      },
+    }],
   }),
 })
 

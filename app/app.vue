@@ -132,7 +132,7 @@ function handlePrint() {
                     <span class="group-hover:text-primary transition-colors">{{ profile.email }}</span>
                   </ULink>
                   <UChip standalone inset size="2xs" />
-                  <ULink external to="https://www.google.com/maps/place/Cremona,+Italy" target="_blank"
+                  <ULink external to="https://google.com/maps/place/Cremona,+Italy" target="_blank"
                          class="group inline-flex text-highlighted items-center gap-2">
                     <UIcon name="i-hugeicons-pin-location-03" class="size-5" />
                     <span class="group-hover:text-primary transition-colors">{{ profile.location }}</span>
