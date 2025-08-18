@@ -4,10 +4,15 @@ const { repo } = defineProps<{
 }>()
 
 const { data: languages } = await useFetch(repo.languages_url, {
-  transform: (data: Record<string, number>) => ({
-    list: Object.entries(data).sort(([, a], [, b]) => b - a).map(([lang]) => lang),
-    fetchedAt: new Date(),
-  }),
+  transform: (data: Record<string, number>) => {
+    const res = {
+      list: Object.entries(data).sort(([, a], [, b]) => b - a).map(([lang]) => lang),
+      fetchedAt: new Date(),
+    }
+    window.localStorage.setItem(`cache:languages:${repo.name}`, JSON.stringify(res))
+    return res
+  },
+  key: `languages:${repo.name}`,
   getCachedData,
   default: () => ({
     list: [] as string[],

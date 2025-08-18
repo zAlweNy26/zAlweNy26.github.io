@@ -48,17 +48,21 @@ useSeoMeta({
 
 const octokit = new Octokit()
 
-const { data: profile } = await useAsyncData(async () => {
+const { data: profile } = await useAsyncData('profile', async () => {
   const res = await octokit.rest.users.getByUsername({ username })
   return res.data
 }, {
-  transform: data => ({
-    ...data,
-    name: data.name || 'Daniele Nicosia',
-    email: data.email || 'alwe.dev@gmail.com',
-    location: data.location || 'Cremona, Italy',
-    fetchedAt: new Date(),
-  }),
+  transform: (data) => {
+    const res = {
+      ...data,
+      name: data.name || 'Daniele Nicosia',
+      email: data.email || 'alwe.dev@gmail.com',
+      location: data.location || 'Cremona, Italy',
+      fetchedAt: new Date(),
+    }
+    window.localStorage.setItem('cache:profile', JSON.stringify(res))
+    return res
+  },
   getCachedData,
   default: () => ({
     name: 'Daniele Nicosia',
@@ -71,12 +75,25 @@ const { data: profile } = await useAsyncData(async () => {
   }),
 })
 
-const { data: repos } = await useAsyncData(async () => {
+const { data: repos } = await useAsyncData('repos', async () => {
   const res = await octokit.rest.repos.listForUser({ username, type: 'owner', per_page: 100 })
   return res.data.sort((a, b) => (b.stargazers_count || 0) - (a.stargazers_count || 0)).slice(0, 6)
 }, {
+  transform: (data) => {
+    const res = {
+      list: data,
+      fetchedAt: new Date(),
+    }
+    window.localStorage.setItem('cache:repos', JSON.stringify(res))
+    return res
+  },
   getCachedData,
-  default: () => [] as GitHubRepository[],
+  default: () => {
+    return {
+      list: [] as GitHubRepository[],
+      fetchedAt: new Date(),
+    }
+  },
 })
 
 function handleTheme() {
@@ -188,7 +205,7 @@ function handlePrint() {
               Personal Projects
             </h3>
           </template>
-          <SpecialCard v-for="(repo, index) in repos" :key="index">
+          <SpecialCard v-for="(repo, index) in repos.list" :key="index">
             <ProjectSection :repo />
           </SpecialCard>
         </UCard>
