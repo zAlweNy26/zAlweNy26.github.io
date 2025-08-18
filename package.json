@@ -1,34 +1,55 @@
 {
-  "name": "alwe-portfolio",
+  "name": "portfolio",
   "private": true,
-  "version": "1.0.0",
+  "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "preinstall": "npx only-allow pnpm",
-    "dev": "vite",
-    "build": "vue-tsc && vite build",
-    "preview": "vite preview"
+    "build": "nuxt build --preset github_pages",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "changelog": "changelogen --release",
+    "clean": "nuxi cleanup && bun run postinstall",
+    "lighthouse": "unlighthouse",
+    "lint": "eslint --cache .",
+    "lint:fix": "eslint --cache --fix ."
   },
   "dependencies": {
-    "@vueuse/core": "^10.3.0",
-    "typeit": "^8.7.1",
-    "vue": "^3.3.4",
-    "vue-router": "^4.2.4"
+    "@formkit/auto-animate": "^0.8.2",
+    "@iconify-json/hugeicons": "^1.2.11",
+    "@nuxt/image": "1.11.0",
+    "@nuxt/ui": "^3.3.2",
+    "@nuxtjs/seo": "3.1.0",
+    "@octokit/rest": "^22.0.0",
+    "@pinia/nuxt": "0.11.2",
+    "@tailwindcss/typography": "^0.5.16",
+    "@vueuse/components": "^13.6.0",
+    "@vueuse/core": "^13.6.0",
+    "@vueuse/integrations": "^13.6.0",
+    "@vueuse/nuxt": "^13.6.0",
+    "@vueuse/router": "^13.6.0",
+    "micromark": "^4.0.2",
+    "micromark-extension-gfm": "^3.0.0",
+    "motion-v": "^1.7.0",
+    "nuxt": "^4.0.3",
+    "nuxt-vitalizer": "0.10.0",
+    "sharp": "^0.34.3"
   },
   "devDependencies": {
-    "@iconify/vue": "^4.1.1",
-    "@types/node": "^20.4.6",
-    "@vitejs/plugin-vue": "^4.2.3",
-    "@vue/tsconfig": "^0.4.0",
-    "autoprefixer": "^10.4.14",
-    "daisyui": "^3.5.0",
-    "postcss": "^8.4.27",
-    "tailwindcss": "^3.3.3",
-    "typescript": "^5.1.6",
-    "unplugin-auto-import": "^0.16.6",
-    "unplugin-vue-components": "^0.25.1",
-    "vite": "^4.4.8",
-    "vite-tsconfig-paths": "^4.2.0",
-    "vue-tsc": "^1.8.8"
-  }
+    "@antfu/eslint-config": "^5.2.1",
+    "@compodium/nuxt": "0.1.0-beta.11",
+    "@nuxt/eslint": "^1.8.0",
+    "@prettier/plugin-xml": "^3.4.2",
+    "changelogen": "^0.6.2",
+    "eslint": "^9.33.0",
+    "eslint-plugin-format": "^1.0.1",
+    "nuxt-mcp": "^0.2.4",
+    "typescript": "^5.9.2",
+    "unlighthouse": "^0.17.2",
+    "vue-tsc": "~3.0.5"
+  },
+  "trustedDependencies": [
+    "sharp"
+  ]
 }

@@ -1,0 +1,75 @@
+import { version } from './package.json'
+
+// https://nuxt.com/docs/api/configuration/nuxt-config
+export default defineNuxtConfig({
+  devtools: { enabled: true },
+
+  modules: [
+    'motion-v/nuxt',
+    'nuxt-vitalizer',
+    '@formkit/auto-animate/nuxt',
+    '@vueuse/nuxt',
+    '@pinia/nuxt',
+    '@nuxtjs/seo',
+    '@nuxt/ui',
+    '@nuxt/image',
+    ...(process.env.NODE_ENV === 'development'
+      ? [
+          '@compodium/nuxt',
+          '@nuxt/eslint',
+          'nuxt-mcp',
+        ]
+      : []),
+  ],
+
+  vite: {
+    build: {
+      rollupOptions: {
+        external: ['sharp'],
+      },
+    },
+  },
+
+  ssr: false,
+
+  css: ['~/assets/css/main.css'],
+
+  compatibilityDate: 'latest',
+
+  spaLoadingTemplate: './loading.html',
+
+  experimental: {
+    typedPages: true,
+    payloadExtraction: true,
+    emitRouteChunkError: 'automatic-immediate',
+  },
+
+  runtimeConfig: {
+    public: {
+      version,
+      githubToken: '',
+    },
+  },
+
+  hooks: {
+    'prerender:routes': ({ routes }) => {
+      routes.clear()
+    },
+  },
+
+  ogImage: {
+    enabled: false,
+  },
+
+  schemaOrg: {
+    enabled: false,
+  },
+
+  sitemap: {
+    enabled: false,
+  },
+
+  colorMode: {
+    disableTransition: false,
+  },
+})
