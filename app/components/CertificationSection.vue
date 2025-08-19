@@ -21,6 +21,6 @@ defineProps<{
       </span>
     </p>
     <UButton v-if="certificate.url" variant="subtle" color="neutral" class="text-primary print:bg-transparent"
-             :to="certificate.url" external icon="i-hugeicons-link-04" label="View Certificate" />
+             :to="certificate.url" target="_blank" external icon="i-hugeicons-link-04" label="View Certificate" />
   </div>
 </template>
