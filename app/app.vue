@@ -224,7 +224,7 @@ function handlePrint() {
           <div class="flex gap-2 items-center">
             <strong>Frontend Technologies:</strong>
             <div class="flex flex-wrap gap-2">
-              <UBadge v-for="(tech, index) in ['Vue', 'Nuxt', 'TailwindCSS', 'HTML5', 'CSS3', 'Capacitor', 'Flutter']" :key="index" :label="tech" variant="soft" />
+              <UBadge v-for="(tech, index) in ['Vue 3', 'Nuxt 3/4', 'TailwindCSS', 'HTML5', 'CSS3', 'Capacitor', 'Flutter']" :key="index" :label="tech" variant="soft" />
             </div>
           </div>
           <div class="flex gap-2 items-center">
@@ -264,17 +264,20 @@ function handlePrint() {
             <CertificationSection :certificate />
           </SpecialCard>
         </UCard>
-        <p class="text-muted text-center">
+        <p class="text-muted text-sm text-center">
           Copyright © {{ new Date(profile.created_at).getFullYear() }} - {{ new Date().getFullYear() }} by {{ username }}
+        </p>
+        <p class="text-muted text-xs text-center">
+          v{{ $config.public.version }}
         </p>
       </div>
     </BlurReveal>
     <UTooltip arrow text="Toggle Theme" class="no-print">
-      <UButton class="fixed bottom-4 md:top-4 md:bottom-auto left-4 rounded-full z-50" size="xl" color="neutral" square
-               aria-label="Toggle Theme" variant="subtle" :icon="isDark ? 'i-hugeicons-moon-02' : 'i-hugeicons-sun-03'" @click="handleTheme" />
+      <UButton class="fixed bottom-4 md:top-4 md:bottom-auto left-4 rounded-full z-50" size="lg" color="neutral" square
+               aria-label="Toggle Theme" variant="subtle" :icon="isDark ? 'i-hugeicons-sun-03' : 'i-hugeicons-moon-02'" @click="handleTheme" />
     </UTooltip>
     <UTooltip arrow text="Print" class="no-print">
-      <UButton class="fixed bottom-4 right-4 rounded-full no-print z-50" size="xl" square icon="i-hugeicons-printer"
+      <UButton class="fixed bottom-4 right-4 rounded-full no-print z-50" size="lg" square icon="i-hugeicons-printer"
                aria-label="Print" @click="handlePrint" />
     </UTooltip>
   </UApp>
