@@ -13,13 +13,9 @@ export default defineNuxtConfig({
     '@nuxtjs/seo',
     '@nuxt/ui',
     '@nuxt/image',
-    ...(process.env.NODE_ENV === 'development'
-      ? [
-          '@compodium/nuxt',
-          '@nuxt/eslint',
-          'nuxt-mcp',
-        ]
-      : []),
+    '@compodium/nuxt',
+    '@nuxt/eslint',
+    'nuxt-mcp',
   ],
 
   vite: {
@@ -46,8 +42,7 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      version,
-      githubToken: '',
+      version
     },
   },
 
