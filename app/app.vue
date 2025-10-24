@@ -206,7 +206,7 @@ function handlePrint() {
           </template>
           <ExperienceSection v-for="(experience, index) in professionalExperiences" :key="index" :experience />
         </UCard>
-        <UCard v-if="repos.list.length > 0" as="section" variant="subtle" class="print:bg-transparent" :ui="{ body: 'grid grid-cols-2 md:grid-cols-3 gap-4' }">
+        <UCard v-if="repos.list.length > 0" as="section" variant="subtle" class="print:hidden" :ui="{ body: 'grid grid-cols-2 md:grid-cols-3 gap-4' }">
           <template #header>
             <h3 class="text-xl md:text-2xl font-bold text-highlighted leading-loose">
               Personal Projects
@@ -222,34 +222,10 @@ function handlePrint() {
               Skills
             </h3>
           </template>
-          <div class="flex gap-2 items-center">
-            <strong>Programming Languages:</strong>
+          <div v-for="(skills, env) in categorySkills" :key="env" class="flex gap-2 items-center">
+            <strong>{{ env }}:</strong>
             <div class="flex flex-wrap gap-2">
-              <UBadge v-for="(lang, index) in ['JavaScript', 'TypeScript', 'Kotlin', 'Python', 'Dart']" :key="index" :label="lang" variant="soft" />
-            </div>
-          </div>
-          <div class="flex gap-2 items-center">
-            <strong>Frontend Technologies:</strong>
-            <div class="flex flex-wrap gap-2">
-              <UBadge v-for="(tech, index) in ['Vue 3', 'Nuxt 3/4', 'TailwindCSS', 'HTML5', 'CSS3', 'Capacitor', 'Flutter']" :key="index" :label="tech" variant="soft" />
-            </div>
-          </div>
-          <div class="flex gap-2 items-center">
-            <strong>Backend Technologies:</strong>
-            <div class="flex flex-wrap gap-2">
-              <UBadge v-for="(tech, index) in ['Node.js', 'Bun', 'Elysia', 'PostgreSQL', 'MySQL', 'BetterAuth']" :key="index" :label="tech" variant="soft" />
-            </div>
-          </div>
-          <div class="flex gap-2 items-center">
-            <strong>Security & DevOps:</strong>
-            <div class="flex flex-wrap gap-2">
-              <UBadge v-for="(tech, index) in ['Docker', 'Kubernetes', 'Cloudflare', 'GitHub Actions']" :key="index" :label="tech" variant="soft" />
-            </div>
-          </div>
-          <div class="flex gap-2 items-center">
-            <strong>Tools:</strong>
-            <div class="flex flex-wrap gap-2">
-              <UBadge v-for="(tech, index) in ['Git', 'Vitest', 'Playwright', 'Vite', 'ESLint']" :key="index" :label="tech" variant="soft" />
+              <UBadge v-for="(lang, index) in skills" :key="index" :label="lang" variant="soft" />
             </div>
           </div>
         </UCard>

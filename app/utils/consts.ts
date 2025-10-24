@@ -105,3 +105,12 @@ export const certifications: Certification[] = [
     issueDate: new Date('2017-10-10'),
   },
 ]
+
+export const categorySkills = {
+  'Languages': ['🇮🇹 Italian (Native)', '🇬🇧 English (B2)', '🇪🇸 Spanish (A2)'],
+  'Programming Languages': ['JavaScript', 'TypeScript', 'Python', 'HTML5', 'CSS3'],
+  'Frontend Technologies': ['Vue 3', 'Nuxt 3/4', 'Tailwind CSS 3/4', 'Capacitor', 'Flutter'],
+  'Backend Technologies': ['Node.js', 'Bun', 'Elysia', 'PostgreSQL', 'MySQL', 'BetterAuth'],
+  'Security & DevOps': ['Docker', 'Kubernetes', 'Cloudflare', 'GitHub Actions', 'Digital Ocean'],
+  'Tools': ['Git', 'Vitest', 'Playwright', 'Vite', 'ESLint', 'Playwright'],
+}
