@@ -271,11 +271,14 @@ function handlePrint() {
             <CertificationSection :certificate />
           </SpecialCard>
         </UCard>
-        <p class="text-muted text-sm text-center">
+        <p class="text-muted print:hidden text-sm text-center">
           Copyright © {{ new Date(profile.created_at).getFullYear() }} - {{ new Date().getFullYear() }} by {{ username }}
         </p>
-        <p class="text-muted text-xs text-center">
+        <p class="text-muted print:hidden text-xs text-center">
           v{{ $config.public.version }}
+        </p>
+        <p class="text-muted hidden print:block text-center">
+          I authorise the processing of the personal data in my CV in accordance with Regulation (EU) 2016/679 of the European Parliament and of the Council (GDPR).
         </p>
       </div>
     </BlurReveal>
