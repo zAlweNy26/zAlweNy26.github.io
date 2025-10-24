@@ -15,15 +15,16 @@ export type GitHubRepository = RestEndpointMethodTypes['repos']['listForUser']['
 
 export const professionalExperiences: ProfessionalExperience[] = [
   {
-    company: 'SMarT',
-    companyUrl: 'https://smartstrategy.eu',
+    company: 'Tinke',
+    companyUrl: 'https://tinke.it',
     location: 'Remote',
     position: 'Lead Frontend Developer',
     startDate: new Date('2023-11-01'),
-    description: `Served as Lead Frontend Developer for the product **[Mimìr](https://mimir.bot)**, overseeing frontend architecture and development while ensuring consistency with UX/UI design.
+    description: `Serve as Lead Frontend Developer for the product **[Mimìr AI Agent](https://mimir.bot)**, overseeing frontend architecture and development while ensuring consistency with UX/UI design.
 - Developed the web interface using **Nuxt.js** and **TypeScript**
 - Coordinated with designers through **Figma** projects
-- Introduced modern development practices (componentization, code reviews, CI/CD), improving code quality and scalability`,
+- Introduced modern development practices (componentization, code reviews, CI/CD), improving code quality and scalability
+- Created custom elements for seamless integration into clients webpages`,
     technologies: ['Vue 3', 'Nuxt 4', 'HTML5', 'CSS3', 'Tailwind 4', 'TypeScript', 'Docker', 'Bun'],
   },
   {
@@ -52,9 +53,17 @@ export interface EducationalExperience {
 
 export const educationalExperiences: EducationalExperience[] = [
   {
+    institution: 'University of Parma, Italy',
+    degree: 'Bachelor\'s Degree in Computer Science',
+    startDate: new Date('2025-10-01'),
+    description: `After transferring from the University of Palermo, I am currently pursuing my Bachelor's degree in Computer Science at the University of Parma. My focus is on advanced topics in artificial intelligence, machine learning, and data science. I am engaged in coursework and projects that enhance my understanding of AI algorithms, data analysis techniques, and programming languages such as Python.`,
+    skills: ['Artificial Intelligence', 'Machine Learning', 'Python'],
+  },
+  {
     institution: 'University of Palermo, Italy',
     degree: 'Bachelor\'s Degree in Computer Science',
     startDate: new Date('2020-10-01'),
+    endDate: new Date('2025-08-31'),
     description: `My university studies provided me with a strong foundation in mathematics, theoretical computer science, and software technologies, combining both fundamental and applied perspectives. I completed core courses such as Data Structures and Algorithms, Programming in C and Java, Databases, Operating Systems, Computer Networks, Machine Learning, and Computer Vision, complemented by mathematical subjects like Calculus, Geometry, and Probability Theory. This academic background enabled me to develop strong skills in software development, data management, and problem-solving.`,
     skills: ['C', 'Java', 'SQL', 'Assembly', 'Data Structures & Algorithms', 'Operating Systems', 'Computer Networks'],
   },

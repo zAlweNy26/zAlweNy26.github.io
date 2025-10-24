@@ -9,7 +9,6 @@ export default defineNuxtConfig({
     'nuxt-vitalizer',
     '@formkit/auto-animate/nuxt',
     '@vueuse/nuxt',
-    '@pinia/nuxt',
     '@nuxtjs/seo',
     '@nuxt/ui',
     '@nuxt/image',
@@ -42,7 +41,7 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      version
+      version,
     },
   },
 

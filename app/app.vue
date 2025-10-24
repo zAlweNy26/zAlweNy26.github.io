@@ -186,8 +186,15 @@ function handlePrint() {
               I first discovered the magical world of programming at the age of <strong>12</strong>.
               Obviously the first programs I did were nothing special (Visual Basic in my ❤️),
               but it was thanks to my consistency that I understood that programming was something else, something more
-              powerful than this.
-              So here I am now, ready to get involved!
+              powerful than this.<br>
+              I tried many programming languages over the years, from <strong>C</strong> to <strong>Java</strong>,
+              from <strong>C#</strong> to <strong>Kotlin</strong>, but the one that really fascinated me was
+              <strong>JavaScript</strong>, the language of the web.
+              I fell in love with the idea of being able to create something that could be used by anyone, anywhere in the world,
+              just by opening a browser.<br>
+              After mastering the basics of web development, I started to explore the world of frameworks,
+              discovering <strong>Vue.js</strong> which I fell in love with immediately due to its simplicity and flexibility.
+              Since then, I have been using it for every one of my projects. 💚
             </p>
           </template>
         </UCard>

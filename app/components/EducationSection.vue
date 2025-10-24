@@ -42,7 +42,7 @@ function getTimeSpan(startDate: Date, endDate?: Date) {
       </p>
     </div>
     <article class="leading-relaxed prose prose-neutral prose-p:m-0 prose-ul:m-0 dark:prose-invert max-w-none text-sm"
-             v-html="markdown.render(experience.description)" />
+             v-html="parseMarkdown(experience.description)" />
     <div class="flex flex-wrap gap-2">
       <UBadge v-for="(skill, i) in experience.skills" :key="i" :label="skill" variant="soft" />
     </div>

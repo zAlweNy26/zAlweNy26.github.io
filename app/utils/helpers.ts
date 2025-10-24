@@ -1,49 +1,19 @@
 import type { NuxtApp } from '#app'
-import type { CompileContext, Token } from 'micromark-util-types'
-import { micromark } from 'micromark'
-import { gfm, gfmHtml } from 'micromark-extension-gfm'
-import { gfmAutolinkLiteral, gfmAutolinkLiteralHtml } from 'micromark-extension-gfm-autolink-literal'
-import { sanitizeUri } from 'micromark-util-sanitize-uri'
+import rehypeExternalLinks from 'rehype-external-links'
+import rehypeStringify from 'rehype-stringify'
+import remarkGfm from 'remark-gfm'
+import remarkParse from 'remark-parse'
+import remarkRehype from 'remark-rehype'
+import { unified } from 'unified'
 
-function anchorFromToken(this: CompileContext, token: Token, protocol?: string) {
-  const url = this.sliceSerialize(token)
-  const match = /\[([^\]]+)\]\(([^)]+)\)/.exec(url)
-  if (match && match.length === 3) {
-    this.tag(`<a href="${sanitizeUri((protocol || '') + match[2])}" target="_blank">`)
-    this.raw(this.encode(match[1]!))
-    this.tag('</a>')
-  }
-  else {
-    this.tag(`<a href="${sanitizeUri((protocol || '') + url)}" target="_blank">`)
-    this.raw(this.encode(url))
-    this.tag('</a>')
-  }
-}
+const processor = unified()
+  .use(remarkParse)
+  .use(remarkGfm)
+  .use(remarkRehype)
+  .use(rehypeExternalLinks, { target: '_blank', rel: ['noopener', 'noreferrer'] })
+  .use(rehypeStringify)
 
-/**
- * A utility object for rendering markdown text.
- */
-export const markdown = Object.freeze({
-  render: (text: string) => micromark(text, {
-    extensions: [gfm(), gfmAutolinkLiteral()],
-    htmlExtensions: [gfmHtml(), gfmAutolinkLiteralHtml(), {
-      exit: {
-        link(token) {
-          anchorFromToken.call(this, token)
-        },
-        literalAutolinkHttp(token) {
-          anchorFromToken.call(this, token)
-        },
-        literalAutolinkEmail(token) {
-          anchorFromToken.call(this, token, 'mailto:')
-        },
-        literalAutolinkWww(token) {
-          anchorFromToken.call(this, token, 'http://')
-        },
-      },
-    }],
-  }),
-})
+export const parseMarkdown = (text: string) => processor.processSync(text).toString()
 
 export function getCachedData(key: string, nuxtApp: NuxtApp) {
   let data = nuxtApp.payload.data[key] || nuxtApp.static.data[key]
