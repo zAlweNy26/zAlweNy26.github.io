@@ -96,6 +96,10 @@ const { data: repos } = await useAsyncData('repos', async () => {
   },
 })
 
+const { data: location } = await useFetch('https://zalweny26-my-location.alwe-dev.workers.dev/api/location', {
+  transform: (data: { location: string }) => data.location,
+})
+
 function handleTheme() {
   isDark.value = !isDark.value
 }
@@ -113,9 +117,24 @@ function handlePrint() {
           <div class="flex flex-col gap-4">
             <div class="flex justify-between gap-4">
               <div class="space-y-4">
-                <h1 class="text-2xl md:text-3xl font-bold text-highlighted print:mb-2 print:text-2xl">
-                  {{ profile?.name || 'Daniele Nicosia' }}
-                </h1>
+                <div class="flex flex-wrap items-center gap-4">
+                  <h1 class="text-2xl md:text-3xl font-bold text-highlighted print:mb-2 print:text-2xl">
+                    {{ profile?.name || 'Daniele Nicosia' }}
+                  </h1>
+                  <ULink v-if="location" external :to="`https://google.com/maps/place/${location.replaceAll(' ', '+')}`" target="_blank"
+                         class="group inline-flex text-highlighted items-center gap-2 print:hidden">
+                    <span class="relative inline-flex items-center">
+                      <span class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                        <span class="h-8 w-8 rounded-full bg-primary/30 animate-ping" />
+                      </span>
+                      <UIcon name="i-hugeicons-pin-location-03" class="size-8 text-primary relative z-10" />
+                    </span>
+                    <p class="ms-2 flex flex-col italic">
+                      <span class="text-xs text-muted font-semibold">Live position</span>
+                      <span class="group-hover:text-primary transition-colors">{{ location }}</span>
+                    </p>
+                  </ULink>
+                </div>
                 <h2 class="text-base md:text-lg font-medium print:text-base">
                   Junior Web Developer
                 </h2>
@@ -132,7 +151,7 @@ function handlePrint() {
                     <span class="group-hover:text-primary transition-colors">{{ profile.email }}</span>
                   </ULink>
                   <UChip standalone inset size="2xs" />
-                  <ULink external to="https://google.com/maps/place/Cremona,+Italy" target="_blank"
+                  <ULink external :to="`https://google.com/maps/place/${profile.location.replaceAll(' ', '+')}`" target="_blank"
                          class="group inline-flex text-highlighted items-center gap-2">
                     <UIcon name="i-hugeicons-pin-location-03" class="size-5" />
                     <span class="group-hover:text-primary transition-colors">{{ profile.location }}</span>
@@ -166,7 +185,7 @@ function handlePrint() {
               </div>
               <div class="shrink-0">
                 <ImageSpotlight baseImage="/me_jojo.jpeg" spotlightImage="/me.png"
-                                :alt="profile.name || 'Profile Picture'" class="size-40 rounded-full object-cover" />
+                                :alt="profile.name || 'Profile Picture'" class="size-30 md:size-40 rounded-full object-cover" />
                 <p class="text-sm text-center select-none print:hidden text-muted italic">
                   Hover me!
                 </p>
