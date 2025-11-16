@@ -10,16 +10,6 @@ const age = Math.floor((Date.now() - birthDate.getTime()) / 3.15576e10)
 
 const route = useRoute()
 const title = useTitle('DanyAlwe')
-const colorMode = useColorMode()
-
-const isDark = computed({
-  get() {
-    return colorMode.value === 'dark'
-  },
-  set(value) {
-    colorMode.preference = value ? 'dark' : 'light'
-  },
-})
 
 useHead({
   link: [
@@ -97,12 +87,9 @@ const { data: repos } = await useAsyncData('repos', async () => {
 })
 
 const { data: location } = await useFetch('https://zalweny26-my-location.alwe-dev.workers.dev/api/location', {
+  key: 'location',
   transform: (data: { location: string }) => data.location,
 })
-
-function handleTheme() {
-  isDark.value = !isDark.value
-}
 
 function handlePrint() {
   window.print()
@@ -277,10 +264,7 @@ function handlePrint() {
         </p>
       </div>
     </BlurReveal>
-    <UTooltip arrow text="Toggle Theme" class="no-print">
-      <UButton class="fixed bottom-4 md:top-4 md:bottom-auto left-4 rounded-full z-50" size="lg" color="neutral" square
-               aria-label="Toggle Theme" variant="subtle" :icon="isDark ? 'i-hugeicons-sun-03' : 'i-hugeicons-moon-02'" @click="handleTheme" />
-    </UTooltip>
+    <ThemeButton />
     <UTooltip arrow text="Print" class="no-print">
       <UButton class="fixed bottom-4 right-4 rounded-full no-print z-50" size="lg" square icon="i-hugeicons-printer"
                aria-label="Print" @click="handlePrint" />

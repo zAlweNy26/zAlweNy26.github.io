@@ -15,6 +15,7 @@ export default defineNuxtConfig({
     '@compodium/nuxt',
     '@nuxt/eslint',
     'nuxt-mcp',
+    '@nuxt/hints',
   ],
 
   vite: {
