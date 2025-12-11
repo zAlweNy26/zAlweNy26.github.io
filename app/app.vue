@@ -86,7 +86,7 @@ const { data: repos } = await useAsyncData('repos', async () => {
   },
 })
 
-const { data: location } = await useFetch('https://zalweny26-my-location.alwe-dev.workers.dev/api/location', {
+const { data: location } = await useFetch('https://location.danyalwe.me/api/location', {
   key: 'location',
   transform: (data: { location: string }) => data.location,
 })
