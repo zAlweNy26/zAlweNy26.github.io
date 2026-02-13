@@ -86,6 +86,96 @@ const { data: repos } = await useAsyncData('repos', async () => {
   },
 })
 
+const { data: contributions } = await useAsyncData('contributions', async () => {
+  const res = await octokit.rest.search.issuesAndPullRequests({
+    q: `is:pr is:merged author:${username}`,
+    per_page: 100,
+    sort: 'updated',
+    order: 'desc',
+  })
+
+  const summaryMap = new Map<string, ContributionSummary>()
+
+  for (const item of res.data.items) {
+    const repositoryUrl = item.repository_url
+    if (!repositoryUrl) continue
+
+    const repoFullName = repositoryUrl.replace('https://api.github.com/repos/', '')
+    const [owner] = repoFullName.split('/')
+    if (owner?.toLowerCase() === username.toLowerCase()) continue
+
+    const updatedAt = item.updated_at || item.closed_at || item.created_at || new Date().toISOString()
+    const existing = summaryMap.get(repoFullName)
+    const summary: ContributionSummary = existing || {
+      repoFullName,
+      repoUrl: `https://github.com/${repoFullName}`,
+      prCount: 0,
+      stars: 0,
+      lastPrUpdatedAt: updatedAt,
+      recentPrs: [],
+    }
+
+    summary.prCount += 1
+    if (new Date(updatedAt).getTime() > new Date(summary.lastPrUpdatedAt).getTime())
+      summary.lastPrUpdatedAt = updatedAt
+
+    if (summary.recentPrs.length < 2 && item.html_url) {
+      summary.recentPrs.push({
+        title: item.title || `PR #${item.number}`,
+        url: item.html_url,
+        updated_at: updatedAt,
+      })
+    }
+
+    summaryMap.set(repoFullName, summary)
+  }
+
+  const candidateLimit = 12
+  const candidates = Array.from(summaryMap.values())
+    .sort((a, b) => b.prCount - a.prCount || new Date(b.lastPrUpdatedAt).getTime() - new Date(a.lastPrUpdatedAt).getTime())
+    .slice(0, candidateLimit)
+
+  const enriched = await Promise.all(candidates.map(async (summary) => {
+    const [owner, repo] = summary.repoFullName.split('/')
+    if (!owner || !repo) return summary
+    try {
+      const repoRes = await octokit.rest.repos.get({ owner, repo })
+      return {
+        ...summary,
+        stars: repoRes.data.stargazers_count || 0,
+      }
+    }
+    catch {
+      return summary
+    }
+  }))
+
+  const list = enriched
+    .sort((a, b) => b.prCount - a.prCount
+      || (b.stars || 0) - (a.stars || 0)
+      || new Date(b.lastPrUpdatedAt).getTime() - new Date(a.lastPrUpdatedAt).getTime())
+    .slice(0, 6)
+
+  return {
+    list,
+    fetchedAt: new Date(),
+  }
+}, {
+  transform: (data) => {
+    const res = {
+      ...data,
+      fetchedAt: new Date(),
+    }
+    window.localStorage.setItem('cache:contributions', JSON.stringify(res))
+    return res
+  },
+  getCachedData,
+  default: () => ({
+    list: [] as ContributionSummary[],
+    fetchedAt: new Date(),
+  }),
+})
+
 const { data: location } = await useFetch('https://location.danyalwe.me/api/location', {
   key: 'location',
   transform: (data: { location: string }) => data.location,
@@ -220,6 +310,16 @@ function handlePrint() {
           </template>
           <SpecialCard v-for="(repo, index) in repos.list" :key="index">
             <ProjectSection :repo />
+          </SpecialCard>
+        </UCard>
+        <UCard v-if="contributions.list.length > 0" as="section" variant="subtle" class="print:hidden" :ui="{ body: 'grid grid-cols-1 md:grid-cols-2 gap-4' }">
+          <template #header>
+            <h3 class="text-xl md:text-2xl font-bold text-highlighted leading-loose">
+              Open Source Contributions
+            </h3>
+          </template>
+          <SpecialCard v-for="(contribution, index) in contributions.list" :key="index">
+            <ContributionSection :contribution />
           </SpecialCard>
         </UCard>
         <UCard as="section" variant="subtle" class="print:bg-transparent" :ui="{ body: 'space-y-2' }">
