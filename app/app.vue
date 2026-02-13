@@ -98,14 +98,14 @@ function handlePrint() {
 
 <template>
   <UApp :tooltip="{ delayDuration: 300 }">
-    <BlurReveal class="min-h-screen max-w-4xl mx-auto print:max-w-none selection:bg-primary selection:text-neutral-900">
+    <BlurReveal class="min-h-screen max-w-4xl mx-auto not-print:pt-12 print:max-w-none selection:bg-primary selection:text-neutral-900">
       <div class="p-4 space-y-4 print:p-0">
         <UCard variant="subtle" class="print:bg-transparent">
           <div class="flex flex-col gap-4">
             <div class="flex justify-between gap-4">
               <div class="space-y-4">
                 <div class="flex flex-wrap items-center gap-4">
-                  <h1 class="text-2xl md:text-3xl font-bold text-highlighted print:mb-2 print:text-2xl">
+                  <h1 class="text-3xl md:text-4xl font-bold text-highlighted">
                     {{ profile?.name || 'Daniele Nicosia' }}
                   </h1>
                   <ULink v-if="location" external :to="`https://google.com/maps/place/${location.replaceAll(' ', '+')}`" target="_blank"
@@ -125,7 +125,7 @@ function handlePrint() {
                 <h2 class="text-base md:text-lg font-medium print:text-base">
                   Junior Web Developer
                 </h2>
-                <div v-if="profile.followers > 0 || profile.following > 0" class="flex flex-wrap items-center gap-2 text-sm">
+                <div v-if="profile.followers > 0 || profile.following > 0" class="flex flex-wrap items-center print:hidden gap-2 text-sm">
                   <UIcon name="i-hugeicons-user-group" class="size-5" />
                   <p><strong>{{ profile.followers }}</strong> followers</p>
                   <UChip standalone inset size="2xs" />

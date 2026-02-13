@@ -14,7 +14,7 @@
 @layer base {
   body {
     background-image: radial-gradient(circle at 2px 2px, var(--ui-bg-accented) 1px, transparent 0);
-    @apply leading-relaxed bg-size-[16px_16px] bg-default pt-10;
+    @apply leading-relaxed bg-size-[16px_16px] bg-default;
   }
 }
 
@@ -63,5 +63,9 @@
 
   .max-w-4xl {
     max-width: none !important;
+  }
+
+  [data-reka-popper-content-wrapper] {
+    display: none !important;
   }
 }
