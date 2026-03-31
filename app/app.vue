@@ -46,7 +46,7 @@ const { data: profile } = await useAsyncData('profile', async () => {
     const res = {
       ...data,
       name: data.name || 'Daniele Nicosia',
-      email: data.email || 'alwe.dev@gmail.com',
+      email: data.email || 'work@danyalwe.me',
       location: data.location || 'Cremona, Italy',
       fetchedAt: new Date(),
     }
@@ -56,7 +56,7 @@ const { data: profile } = await useAsyncData('profile', async () => {
   getCachedData,
   default: () => ({
     name: 'Daniele Nicosia',
-    email: 'alwe.dev@gmail.com',
+    email: 'work@danyalwe.me',
     location: 'Cremona, Italy',
     created_at: new Date().toISOString(),
     followers: 0,
