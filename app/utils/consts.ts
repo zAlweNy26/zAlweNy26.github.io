@@ -70,15 +70,7 @@ export const educationalExperiences: EducationalExperience[] = [
     degree: 'Bachelor\'s Degree in Computer Science',
     startDate: new Date('2025-10-01'),
     description: `After transferring from the University of Palermo, I am currently pursuing my Bachelor's degree in Computer Science at the University of Parma. My focus is on advanced topics in artificial intelligence, machine learning, and data science. I am engaged in coursework and projects that enhance my understanding of AI algorithms, data analysis techniques, and programming languages such as Python.`,
-    skills: ['Artificial Intelligence', 'Machine Learning', 'Python'],
-  },
-  {
-    institution: 'University of Palermo, Italy',
-    degree: 'Bachelor\'s Degree in Computer Science',
-    startDate: new Date('2020-10-01'),
-    endDate: new Date('2025-08-31'),
-    description: `My university studies provided me with a strong foundation in mathematics, theoretical computer science, and software technologies, combining both fundamental and applied perspectives. I completed core courses such as Data Structures and Algorithms, Programming in C and Java, Databases, Operating Systems, Computer Networks, Machine Learning, and Computer Vision, complemented by mathematical subjects like Calculus, Geometry, and Probability Theory. This academic background enabled me to develop strong skills in software development, data management, and problem-solving.`,
-    skills: ['C', 'Java', 'SQL', 'Assembly', 'Data Structures & Algorithms', 'Operating Systems', 'Computer Networks'],
+    skills: ['Artificial Intelligence', 'Machine Learning', 'Python', 'Micro services'],
   },
   {
     institution: 'University of Debrecen, Hungary',
@@ -86,7 +78,15 @@ export const educationalExperiences: EducationalExperience[] = [
     startDate: new Date('2023-02-24'),
     endDate: new Date('2023-06-24'),
     description: `As part of my Erasmus+ exchange, I attended advanced computer science courses focusing on software development, security, and emerging technologies. I successfully completed subjects such as Data Structures and Algorithms, Advanced Data Security, Blockchain Technology, Database Systems, and 3D Game Development, strengthening both my theoretical knowledge and practical skills.`,
-    skills: ['Redis', 'Unity', 'C#', 'SolidWorks', '3D Printing', 'SQL', 'Cybersecurity', 'Blockchain'],
+    skills: ['Redis', 'Unity', 'C#', 'SolidWorks', '3D Printing', 'SQL', 'Cybersecurity', 'Blockchain', 'Tinkercad'],
+  },
+  {
+    institution: 'University of Palermo, Italy',
+    degree: 'Bachelor\'s Degree in Computer Science',
+    startDate: new Date('2020-10-01'),
+    endDate: new Date('2025-08-31'),
+    description: `My university studies provided me with a strong foundation in mathematics, theoretical computer science, and software technologies, combining both fundamental and applied perspectives. I completed core courses such as Data Structures and Algorithms, Programming in C and Java, Databases, Operating Systems, Computer Networks and Geometry. This academic background enabled me to develop strong skills in software development, data management, and problem-solving.`,
+    skills: ['C', 'Java', 'SQL', 'Assembly', 'Data Structures & Algorithms', 'Operating Systems', 'Computer Networks'],
   },
   {
     institution: 'I.T.I.S. "Leonardo da Vinci", Trapani, Italy',
@@ -120,10 +120,10 @@ export const certifications: Certification[] = [
 ]
 
 export const categorySkills = {
-  'Languages': ['🇮🇹 Italian (Native)', '🇬🇧 English (B2)', '🇪🇸 Spanish (A2)'],
+  'Languages': ['🇮🇹 Italian (Native)', '🇬🇧 English (B2)', '🇪🇸 Spanish (A1)'],
   'Programming Languages': ['JavaScript', 'TypeScript', 'Python', 'HTML5', 'CSS3'],
   'Frontend Technologies': ['Vue 3', 'Nuxt 3/4', 'Tailwind CSS 3/4', 'Capacitor', 'Flutter'],
   'Backend Technologies': ['Node.js', 'Bun', 'Elysia', 'PostgreSQL', 'MySQL', 'BetterAuth'],
   'Security & DevOps': ['Docker', 'Kubernetes', 'Cloudflare', 'GitHub Actions', 'Digital Ocean'],
-  'Tools': ['Git', 'Vitest', 'Playwright', 'Vite', 'ESLint', 'Playwright'],
+  'Tools': ['Git', 'Vitest', 'Playwright', 'Vite', 'ESLint'],
 }
