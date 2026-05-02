@@ -107,7 +107,13 @@ export interface Certification {
 
 export const certifications: Certification[] = [
   {
-    title: 'Certified Nuxt Master',
+    title: 'Certified Nuxt Full Stack Master',
+    issuer: 'Vue School',
+    issueDate: new Date('2026-05-02'),
+    url: 'https://api.masteringnuxt.com/certificates/a1af8ddf-d3e7-446e-a0eb-8b11f1fb762e/download?signature=819482228342290146bec13c15113a1214f1e27c3b5b6ae6339a18c74ab1e476',
+  },
+  {
+    title: 'Certified Nuxt 3 Master',
     issuer: 'Vue School',
     issueDate: new Date('2025-01-15'),
     url: 'https://api.masteringnuxt.com/certificates/9e17e882-c5bd-4d6c-890f-47e0ac943a01/download?signature=e5fc1a0d60f7bde92d985743c718a0a452dfa306924eef8e11d962157c3613fa',
