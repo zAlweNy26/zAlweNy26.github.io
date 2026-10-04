@@ -3,17 +3,19 @@ import type { VNode } from 'vue'
 import { Comment, Fragment } from 'vue'
 
 const props = withDefaults(defineProps<{
+  /** Seconds */
   duration?: number
+  /** Seconds between each of the first children */
   delay?: number
   blur?: number
   yOffset?: number
-  /** Children past this index don't wait any longer, so items revealed on scroll appear right away */
+  /** The first `maxStagger + 1` children animate on load, the rest as they scroll into view */
   maxStagger?: number
 }>(), {
-  duration: 0.5,
-  delay: 0.25,
-  blur: 20,
-  yOffset: 20,
+  duration: 0.4,
+  delay: 0.12,
+  blur: 8,
+  yOffset: 16,
   maxStagger: 2,
 })
 
@@ -28,30 +30,51 @@ function flatten(nodes: VNode[]): VNode[] {
   })
 }
 
-const initial = computed(() => ({ opacity: 0, filter: `blur(${props.blur}px)`, y: props.yOffset }))
-const animate = { opacity: 1, filter: 'blur(0px)', y: 0 }
+// Pure CSS, so the prerendered HTML animates on first paint instead of waiting for hydration
+const style = computed(() => ({
+  '--reveal-duration': `${props.duration}s`,
+  '--reveal-blur': `${props.blur}px`,
+  '--reveal-y': `${props.yOffset}px`,
+}))
 </script>
 
 <template>
-  <div>
-    <Motion v-for="(child, index) in flatten($slots.default?.() ?? [])" :key="child.key ?? index" as="div"
-            class="reveal" :initial :while-in-view="animate" :in-view-options="{ once: true }" :transition="{
-              duration: props.duration,
-              ease: 'easeInOut',
-              delay: props.delay * Math.min(index, props.maxStagger),
-            }">
+  <div :style>
+    <div v-for="(child, index) in flatten($slots.default?.() ?? [])" :key="child.key ?? index"
+         :class="index <= maxStagger ? 'reveal-load' : 'reveal-scroll'"
+         :style="{ '--reveal-delay': `${props.delay * Math.min(index, maxStagger)}s` }">
       <component :is="child" />
-    </Motion>
+    </div>
   </div>
 </template>
 
 <style scoped>
-@media print {
-  /* Sections never scrolled into view would otherwise print invisible */
-  .reveal {
-    opacity: 1 !important;
-    filter: none !important;
-    transform: none !important;
+@keyframes reveal {
+  from {
+    opacity: 0;
+    filter: blur(var(--reveal-blur));
+    translate: 0 var(--reveal-y);
+  }
+}
+
+.reveal-load {
+  animation: reveal var(--reveal-duration) ease-out var(--reveal-delay) both;
+}
+
+/* Browsers without scroll-driven animations simply show these sections */
+@supports (animation-timeline: view()) {
+  .reveal-scroll {
+    animation: reveal linear both;
+    animation-timeline: view();
+    /* Capped at the element height so short items at the very bottom of the page can still finish */
+    animation-range: entry 0 entry min(200px, 100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce), print {
+  .reveal-load,
+  .reveal-scroll {
+    animation: none;
   }
 }
 </style>
