@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 const colorMode = useColorMode()
+const reducedMotion = usePreferredReducedMotion()
 
 const nextTheme = computed(() => colorMode.value === 'dark' ? 'light' : 'dark')
 
@@ -8,7 +9,7 @@ function switchTheme() {
 }
 
 function startViewTransition(event: MouseEvent) {
-  if (!document.startViewTransition) {
+  if (!document.startViewTransition || reducedMotion.value === 'reduce') {
     switchTheme()
     return
   }

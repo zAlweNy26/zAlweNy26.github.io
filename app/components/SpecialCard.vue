@@ -13,11 +13,13 @@ const mouseX = ref(offscreen)
 const mouseY = ref(offscreen)
 const rotateX = ref(0)
 const rotateY = ref(0)
+const reducedMotion = usePreferredReducedMotion()
 
 function handleMouseMove(e: MouseEvent) {
   const { left, top, width, height } = (e.currentTarget as HTMLElement).getBoundingClientRect()
   mouseX.value = e.clientX - left
   mouseY.value = e.clientY - top
+  if (reducedMotion.value === 'reduce') return
   rotateX.value = (e.clientX - left - width / 2) / 25
   rotateY.value = (e.clientY - top - height / 2) / 25
 }

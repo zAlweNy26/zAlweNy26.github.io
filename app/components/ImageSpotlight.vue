@@ -6,20 +6,18 @@ const { spotlightSize = 100 } = defineProps<{
   alt?: string
 }>()
 
-const containerRef = ref<HTMLElement>()
 const mouseX = ref(0), mouseY = ref(0)
 const isHovering = ref(false)
 
-function handleMouseMove(e: MouseEvent) {
-  if (!containerRef.value) return
-
-  const rect = containerRef.value.getBoundingClientRect()
+// Pointer events also cover touch, so touching the picture reveals the spotlight on phones
+function handlePointerMove(e: PointerEvent) {
+  const rect = (e.currentTarget as HTMLElement).getBoundingClientRect()
   mouseX.value = e.clientX - rect.left
   mouseY.value = e.clientY - rect.top
   isHovering.value = true
 }
 
-function handleMouseLeave() {
+function handlePointerLeave() {
   isHovering.value = false
 }
 
@@ -28,11 +26,11 @@ const currentOpacity = computed(() => isHovering.value ? 1 : 0)
 </script>
 
 <template>
-  <div ref="containerRef" role="button" tabindex="0"
-       class="relative overflow-hidden cursor-none select-none focus:outline-none" :aria-label="alt"
-       @mousemove="handleMouseMove" @mouseleave="handleMouseLeave" @focusout="handleMouseLeave">
-    <img :src="baseImage" :alt="alt" class="w-full h-full object-cover" draggable="false">
-    <img :src="spotlightImage" :alt="`${alt} spotlight`"
+  <!-- Purely decorative interaction: not focusable, the base image carries the alt text -->
+  <div class="relative overflow-hidden cursor-none select-none"
+       @pointerdown="handlePointerMove" @pointermove="handlePointerMove" @pointerleave="handlePointerLeave" @pointercancel="handlePointerLeave">
+    <img :src="baseImage" :alt="alt" width="320" height="320" class="w-full h-full object-cover" draggable="false">
+    <img :src="spotlightImage" alt="" aria-hidden="true" width="320" height="320"
          class="absolute spotlight inset-0 w-full h-full object-cover transition-opacity duration-300 ease-out pointer-events-none"
          draggable="false">
   </div>
