@@ -9,6 +9,7 @@
     "experience": "Esperienza professionale",
     "projects": "Progetti personali",
     "contributions": "Contributi open source",
+    "activity": "Attività su GitHub",
     "skills": "Competenze",
     "education": "Formazione",
     "certifications": "Certificazioni"
@@ -43,6 +44,17 @@
   "contributions": {
     "merged": "PR accettate: {count}",
     "recent": "PR recenti"
+  },
+  "activity": {
+    "total": "Contributi nell’ultimo anno",
+    "longestStreak": "Serie più lunga",
+    "currentStreak": "Serie attuale",
+    "calendarLabel": "{n} contributi nell’ultimo anno",
+    "day": "Nessun contributo il {date} | {count} contributo il {date} | {count} contributi il {date}",
+    "less": "Meno",
+    "more": "Di più",
+    "languages": "Linguaggi più usati",
+    "other": "Altri"
   },
   "certifications": {
     "view": "Vedi certificato"

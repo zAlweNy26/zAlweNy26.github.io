@@ -80,3 +80,63 @@ export function batchRepoQueries(repoFullNames: string[], maxLength = 256) {
   }
   return batches.map(batch => batch.map(n => `repo:${n}`).join(' '))
 }
+
+export type ContributionLevel = 'NONE' | 'FIRST_QUARTILE' | 'SECOND_QUARTILE' | 'THIRD_QUARTILE' | 'FOURTH_QUARTILE'
+
+export interface ContributionDay {
+  date: string
+  contributionCount: number
+  contributionLevel: ContributionLevel
+}
+
+export interface RepositoryLanguages {
+  languages: {
+    edges: { size: number, node: { name: string, color: string | null } }[]
+  }
+}
+
+/** Name of the bucket for the smaller languages, translated where it's shown */
+export const OTHER_LANGUAGES = 'Other'
+
+export interface LanguageShare {
+  name: string
+  color: string
+  percent: number
+}
+
+/** Longest and current run of days with at least one contribution, days sorted oldest first */
+export function getStreaks(days: ContributionDay[]) {
+  let longest = 0
+  let run = 0
+  for (const day of days) {
+    run = day.contributionCount > 0 ? run + 1 : 0
+    longest = Math.max(longest, run)
+  }
+  // The build runs early in the morning: an empty today doesn't break the streak yet
+  const past = days.at(-1)?.contributionCount === 0 ? days.slice(0, -1) : days
+  const lastEmpty = past.findLastIndex(day => day.contributionCount === 0)
+  return { longest, current: past.length - lastEmpty - 1 }
+}
+
+/**
+ * Bytes of code per language summed over all repositories, as rounded percentages.
+ * Past `limit` languages the rest is grouped as "Other", so the bar stays readable.
+ */
+export function aggregateLanguages(repos: RepositoryLanguages[], limit = 7, otherName = OTHER_LANGUAGES): LanguageShare[] {
+  const totals = new Map<string, { size: number, color: string }>()
+  for (const { node, size } of repos.flatMap(repo => repo.languages.edges)) {
+    const entry = totals.get(node.name) ?? { size: 0, color: node.color ?? '#8b8b8b' }
+    entry.size += size
+    totals.set(node.name, entry)
+  }
+
+  const sorted = [...totals.entries()].sort(([, a], [, b]) => b.size - a.size)
+  const total = sorted.reduce((sum, [, { size }]) => sum + size, 0)
+  if (total === 0) return []
+
+  const shares = sorted.slice(0, limit).map(([name, { size, color }]) => ({ name, color, size }))
+  const otherSize = sorted.slice(limit).reduce((sum, [, { size }]) => sum + size, 0)
+  if (otherSize > 0) shares.push({ name: otherName, color: '#8b8b8b', size: otherSize })
+
+  return shares.map(({ name, color, size }) => ({ name, color, percent: Math.round(size / total * 1000) / 10 }))
+}

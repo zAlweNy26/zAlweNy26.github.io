@@ -1,6 +1,6 @@
-import type { SearchIssueItem } from '../../app/utils/github'
+import type { ContributionDay, RepositoryLanguages, SearchIssueItem } from '../../app/utils/github'
 import { describe, expect, it } from 'vitest'
-import { batchRepoQueries, rankContributions, summarizeContributions } from '../../app/utils/github'
+import { aggregateLanguages, batchRepoQueries, getStreaks, rankContributions, summarizeContributions } from '../../app/utils/github'
 
 function pr(repo: string, number: number, updated_at: string): SearchIssueItem {
   return {
@@ -68,5 +68,66 @@ describe('batchRepoQueries', () => {
   it('includes every repository exactly once', () => {
     const repos = batchRepoQueries(names).flatMap(q => q.split(' ')).map(q => q.replace('repo:', ''))
     expect(repos).toEqual(names)
+  })
+})
+
+function days(counts: number[]): ContributionDay[] {
+  return counts.map((contributionCount, i) => ({
+    date: `2026-01-${String(i + 1).padStart(2, '0')}`,
+    contributionCount,
+    contributionLevel: contributionCount ? 'FIRST_QUARTILE' : 'NONE',
+  }))
+}
+
+describe('getStreaks', () => {
+  it('finds the longest run of active days', () => {
+    expect(getStreaks(days([1, 1, 0, 1, 1, 1, 0, 1])).longest).toBe(3)
+  })
+
+  it('counts the current streak up to the last day', () => {
+    expect(getStreaks(days([0, 1, 1, 1])).current).toBe(3)
+  })
+
+  it('doesn\'t break the current streak on an empty last day', () => {
+    expect(getStreaks(days([0, 1, 1, 0])).current).toBe(2)
+  })
+
+  it('has no current streak after two empty days', () => {
+    expect(getStreaks(days([1, 1, 0, 0])).current).toBe(0)
+  })
+
+  it('handles a year without gaps or without contributions', () => {
+    expect(getStreaks(days([2, 3, 4]))).toEqual({ longest: 3, current: 3 })
+    expect(getStreaks(days([0, 0]))).toEqual({ longest: 0, current: 0 })
+    expect(getStreaks([])).toEqual({ longest: 0, current: 0 })
+  })
+})
+
+describe('aggregateLanguages', () => {
+  function repo(...languages: [string, number][]): RepositoryLanguages {
+    return { languages: { edges: languages.map(([name, size]) => ({ size, node: { name, color: `#${name}` } })) } }
+  }
+
+  it('sums sizes across repositories, largest first', () => {
+    const shares = aggregateLanguages([repo(['ts', 300], ['css', 100]), repo(['vue', 200], ['ts', 400])])
+    expect(shares).toEqual([
+      { name: 'ts', color: '#ts', percent: 70 },
+      { name: 'vue', color: '#vue', percent: 20 },
+      { name: 'css', color: '#css', percent: 10 },
+    ])
+  })
+
+  it('groups languages past the limit as "Other"', () => {
+    const shares = aggregateLanguages([repo(['a', 50], ['b', 30], ['c', 15], ['d', 5])], 2, 'Altro')
+    expect(shares.map(s => [s.name, s.percent])).toEqual([['a', 50], ['b', 30], ['Altro', 20]])
+  })
+
+  it('falls back to grey for languages without a color', () => {
+    const [share] = aggregateLanguages([{ languages: { edges: [{ size: 1, node: { name: 'x', color: null } }] } }])
+    expect(share?.color).toBe('#8b8b8b')
+  })
+
+  it('returns nothing when there is no code', () => {
+    expect(aggregateLanguages([repo()])).toEqual([])
   })
 })

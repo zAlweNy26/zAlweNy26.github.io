@@ -60,7 +60,7 @@ for (const locale of locales) {
       await expect(page.locator('#particles')).toBeHidden()
       for (const section of await page.locator('section').all()) {
         const title = await section.locator('h2').textContent()
-        if (/Projects|Progetti|Contributions|Contributi/.test(title ?? '')) await expect(section).toBeHidden()
+        if (/Projects|Progetti|Contributions|Contributi|Activity|Attività/.test(title ?? '')) await expect(section).toBeHidden()
       }
       // Not getByRole: it skips hidden elements, and hidden is the point here
       const certificateButtons = page.locator('a', { hasText: /View Certificate|Vedi certificato/ })
