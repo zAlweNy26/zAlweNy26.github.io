@@ -26,7 +26,7 @@ export default defineAppConfig({
     },
     pageCard: {
       slots: {
-        root: 'print:bg-neutral-200 print:ring-0 print:before:hidden',
+        root: 'print:bg-neutral-200 print:ring-0 print:before:hidden print:break-inside-avoid',
         spotlight: 'print:hidden',
         container: 'p-3 sm:p-4 gap-y-3',
       },
@@ -40,6 +40,7 @@ export default defineAppConfig({
     timeline: {
       slots: {
         // Print the same in light and dark mode: the global print CSS forces black icons, so keep circles and line light
+        item: 'print:break-inside-avoid',
         indicator: 'print:bg-neutral-200',
         separator: 'print:bg-neutral-300',
         date: 'text-sm text-muted sm:float-end sm:ms-2 sm:whitespace-nowrap',
