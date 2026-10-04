@@ -43,6 +43,13 @@ jobs:
         run: bunx playwright install --with-deps chromium
       - name: End-to-end tests
         run: bun run test:e2e
+      # PRs only: Lighthouse scores vary between runs, so they shouldn't be able to block a deploy
+      - name: Lighthouse
+        if: github.event_name == 'pull_request'
+        run: |
+          bunx serve .output/public -l 4173 &
+          until curl -sf http://localhost:4173 > /dev/null; do sleep 1; done
+          bunx unlighthouse-ci --site http://localhost:4173
       - name: Upload Playwright report
         if: failure()
         uses: actions/upload-artifact@v7

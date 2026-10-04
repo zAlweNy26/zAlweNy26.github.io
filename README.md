@@ -24,6 +24,7 @@ bun run typecheck
 bun run build      # static output in .output/public
 bun run test       # unit tests (Vitest)
 bun run test:e2e   # end-to-end tests on the build (Playwright; first run: bunx playwright install chromium)
+bun run lighthouse # Lighthouse report for danyalwe.me (PRs are checked against the budgets in unlighthouse.config.ts)
 ```
 
 ## Editing content
