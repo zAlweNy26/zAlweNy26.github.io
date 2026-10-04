@@ -104,7 +104,7 @@ function handlePrint() {
           </UPageGrid>
         </SectionCard>
         <SectionCard title="Skills" body-class="space-y-2">
-          <div v-for="(skills, env) in categorySkills" :key="env" class="flex gap-2 items-center">
+          <div v-for="(skills, env) in categorySkills" :key="env" class="flex gap-2 items-center print:break-inside-avoid">
             <strong>{{ env }}:</strong>
             <div class="flex flex-wrap gap-2">
               <UBadge v-for="(lang, index) in skills" :key="index" :label="lang" variant="soft" />

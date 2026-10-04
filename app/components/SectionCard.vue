@@ -6,7 +6,7 @@ defineProps<{
 </script>
 
 <template>
-  <UCard as="section" variant="subtle" class="print:bg-transparent" :ui="{ body: bodyClass }">
+  <UCard as="section" variant="subtle" class="print:bg-transparent" :ui="{ header: 'print:break-after-avoid', body: bodyClass }">
     <template #header>
       <h2 class="text-xl md:text-2xl font-bold text-highlighted leading-loose">
         {{ title }}
