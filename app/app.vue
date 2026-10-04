@@ -31,6 +31,20 @@ useSeoMeta({
   ogType: 'website',
 })
 
+// Same @id as the identity in nuxt.config.ts, so these fields are merged into that Person
+useSchemaOrg([
+  definePerson({
+    '@id': '#identity',
+    'worksFor': professionalExperiences
+      .filter(experience => !experience.endDate)
+      .map(experience => ({ '@type': 'Organization', 'name': experience.company, 'url': experience.companyUrl })),
+    'alumniOf': educationalExperiences.map(entry => ({ '@type': 'EducationalOrganization', 'name': entry.institution })),
+    'knowsAbout': Object.entries(categorySkills).filter(([category]) => category !== 'Languages').flatMap(([, skills]) => skills),
+    // "🇮🇹 Italian (Native)" -> "Italian"
+    'knowsLanguage': categorySkills.Languages.map(language => language.replace(/^\S+\s/, '').replace(/\s*\(.*\)$/, '')),
+  }),
+])
+
 defineOgImage('Portfolio', {
   summary: 'Developer with a lifelong passion for programming. I value simplicity, clean code and consistent design.',
 }, {
