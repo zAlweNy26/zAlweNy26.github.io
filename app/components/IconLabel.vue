@@ -1,5 +1,4 @@
 <script setup lang="ts">
-/** An icon followed by a label; renders as an external link button when `to` is set. */
 defineProps<{
   icon: string
   to?: string

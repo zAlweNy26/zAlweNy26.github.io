@@ -1,7 +1,6 @@
 <script setup lang="ts">
 defineProps<{
   title: string
-  /** Classes for the card body, usually the layout of the items */
   bodyClass?: string
 }>()
 </script>

@@ -20,7 +20,6 @@ export function getTimeSpan(startDate: Date, end: Date) {
   return remMonths === 0 ? plural(years, 'year') : `${plural(years, 'year')} ${plural(remMonths, 'month')}`
 }
 
-/** "Nov 2023 - Present (2 years 11 months)" */
 export function formatDateRange(start: Date, end: Date | undefined, now: Date) {
   return `${formatMonthYear(start)} - ${end ? formatMonthYear(end) : 'Present'} (${getTimeSpan(start, end ?? now)})`
 }

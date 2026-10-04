@@ -61,7 +61,6 @@ const style = computed(() => ({
   animation: reveal var(--reveal-duration) ease-out var(--reveal-delay) both;
 }
 
-/* Browsers without scroll-driven animations simply show these sections */
 @supports (animation-timeline: view()) {
   .reveal-scroll {
     animation: reveal linear both;

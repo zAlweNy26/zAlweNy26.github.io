@@ -13,7 +13,6 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
   ],
 
-  // Dev-only tooling, kept out of production builds
   $development: {
     modules: [
       '@compodium/nuxt',
