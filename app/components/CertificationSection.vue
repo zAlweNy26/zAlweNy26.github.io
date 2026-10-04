@@ -11,7 +11,7 @@ defineProps<{
     </h3>
     <p class="text-toned justify-start flex flex-wrap gap-2 text-sm">
       <span class="group inline-flex text-highlighted items-center gap-2">
-        <UIcon name="i-hugeicons-pin-location-03" class="size-5" />
+        <UIcon name="i-hugeicons-award-01" class="size-5" />
         {{ certificate.issuer }}
       </span>
       <UChip standalone inset size="2xs" />
