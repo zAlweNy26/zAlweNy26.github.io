@@ -19,19 +19,6 @@ export interface GitHubRepository {
   languages: string[]
 }
 
-export interface ContributionSummary {
-  repoFullName: string
-  repoUrl: string
-  prCount: number
-  lastPrUpdatedAt: string
-  stars: number
-  recentPrs: {
-    title: string
-    url: string
-    updated_at: string
-  }[]
-}
-
 /**
  * The site is prerendered, so these requests run once at build time and the
  * results ship in the page payload. In CI, NUXT_GITHUB_TOKEN lifts the rate limit.
@@ -99,34 +86,16 @@ export function useGitHubRepos(limit = 6) {
   })
 }
 
-interface SearchIssueItem {
-  number: number
-  title: string
-  html_url: string
-  repository_url: string
-  updated_at?: string
-  closed_at?: string | null
-  created_at?: string
-}
-
 /**
  * Star counts for many repos with as few requests as possible: the search API ORs `repo:` qualifiers,
  * so one call covers a whole batch (and it has its own quota, separate from the core API).
  * Errors are not swallowed: a failed lookup fails the build instead of showing 0 stars.
  */
 async function getStars(github: ReturnType<typeof useGitHubFetch>, repoFullNames: string[]) {
-  // Search queries are capped at 256 characters
-  const batches: string[][] = []
-  for (const name of repoFullNames) {
-    const last = batches.at(-1)
-    if (last && [...last, name].map(n => `repo:${n}`).join(' ').length <= 256) last.push(name)
-    else batches.push([name])
-  }
-
   const stars = new Map<string, number>()
-  await Promise.all(batches.map(async (batch) => {
+  await Promise.all(batchRepoQueries(repoFullNames).map(async (q) => {
     const res = await github<{ items: { full_name: string, stargazers_count: number }[] }>('/search/repositories', {
-      query: { q: batch.map(n => `repo:${n}`).join(' '), per_page: 100 },
+      query: { q, per_page: 100 },
     })
     for (const repo of res.items) stars.set(repo.full_name.toLowerCase(), repo.stargazers_count)
   }))
@@ -145,49 +114,9 @@ export function useGitHubContributions(limit = 6) {
       },
     })
 
-    const summaryMap = new Map<string, ContributionSummary>()
-
-    for (const item of res.items) {
-      const repoFullName = item.repository_url.replace('https://api.github.com/repos/', '')
-      const [owner] = repoFullName.split('/')
-      if (owner?.toLowerCase() === GITHUB_USERNAME.toLowerCase()) continue
-
-      const updatedAt = item.updated_at || item.closed_at || item.created_at || new Date().toISOString()
-      const summary: ContributionSummary = summaryMap.get(repoFullName) || {
-        repoFullName,
-        repoUrl: `https://github.com/${repoFullName}`,
-        prCount: 0,
-        stars: 0,
-        lastPrUpdatedAt: updatedAt,
-        recentPrs: [],
-      }
-
-      summary.prCount += 1
-      if (new Date(updatedAt).getTime() > new Date(summary.lastPrUpdatedAt).getTime())
-        summary.lastPrUpdatedAt = updatedAt
-
-      if (summary.recentPrs.length < 2) {
-        summary.recentPrs.push({
-          title: item.title || `PR #${item.number}`,
-          url: item.html_url,
-          updated_at: updatedAt,
-        })
-      }
-
-      summaryMap.set(repoFullName, summary)
-    }
-
-    const byActivity = (a: ContributionSummary, b: ContributionSummary) =>
-      b.prCount - a.prCount || new Date(b.lastPrUpdatedAt).getTime() - new Date(a.lastPrUpdatedAt).getTime()
-
-    const candidates = Array.from(summaryMap.values()).sort(byActivity).slice(0, limit * 2)
-
+    const candidates = summarizeContributions(res.items, GITHUB_USERNAME).slice(0, limit * 2)
     const stars = await getStars(github, candidates.map(c => c.repoFullName))
-    const enriched = candidates.map(summary => ({ ...summary, stars: stars.get(summary.repoFullName.toLowerCase()) ?? 0 }))
-
-    return enriched
-      .sort((a, b) => b.prCount - a.prCount || b.stars - a.stars || byActivity(a, b))
-      .slice(0, limit)
+    return rankContributions(candidates, stars, limit)
   }, {
     default: () => [] as ContributionSummary[],
   })
