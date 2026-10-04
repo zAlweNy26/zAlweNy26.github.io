@@ -36,3 +36,17 @@ The site is in English (`/`) and Italian (`/it`).
 - Interface text (headings, labels, buttons): `i18n/locales/en.json` and `i18n/locales/it.json`
 - Projects and open source contributions are pulled from the GitHub API at build time
 - Use the print button (or Ctrl+P) to export the page as a CV
+
+## Security headers
+
+GitHub Pages can't set response headers, so they're added by Cloudflare (which proxies `danyalwe.me`).
+`security-headers.json` is the source of truth: the end-to-end tests serve the build with these exact
+headers, so a change that breaks the Content Security Policy fails CI.
+
+To apply them: Cloudflare dashboard → `danyalwe.me` → **Rules → Transform Rules → Response Header Transform Rules**,
+create a rule for _All incoming requests_ (or hostname equals `danyalwe.me`) and add a **Set static** operation
+for each header in `security-headers.json`. Keep the two in sync when either changes.
+
+`script-src` needs `'unsafe-inline'`: Nuxt's inline scripts (import map, runtime config) change on every
+build, so hashes in a static Cloudflare rule would break after the next deploy. The policy still blocks
+scripts and requests to any other origin.

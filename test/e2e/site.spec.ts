@@ -11,6 +11,9 @@ function collectProblems(page: Page) {
   const problems: string[] = []
   page.on('pageerror', e => problems.push(e.message))
   page.on('console', (m) => {
+    if (/Content Security Policy/.test(m.text())) problems.push(m.text())
+  })
+  page.on('console', (m) => {
     if ((m.type() === 'error' || /hydration|Vue warn/i.test(m.text())) && !/location\.danyalwe\.me|CORS|ERR_FAILED/.test(m.text()))
       problems.push(m.text())
   })
