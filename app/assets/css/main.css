@@ -20,7 +20,26 @@
   }
 }
 
+/*
+ * Canvas created by app/inline/particles.js. No negative z-index: it would end up behind <body>'s
+ * background whenever <html> has a background of its own (e.g. in dev). Instead the canvas comes
+ * first in <body> and the app root is positioned, so the app paints on top of it in DOM order.
+ */
+#particles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+#__nuxt {
+  position: relative;
+}
+
 @media print {
+  #particles {
+    display: none;
+  }
+
   body {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
