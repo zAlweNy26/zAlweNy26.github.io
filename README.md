@@ -1,6 +1,6 @@
 # zAlweNy26.github.io
 
-[Profile Web Site](https://zalweny26.github.io/) — personal portfolio and printable CV.
+[Profile Web Site](https://danyalwe.me/) — personal portfolio and printable CV.
 
 ## Stack
 
