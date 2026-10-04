@@ -2,8 +2,6 @@
 defineProps<{
   experience: EducationalExperience
 }>()
-
-const buildDate = useBuildDate()
 </script>
 
 <template>
@@ -13,19 +11,13 @@ const buildDate = useBuildDate()
         <h3 class="text-base font-semibold text-highlighted">
           {{ experience.degree }}
         </h3>
-        <div class="text-toned justify-start flex flex-wrap gap-2 text-sm">
-          <span class="group inline-flex text-highlighted items-center gap-2">
-            <UIcon name="i-hugeicons-university" class="size-5" />
+        <div class="text-toned text-sm">
+          <IconLabel icon="i-hugeicons-university">
             {{ experience.institution }}
-          </span>
+          </IconLabel>
         </div>
       </div>
-      <p class="text-sm text-muted whitespace-nowrap">
-        <span class="capitalize">{{ formatMonthYear(experience.startDate) }}</span>
-        -
-        <span class="capitalize">{{ experience.endDate ? formatMonthYear(experience.endDate) : 'Present' }}</span>
-        ({{ getTimeSpan(experience.startDate, experience.endDate ?? buildDate) }})
-      </p>
+      <DateRange :start="experience.startDate" :end="experience.endDate" />
     </div>
     <article class="leading-relaxed prose prose-neutral prose-p:m-0 prose-ul:m-0 dark:prose-invert max-w-none text-sm"
              v-html="experience.description" />

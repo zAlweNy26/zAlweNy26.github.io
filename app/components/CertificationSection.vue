@@ -10,15 +10,13 @@ defineProps<{
       {{ certificate.title }}
     </h3>
     <div class="text-toned justify-start flex flex-wrap gap-2 text-sm">
-      <span class="group inline-flex text-highlighted items-center gap-2">
-        <UIcon name="i-hugeicons-award-01" class="size-5" />
+      <IconLabel icon="i-hugeicons-award-01">
         {{ certificate.issuer }}
-      </span>
+      </IconLabel>
       <UChip standalone inset size="2xs" />
-      <span class="group inline-flex text-highlighted items-center gap-2">
-        <UIcon name="i-hugeicons-calendar-04" class="size-5" />
+      <IconLabel icon="i-hugeicons-calendar-04">
         {{ formatMonthYear(certificate.issueDate) }}
-      </span>
+      </IconLabel>
     </div>
     <UButton v-if="certificate.url" variant="subtle" color="neutral" class="text-primary print:bg-transparent"
              :to="certificate.url" target="_blank" external icon="i-hugeicons-link-04" label="View Certificate" />
