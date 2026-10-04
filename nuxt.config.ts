@@ -23,6 +23,17 @@ export default defineNuxtConfig({
     ],
   },
 
+  // Pre-bundled when the dev server starts: discovered later, they made Vite re-optimize and reload the page
+  vite: {
+    optimizeDeps: {
+      include: [
+        '@unhead/schema-org/vue',
+        '@vue/devtools-core',
+        '@vue/devtools-kit',
+      ],
+    },
+  },
+
   css: ['~/assets/css/main.css'],
 
   app: {
