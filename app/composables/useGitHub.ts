@@ -83,7 +83,7 @@ export function useGitHubRepos(limit = 6) {
     })
     const top = repos.sort((a, b) => (b.stargazers_count || 0) - (a.stargazers_count || 0)).slice(0, limit)
     return Promise.all(top.map(async (repo) => {
-      const languages = await github<Record<string, number>>(repo.languages_url).catch(() => ({}))
+      const languages = await github<Record<string, number>>(repo.languages_url)
       return {
         name: repo.name,
         html_url: repo.html_url,
@@ -107,6 +107,30 @@ interface SearchIssueItem {
   updated_at?: string
   closed_at?: string | null
   created_at?: string
+}
+
+/**
+ * Star counts for many repos with as few requests as possible: the search API ORs `repo:` qualifiers,
+ * so one call covers a whole batch (and it has its own quota, separate from the core API).
+ * Errors are not swallowed: a failed lookup fails the build instead of showing 0 stars.
+ */
+async function getStars(github: ReturnType<typeof useGitHubFetch>, repoFullNames: string[]) {
+  // Search queries are capped at 256 characters
+  const batches: string[][] = []
+  for (const name of repoFullNames) {
+    const last = batches.at(-1)
+    if (last && [...last, name].map(n => `repo:${n}`).join(' ').length <= 256) last.push(name)
+    else batches.push([name])
+  }
+
+  const stars = new Map<string, number>()
+  await Promise.all(batches.map(async (batch) => {
+    const res = await github<{ items: { full_name: string, stargazers_count: number }[] }>('/search/repositories', {
+      query: { q: batch.map(n => `repo:${n}`).join(' '), per_page: 100 },
+    })
+    for (const repo of res.items) stars.set(repo.full_name.toLowerCase(), repo.stargazers_count)
+  }))
+  return stars
 }
 
 export function useGitHubContributions(limit = 6) {
@@ -158,10 +182,8 @@ export function useGitHubContributions(limit = 6) {
 
     const candidates = Array.from(summaryMap.values()).sort(byActivity).slice(0, limit * 2)
 
-    const enriched = await Promise.all(candidates.map(async (summary) => {
-      const repo = await github<{ stargazers_count: number }>(`/repos/${summary.repoFullName}`).catch(() => null)
-      return { ...summary, stars: repo?.stargazers_count || 0 }
-    }))
+    const stars = await getStars(github, candidates.map(c => c.repoFullName))
+    const enriched = candidates.map(summary => ({ ...summary, stars: stars.get(summary.repoFullName.toLowerCase()) ?? 0 }))
 
     return enriched
       .sort((a, b) => b.prCount - a.prCount || b.stars - a.stars || byActivity(a, b))
