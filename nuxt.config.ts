@@ -41,7 +41,7 @@ export default defineNuxtConfig({
   },
 
   site: {
-    url: 'https://zalweny26.github.io',
+    url: 'https://danyalwe.me',
     name: 'DanyAlwe · Portfolio',
   },
 
@@ -61,8 +61,8 @@ export default defineNuxtConfig({
       type: 'Person',
       name: 'Daniele Nicosia',
       alternateName: 'DanyAlwe',
-      url: 'https://zalweny26.github.io',
-      image: 'https://zalweny26.github.io/me_jojo.webp',
+      url: 'https://danyalwe.me',
+      image: 'https://danyalwe.me/me_jojo.webp',
       jobTitle: 'Lead Frontend Developer',
       sameAs: [
         'https://github.com/zAlweNy26',

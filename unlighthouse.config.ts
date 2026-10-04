@@ -1,7 +1,7 @@
 import { defineUnlighthouseConfig } from 'unlighthouse/config'
 
 export default defineUnlighthouseConfig({
-  site: 'zalweny26.github.io',
+  site: 'danyalwe.me',
   scanner: {
     device: 'desktop',
     samples: 3,
