@@ -79,6 +79,16 @@ export default defineNuxtConfig({
     },
   },
 
+  icon: {
+    clientBundle: {
+      scan: true,
+      // Picked with a ternary in ThemeButton, which the bundle scanner can't see
+      icons: ['hugeicons:sun-03', 'hugeicons:moon-02'],
+    },
+    // Never fetch missing icons from api.iconify.design at runtime (and the CSP wouldn't allow it)
+    fallbackToApi: false,
+  },
+
   fonts: {
     // global: the OG image renderer can only use fonts registered here
     families: [{ name: 'Space Grotesk', weights: [400, 500, 700], global: true }],

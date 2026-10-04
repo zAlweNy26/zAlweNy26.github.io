@@ -11,7 +11,8 @@ export default defineConfig({
   },
   projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
   webServer: {
-    command: 'serve .output/public -l 4173 --no-port-switching',
+    // Same headers as production (set by Cloudflare), so a CSP violation fails the tests
+    command: 'serve .output/public -l 4173 --no-port-switching --config ../../security-headers.json',
     url: 'http://localhost:4173',
     reuseExistingServer: !process.env.CI,
   },

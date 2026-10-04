@@ -7,9 +7,11 @@ exclude = [
   # The live-location API only answers the site's own origin
   '^https://location\.danyalwe\.me/',
 ]
-
 max_concurrency = 8
 timeout = 20
 max_retries = 3
 # Being rate limited doesn't mean the link is broken
-accept = ['200..=299', '429']
+accept = [
+  '200..=299',
+  '429'
+]
