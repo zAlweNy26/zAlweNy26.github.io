@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs'
 import { version } from './package.json'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
@@ -22,6 +23,18 @@ export default defineNuxtConfig({
   },
 
   css: ['~/assets/css/main.css'],
+
+  app: {
+    head: {
+      script: [
+        {
+          // Inline (not a bundled module) so the particle background starts with the first paint
+          innerHTML: readFileSync(new URL('./app/inline/particles.js', import.meta.url), 'utf8'),
+          tagPosition: 'bodyOpen',
+        },
+      ],
+    },
+  },
 
   compatibilityDate: 'latest',
 
