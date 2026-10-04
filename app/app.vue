@@ -212,9 +212,9 @@ function handlePrint() {
                     </p>
                   </ULink>
                 </div>
-                <h2 class="text-base md:text-lg font-medium print:text-base">
-                  Junior Web Developer
-                </h2>
+                <p class="text-base md:text-lg font-medium print:text-base">
+                  Lead Frontend Developer
+                </p>
                 <div v-if="profile.followers > 0 || profile.following > 0" class="flex flex-wrap items-center print:hidden gap-2 text-sm">
                   <UIcon name="i-hugeicons-user-group" class="size-5" />
                   <p><strong>{{ profile.followers }}</strong> followers</p>
@@ -270,9 +270,9 @@ function handlePrint() {
             </div>
           </div>
           <template #footer>
-            <h3 class="font-semibold text-lg md:text-xl text-highlighted leading-loose">
+            <h2 class="font-semibold text-lg md:text-xl text-highlighted leading-loose">
               About Me
-            </h3>
+            </h2>
             <p class="text-sm md:text-base text-toned print:text-sm">
               I'm <strong>{{ age }}</strong> years old born in
               <span
@@ -296,17 +296,17 @@ function handlePrint() {
         </UCard>
         <UCard as="section" variant="subtle" class="print:bg-transparent" :ui="{ body: 'space-y-8' }">
           <template #header>
-            <h3 class="text-xl md:text-2xl font-bold text-highlighted leading-loose">
+            <h2 class="text-xl md:text-2xl font-bold text-highlighted leading-loose">
               Professional Experience
-            </h3>
+            </h2>
           </template>
           <ExperienceSection v-for="(experience, index) in professionalExperiences" :key="index" :experience />
         </UCard>
         <UCard v-if="repos.list.length > 0" as="section" variant="subtle" class="print:hidden" :ui="{ body: 'grid grid-cols-2 md:grid-cols-3 gap-4' }">
           <template #header>
-            <h3 class="text-xl md:text-2xl font-bold text-highlighted leading-loose">
+            <h2 class="text-xl md:text-2xl font-bold text-highlighted leading-loose">
               Personal Projects
-            </h3>
+            </h2>
           </template>
           <SpecialCard v-for="(repo, index) in repos.list" :key="index">
             <ProjectSection :repo />
@@ -314,9 +314,9 @@ function handlePrint() {
         </UCard>
         <UCard v-if="contributions.list.length > 0" as="section" variant="subtle" class="print:hidden" :ui="{ body: 'grid grid-cols-1 md:grid-cols-2 gap-4' }">
           <template #header>
-            <h3 class="text-xl md:text-2xl font-bold text-highlighted leading-loose">
+            <h2 class="text-xl md:text-2xl font-bold text-highlighted leading-loose">
               Open Source Contributions
-            </h3>
+            </h2>
           </template>
           <SpecialCard v-for="(contribution, index) in contributions.list" :key="index">
             <ContributionSection :contribution />
@@ -324,9 +324,9 @@ function handlePrint() {
         </UCard>
         <UCard as="section" variant="subtle" class="print:bg-transparent" :ui="{ body: 'space-y-2' }">
           <template #header>
-            <h3 class="text-xl md:text-2xl font-bold text-highlighted leading-loose">
+            <h2 class="text-xl md:text-2xl font-bold text-highlighted leading-loose">
               Skills
-            </h3>
+            </h2>
           </template>
           <div v-for="(skills, env) in categorySkills" :key="env" class="flex gap-2 items-center">
             <strong>{{ env }}:</strong>
@@ -337,17 +337,17 @@ function handlePrint() {
         </UCard>
         <UCard as="section" variant="subtle" class="print:bg-transparent" :ui="{ body: 'space-y-8' }">
           <template #header>
-            <h3 class="text-xl md:text-2xl font-bold text-highlighted leading-loose">
+            <h2 class="text-xl md:text-2xl font-bold text-highlighted leading-loose">
               Education
-            </h3>
+            </h2>
           </template>
           <EducationSection v-for="(experience, index) in educationalExperiences" :key="index" :experience />
         </UCard>
         <UCard as="section" variant="subtle" class="print:bg-transparent" :ui="{ body: 'grid grid-cols-2 gap-4' }">
           <template #header>
-            <h3 class="text-xl md:text-2xl font-bold text-highlighted leading-loose">
+            <h2 class="text-xl md:text-2xl font-bold text-highlighted leading-loose">
               Certifications
-            </h3>
+            </h2>
           </template>
           <SpecialCard v-for="(certificate, index) in certifications" :key="index">
             <CertificationSection :certificate />

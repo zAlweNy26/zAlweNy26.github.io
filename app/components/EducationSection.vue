@@ -29,7 +29,7 @@ function getTimeSpan(startDate: Date, endDate?: Date) {
         </h3>
         <p class="text-toned justify-start flex flex-wrap gap-2 text-sm">
           <span class="group inline-flex text-highlighted items-center gap-2">
-            <UIcon name="i-hugeicons-pin-location-03" class="size-5" />
+            <UIcon name="i-hugeicons-university" class="size-5" />
             {{ experience.institution }}
           </span>
         </p>
