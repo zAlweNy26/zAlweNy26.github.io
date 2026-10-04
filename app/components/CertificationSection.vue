@@ -13,7 +13,7 @@ defineProps<{
       <IconLabel icon="i-hugeicons-award-01">
         {{ certificate.issuer }}
       </IconLabel>
-      <UChip standalone inset size="2xs" />
+      <USeparator orientation="vertical" decorative class="h-4" />
       <IconLabel icon="i-hugeicons-calendar-04">
         {{ formatMonthYear(certificate.issueDate) }}
       </IconLabel>

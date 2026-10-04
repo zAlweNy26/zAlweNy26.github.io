@@ -37,21 +37,21 @@ const mapsUrl = (place: string) => `https://google.com/maps/place/${place.replac
         <div v-if="profile.followers > 0 || profile.following > 0" class="flex flex-wrap items-center print:hidden gap-2 text-sm">
           <UIcon name="i-hugeicons-user-group" class="size-5" />
           <p><strong>{{ profile.followers }}</strong> followers</p>
-          <UChip standalone inset size="2xs" />
+          <USeparator orientation="vertical" decorative class="h-4" />
           <p><strong>{{ profile.following }}</strong> following</p>
         </div>
         <div class="items-center flex flex-wrap gap-2 text-sm">
           <IconLabel icon="i-hugeicons-mail-01" :to="`mailto:${profile.email}`">
             {{ profile.email }}
           </IconLabel>
-          <UChip standalone inset size="2xs" />
+          <USeparator orientation="vertical" decorative class="h-4" />
           <IconLabel icon="i-hugeicons-pin-location-03" :to="mapsUrl(profile.location)">
             {{ profile.location }}
           </IconLabel>
         </div>
         <div class="items-center flex flex-wrap gap-2 text-sm">
           <template v-for="(link, index) in socialLinks" :key="link.label">
-            <UChip v-if="index > 0" standalone inset size="2xs" />
+            <USeparator v-if="index > 0" orientation="vertical" decorative class="h-4" />
             <IconLabel :icon="link.icon" :to="link.to">
               {{ link.label }}
             </IconLabel>

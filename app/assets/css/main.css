@@ -9,6 +9,8 @@
 
 :root {
   --ui-radius: 0.35rem;
+  /* UContainer width: a single-column CV reads better narrower than the 80rem default */
+  --ui-container: var(--container-4xl);
 }
 
 @layer base {

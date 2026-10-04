@@ -29,7 +29,7 @@ function getLastUpdate(date?: string | null) {
           <IconLabel icon="i-hugeicons-link-04" :to="repo.homepage">
             Demo
           </IconLabel>
-          <UChip standalone inset size="2xs" />
+          <USeparator orientation="vertical" decorative class="h-4" />
         </template>
         <IconLabel icon="i-hugeicons-github-01" :to="repo.html_url">
           Code
