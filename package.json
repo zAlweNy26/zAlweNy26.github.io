@@ -19,6 +19,7 @@
     "lint:fix": "eslint --cache --fix ."
   },
   "dependencies": {
+    "@iconify-json/circle-flags": "^1.2.12",
     "@iconify-json/hugeicons": "^1.2.35",
     "@nuxt/ui": "^4.11.3",
     "@nuxtjs/i18n": "^10.6.0",
