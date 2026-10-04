@@ -11,7 +11,6 @@ const items = computed(() => props.experiences.map(experience => ({
   icon: 'i-hugeicons-briefcase-01',
 })))
 
-// Only the ongoing entry (no end date) is highlighted; finished ones stay neutral
 const presentIndex = computed(() => {
   const index = items.value.findIndex(item => !item.endDate)
   return index === -1 ? undefined : index

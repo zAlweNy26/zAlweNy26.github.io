@@ -71,7 +71,6 @@
       circle.y += circle.dy
       circle.translateX += (mouse.x / (STATICITY / circle.magnetism) - circle.translateX) / EASE
       circle.translateY += (mouse.y / (STATICITY / circle.magnetism) - circle.translateY) / EASE
-      // A particle that drifted off screen is replaced by a fresh one
       const outside = circle.x < -circle.size || circle.x > width + circle.size
         || circle.y < -circle.size || circle.y > height + circle.size
       return outside ? createCircle() : circle
@@ -96,12 +95,8 @@
       circle.alpha = circle.targetAlpha
       return circle
     })
-    if (reducedMotion.matches) {
-      // Drawn once and never moving
-      render()
-    }
-    else
-      tick()
+    if (reducedMotion.matches) render()
+    else tick()
   }
 
   document.addEventListener('mousemove', (e) => {

@@ -26,7 +26,6 @@ export default defineAppConfig({
     },
     pageCard: {
       slots: {
-        // Same density as the section cards, and a plain grey box when printed
         root: 'print:bg-neutral-200 print:ring-0 print:before:hidden',
         spotlight: 'print:hidden',
         container: 'p-3 sm:p-4 gap-y-3',
@@ -43,7 +42,6 @@ export default defineAppConfig({
         // Print the same in light and dark mode: the global print CSS forces black icons, so keep circles and line light
         indicator: 'print:bg-neutral-200',
         separator: 'print:bg-neutral-300',
-        // Own line on phones, right-aligned next to the title from sm up
         date: 'text-sm text-muted sm:float-end sm:ms-2 sm:whitespace-nowrap',
         description: 'mt-2 space-y-2 text-default',
       },
