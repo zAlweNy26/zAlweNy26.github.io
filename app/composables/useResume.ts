@@ -13,11 +13,39 @@ async function renderMarkdown(text: string) {
   return text
 }
 
+/** The CV content in the current language, with markdown already rendered to HTML */
 export function useResume() {
-  return useAsyncData('resume', async () => ({
-    experiences: await Promise.all(professionalExperiences.map(async e => ({ ...e, description: await renderMarkdown(e.description) }))),
-    education: await Promise.all(educationalExperiences.map(async e => ({ ...e, description: await renderMarkdown(e.description) }))),
-  }), {
-    default: () => ({ experiences: [] as ProfessionalExperience[], education: [] as EducationalExperience[] }),
+  const { locale } = useI18n()
+  return useAsyncData(`resume-${locale.value}`, async () => {
+    const lang = locale.value as Locale
+    const tx = (text: LocalizedText) => localize(text, lang)
+    return {
+      experiences: await Promise.all(professionalExperiences.map(async (e): Promise<ProfessionalExperience<string>> => ({
+        ...e,
+        position: tx(e.position),
+        location: tx(e.location),
+        description: await renderMarkdown(tx(e.description)),
+      }))),
+      education: await Promise.all(educationalExperiences.map(async (e): Promise<EducationalExperience<string>> => ({
+        ...e,
+        institution: tx(e.institution),
+        degree: tx(e.degree),
+        description: await renderMarkdown(tx(e.description)),
+        skills: e.skills.map(tx),
+      }))),
+      certifications: certifications.map((c): Certification<string> => ({ ...c, title: tx(c.title) })),
+      skills: Object.entries(categorySkills).map(([category, skills]) => ({ category, skills: skills.map(tx) })),
+      aboutStory: await renderMarkdown(aboutStory[lang]),
+      aboutSummary: aboutSummary[lang],
+    }
+  }, {
+    default: () => ({
+      experiences: [] as ProfessionalExperience<string>[],
+      education: [] as EducationalExperience<string>[],
+      certifications: [] as Certification<string>[],
+      skills: [] as { category: string, skills: string[] }[],
+      aboutStory: '',
+      aboutSummary: '',
+    }),
   })
 }

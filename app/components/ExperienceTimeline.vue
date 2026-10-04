@@ -1,13 +1,13 @@
 <script setup lang="ts">
 const props = defineProps<{
-  experiences: ProfessionalExperience[]
+  experiences: ProfessionalExperience<string>[]
 }>()
 
-const buildDate = useBuildDate()
+const { formatDateRange } = useDates()
 
 const items = computed(() => props.experiences.map(experience => ({
   ...experience,
-  date: formatDateRange(experience.startDate, experience.endDate, buildDate.value),
+  date: formatDateRange(experience.startDate, experience.endDate),
   icon: 'i-hugeicons-briefcase-01',
 })))
 

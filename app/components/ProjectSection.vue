@@ -3,10 +3,11 @@ const { repo } = defineProps<{
   repo: GitHubRepository
 }>()
 
+const { t, localeProperties } = useI18n()
+
 function getLastUpdate(date?: string | null) {
-  if (!date) return 'Unknown'
-  const updatedDate = new Date(date)
-  return `Last Update: ${updatedDate.toLocaleDateString('en-GB', { timeZone: 'UTC' })}`
+  if (!date) return t('projects.unknown')
+  return t('projects.lastUpdate', { date: new Date(date).toLocaleDateString(localeProperties.value.language, { timeZone: 'UTC' }) })
 }
 </script>
 
@@ -27,12 +28,12 @@ function getLastUpdate(date?: string | null) {
       <div class="text-toned justify-start flex flex-wrap gap-2 text-sm">
         <template v-if="repo.homepage">
           <IconLabel icon="i-hugeicons-link-04" :to="repo.homepage">
-            Demo
+            {{ $t('projects.demo') }}
           </IconLabel>
           <USeparator orientation="vertical" decorative class="h-4" />
         </template>
         <IconLabel icon="i-hugeicons-github-01" :to="repo.html_url">
-          Code
+          {{ $t('projects.code') }}
         </IconLabel>
       </div>
     </div>

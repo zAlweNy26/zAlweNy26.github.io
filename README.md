@@ -26,6 +26,10 @@ bun run build      # static output in .output/public
 
 ## Editing content
 
-- Experience, education, certifications and skills: `app/utils/consts.ts`
+The site is in English (`/`) and Italian (`/it`).
+
+- Experience, education, certifications, skills and the About Me text: `app/utils/consts.ts`.
+  Translated fields are `{ en, it }` objects; names and technologies are plain strings.
+- Interface text (headings, labels, buttons): `i18n/locales/en.json` and `i18n/locales/it.json`
 - Projects and open source contributions are pulled from the GitHub API at build time
 - Use the print button (or Ctrl+P) to export the page as a CV

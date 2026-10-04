@@ -1,0 +1,59 @@
+{
+  "meta": {
+    "description": "Portfolio of DanyAlwe, showcasing web development projects and skills.",
+    "ogSummary": "Developer with a lifelong passion for programming. I value simplicity, clean code and consistent design.",
+    "ogAlt": "Daniele Nicosia, Lead Frontend Developer"
+  },
+  "sections": {
+    "about": "About Me",
+    "experience": "Professional Experience",
+    "projects": "Personal Projects",
+    "contributions": "Open Source Contributions",
+    "skills": "Skills",
+    "education": "Education",
+    "certifications": "Certifications"
+  },
+  "skills": {
+    "languages": "Languages",
+    "programming": "Programming Languages",
+    "frontend": "Frontend Technologies",
+    "backend": "Backend Technologies",
+    "devops": "Security & DevOps",
+    "tools": "Tools"
+  },
+  "profile": {
+    "livePosition": "Live position",
+    "followers": "follower | followers",
+    "following": "following",
+    "hover": "Hover me!",
+    "touch": "Touch me!"
+  },
+  "time": {
+    "present": "Present",
+    "years": "{n} year | {n} years",
+    "months": "{n} month | {n} months",
+    "days": "{n} day | {n} days"
+  },
+  "projects": {
+    "lastUpdate": "Last Update: {date}",
+    "unknown": "Unknown",
+    "demo": "Demo",
+    "code": "Code"
+  },
+  "contributions": {
+    "merged": "PR merged: {count}",
+    "recent": "Recent PRs"
+  },
+  "certifications": {
+    "view": "View Certificate"
+  },
+  "actions": {
+    "print": "Print",
+    "toggleTheme": "Toggle Theme",
+    "switchLanguage": "Leggi in italiano"
+  },
+  "footer": {
+    "copyright": "Copyright © {from} - {to} by {name}",
+    "gdpr": "I authorise the processing of the personal data in my CV in accordance with Regulation (EU) 2016/679 of the European Parliament and of the Council (GDPR)."
+  }
+}
