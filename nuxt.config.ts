@@ -8,8 +8,9 @@ export default defineNuxtConfig({
   modules: [
     'nuxt-vitalizer',
     '@vueuse/nuxt',
-    '@nuxtjs/seo',
+    // Before @nuxtjs/seo: it installs @nuxt/fonts, which the OG image renderer needs to find at setup
     '@nuxt/ui',
+    '@nuxtjs/seo',
     '@nuxt/eslint',
   ],
 
@@ -63,8 +64,14 @@ export default defineNuxtConfig({
     },
   },
 
+  fonts: {
+    // global: the OG image renderer can only use fonts registered here
+    families: [{ name: 'Space Grotesk', weights: [400, 500, 700], global: true }],
+  },
+
   ogImage: {
-    enabled: false,
+    // Images are generated while prerendering, so no OG image server code ships
+    zeroRuntime: true,
   },
 
   schemaOrg: {

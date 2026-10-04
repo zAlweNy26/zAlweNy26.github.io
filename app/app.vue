@@ -1,8 +1,6 @@
 <script setup lang="ts">
 const username = GITHUB_USERNAME
 const description = 'Portfolio of DanyAlwe, showcasing web development projects and skills.'
-const site = useSiteConfig()
-const ogImage = `${site.url}/og-image.png`
 const title = 'DanyAlwe'
 
 const buildDate = useBuildDate()
@@ -30,13 +28,15 @@ useSeoMeta({
   description,
   ogTitle: title,
   ogDescription: description,
-  ogImage,
   ogType: 'website',
-  ogUrl: site.url,
-  twitterTitle: title,
-  twitterDescription: description,
-  twitterImage: ogImage,
-  twitterCard: 'summary',
+})
+
+defineOgImage('Portfolio', {
+  summary: 'Developer with a lifelong passion for programming. I value simplicity, clean code and consistent design.',
+}, {
+  width: 1200,
+  height: 630,
+  alt: 'Daniele Nicosia, Lead Frontend Developer',
 })
 
 const [profileRes, reposRes, contributionsRes, resumeRes] = await Promise.all([
