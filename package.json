@@ -17,14 +17,14 @@
     "lint:fix": "eslint --cache --fix ."
   },
   "dependencies": {
-    "@iconify-json/hugeicons": "^1.2.23",
-    "@nuxt/ui": "^4.4.0",
-    "@nuxtjs/seo": "3.4.0",
-    "@tailwindcss/typography": "^0.5.19",
-    "@vueuse/core": "^14.2.1",
-    "@vueuse/nuxt": "^14.2.1",
-    "nuxt": "^4.3.1",
-    "nuxt-vitalizer": "2.0.0",
+    "@iconify-json/hugeicons": "^1.2.35",
+    "@nuxt/ui": "^4.11.3",
+    "@nuxtjs/seo": "5.3.16",
+    "@tailwindcss/typography": "^0.5.20",
+    "@vueuse/core": "^15.0.0",
+    "@vueuse/nuxt": "^15.0.0",
+    "nuxt": "^4.5.2",
+    "nuxt-vitalizer": "3.0.0",
     "rehype-external-links": "^3.0.0",
     "rehype-stringify": "^10.0.1",
     "remark-gfm": "^4.0.1",
@@ -33,18 +33,18 @@
     "unified": "^11.0.5"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^7.4.3",
-    "@compodium/nuxt": "0.1.0-beta.12",
-    "@nuxt/eslint": "^1.15.1",
-    "@nuxt/hints": "1.0.0-alpha.6",
+    "@antfu/eslint-config": "^9.5.1",
+    "@compodium/nuxt": "0.1.0-beta.14",
+    "@nuxt/eslint": "^1.17.0",
+    "@nuxt/hints": "1.1.4",
     "@prettier/plugin-xml": "^3.4.2",
     "changelogen": "^0.6.2",
-    "eslint": "^10.0.0",
-    "eslint-plugin-format": "^1.4.0",
-    "eslint-plugin-vuejs-accessibility": "^2.5.0",
+    "eslint": "^10.12.0",
+    "eslint-plugin-format": "^2.0.1",
+    "eslint-plugin-vuejs-accessibility": "^2.6.0",
     "nuxt-mcp": "^0.2.6",
     "typescript": "^5.9.3",
-    "unlighthouse": "^0.17.4",
-    "vue-tsc": "~3.2.4"
+    "unlighthouse": "^0.19.1",
+    "vue-tsc": "~3.3.12"
   }
 }
