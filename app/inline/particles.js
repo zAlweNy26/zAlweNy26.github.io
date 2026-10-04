@@ -1,7 +1,12 @@
 // Background particles. Inlined into the HTML right after <body> (see nuxt.config.ts) so they start
 // with the first paint instead of waiting for Vue: plain JS, no imports, nothing from the app.
 (() => {
-  const QUANTITY = 100
+  // Touch devices have no cursor to follow: fewer particles at ~30fps to spare the battery
+  const isTouch = window.matchMedia('(hover: none)').matches
+  const QUANTITY = isTouch ? 40 : 100
+  const FRAME_INTERVAL = isTouch ? 30 : 0 // ms, every other frame at 60Hz
+  // Movement per frame, doubled at half the frame rate so particles drift at the same speed
+  const STEP = isTouch ? 2 : 1
   const STATICITY = 50 // higher = particles react less to the cursor
   const EASE = 50 // higher = particles follow the cursor more slowly
 
@@ -18,6 +23,7 @@
   let height = 0
   let dpr = 1
   let frame = 0
+  let lastFrameTime = 0
 
   // Nuxt color-mode puts the `dark` class on <html> before the first paint, and toggles it with the theme
   const rgb = () => document.documentElement.classList.contains('dark') ? '255, 255, 255' : '23, 23, 23'
@@ -63,12 +69,15 @@
     for (const circle of circles) drawCircle(circle, color)
   }
 
-  function tick() {
+  function tick(time) {
+    frame = requestAnimationFrame(tick)
+    if (time - lastFrameTime < FRAME_INTERVAL) return
+    lastFrameTime = time
     circles = circles.map((circle) => {
       const fade = edgeFade(circle)
-      circle.alpha = fade > 1 ? Math.min(circle.alpha + 0.02, circle.targetAlpha) : circle.targetAlpha * fade
-      circle.x += circle.dx
-      circle.y += circle.dy
+      circle.alpha = fade > 1 ? Math.min(circle.alpha + 0.02 * STEP, circle.targetAlpha) : circle.targetAlpha * fade
+      circle.x += circle.dx * STEP
+      circle.y += circle.dy * STEP
       circle.translateX += (mouse.x / (STATICITY / circle.magnetism) - circle.translateX) / EASE
       circle.translateY += (mouse.y / (STATICITY / circle.magnetism) - circle.translateY) / EASE
       const outside = circle.x < -circle.size || circle.x > width + circle.size
@@ -76,7 +85,6 @@
       return outside ? createCircle() : circle
     })
     render()
-    frame = requestAnimationFrame(tick)
   }
 
   function start() {
@@ -95,8 +103,8 @@
       circle.alpha = circle.targetAlpha
       return circle
     })
-    if (reducedMotion.matches) render()
-    else tick()
+    render()
+    if (!reducedMotion.matches) frame = requestAnimationFrame(tick)
   }
 
   document.addEventListener('mousemove', (e) => {
