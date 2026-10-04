@@ -5,7 +5,7 @@ defineProps<{
 </script>
 
 <template>
-  <div class="space-y-4">
+  <div class="flex flex-col items-start gap-4">
     <h3 class="text-base font-semibold text-highlighted">
       {{ certificate.title }}
     </h3>
@@ -18,7 +18,7 @@ defineProps<{
         {{ formatMonthYear(certificate.issueDate) }}
       </IconLabel>
     </div>
-    <UButton v-if="certificate.url" variant="subtle" color="neutral" class="text-primary print:bg-transparent"
+    <UButton v-if="certificate.url" variant="subtle" color="neutral" class="text-primary print:hidden"
              :to="certificate.url" target="_blank" external icon="i-hugeicons-link-04" label="View Certificate" />
   </div>
 </template>
