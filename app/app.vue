@@ -69,47 +69,59 @@ function handlePrint() {
 
 <template>
   <UApp :tooltip="{ delayDuration: 300 }">
-    <BlurReveal class="min-h-screen max-w-4xl mx-auto p-4 space-y-4 not-print:pt-16 print:p-0 print:max-w-none selection:bg-primary selection:text-neutral-900">
-      <ProfileCard :profile :location :age />
-      <SectionCard title="Professional Experience" body-class="space-y-8">
-        <ExperienceSection v-for="(experience, index) in resume.experiences" :key="index" :experience />
-      </SectionCard>
-      <SectionCard v-if="repos.length > 0" title="Personal Projects" body-class="grid grid-cols-2 md:grid-cols-3 gap-4" class="print:hidden">
-        <SpecialCard v-for="repo in repos" :key="repo.name">
-          <ProjectSection :repo />
-        </SpecialCard>
-      </SectionCard>
-      <SectionCard v-if="contributions.length > 0" title="Open Source Contributions" body-class="grid grid-cols-1 md:grid-cols-2 gap-4" class="print:hidden">
-        <SpecialCard v-for="contribution in contributions" :key="contribution.repoFullName">
-          <ContributionSection :contribution />
-        </SpecialCard>
-      </SectionCard>
-      <SectionCard title="Skills" body-class="space-y-2">
-        <div v-for="(skills, env) in categorySkills" :key="env" class="flex gap-2 items-center">
-          <strong>{{ env }}:</strong>
-          <div class="flex flex-wrap gap-2">
-            <UBadge v-for="(lang, index) in skills" :key="index" :label="lang" variant="soft" />
+    <UContainer as="main" class="min-h-screen py-4 not-print:pt-16 print:p-0 print:max-w-none selection:bg-primary selection:text-neutral-900">
+      <BlurReveal class="space-y-4">
+        <ProfileCard :profile :location :age />
+        <SectionCard title="Professional Experience">
+          <ExperienceTimeline :experiences="resume.experiences" />
+        </SectionCard>
+        <SectionCard v-if="repos.length > 0" title="Personal Projects" class="print:hidden">
+          <UPageGrid>
+            <TiltCard v-for="repo in repos" :key="repo.name">
+              <ProjectSection :repo />
+            </TiltCard>
+          </UPageGrid>
+        </SectionCard>
+        <SectionCard v-if="contributions.length > 0" title="Open Source Contributions" class="print:hidden">
+          <UPageGrid class="lg:grid-cols-2">
+            <TiltCard v-for="contribution in contributions" :key="contribution.repoFullName">
+              <ContributionSection :contribution />
+            </TiltCard>
+          </UPageGrid>
+        </SectionCard>
+        <SectionCard title="Skills" body-class="space-y-2">
+          <div v-for="(skills, env) in categorySkills" :key="env" class="flex gap-2 items-center">
+            <strong>{{ env }}:</strong>
+            <div class="flex flex-wrap gap-2">
+              <UBadge v-for="(lang, index) in skills" :key="index" :label="lang" variant="soft" />
+            </div>
           </div>
-        </div>
-      </SectionCard>
-      <SectionCard title="Education" body-class="space-y-8">
-        <EducationSection v-for="(experience, index) in resume.education" :key="index" :experience />
-      </SectionCard>
-      <SectionCard title="Certifications" body-class="grid grid-cols-2 gap-4">
-        <SpecialCard v-for="certificate in certifications" :key="certificate.title">
-          <CertificationSection :certificate />
-        </SpecialCard>
-      </SectionCard>
-      <p class="text-muted print:hidden text-sm text-center">
-        Copyright © {{ new Date(profile.created_at).getFullYear() }} - {{ buildDate.getFullYear() }} by {{ username }}
-      </p>
-      <p class="text-muted print:hidden text-xs text-center">
-        v{{ $config.public.version }}
-      </p>
-      <p class="text-muted hidden print:block text-center">
-        I authorise the processing of the personal data in my CV in accordance with Regulation (EU) 2016/679 of the European Parliament and of the Council (GDPR).
-      </p>
-    </BlurReveal>
+        </SectionCard>
+        <SectionCard title="Education">
+          <EducationTimeline :education="resume.education" />
+        </SectionCard>
+        <SectionCard title="Certifications">
+          <UPageGrid class="lg:grid-cols-2">
+            <TiltCard v-for="certificate in certifications" :key="certificate.title">
+              <CertificationSection :certificate />
+            </TiltCard>
+          </UPageGrid>
+        </SectionCard>
+        <UFooter :ui="{ container: 'py-2 lg:py-2 px-0 sm:px-0 lg:px-0 text-sm text-muted print:hidden', bottom: 'py-0 lg:py-0' }">
+          <template #left>
+            Copyright © {{ new Date(profile.created_at).getFullYear() }} - {{ buildDate.getFullYear() }} by {{ username }}
+          </template>
+          <template #right>
+            v{{ $config.public.version }}
+          </template>
+          <template #bottom>
+            <p class="hidden print:block text-center text-muted">
+              I authorise the processing of the personal data in my CV in accordance with Regulation (EU) 2016/679 of the European Parliament and of the Council (GDPR).
+            </p>
+          </template>
+        </UFooter>
+      </BlurReveal>
+    </UContainer>
     <ThemeButton />
     <UTooltip arrow text="Print">
       <UButton class="fixed bottom-4 right-4 rounded-full print:hidden z-50" size="lg" square icon="i-hugeicons-printer"
