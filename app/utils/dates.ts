@@ -13,3 +13,9 @@ export function getTimeSpan(start: Date, end: Date) {
     return { years: 0, months: 0, days: Math.floor(Math.abs(end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24)) }
   return { years: Math.floor(totalMonths / 12), months: totalMonths % 12, days: 0 }
 }
+
+export function getAge(birthDate: Date, now: Date) {
+  const hadBirthday = now.getUTCMonth() > birthDate.getUTCMonth()
+    || (now.getUTCMonth() === birthDate.getUTCMonth() && now.getUTCDate() >= birthDate.getUTCDate())
+  return now.getUTCFullYear() - birthDate.getUTCFullYear() - (hadBirthday ? 0 : 1)
+}

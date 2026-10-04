@@ -5,12 +5,7 @@ const title = 'DanyAlwe'
 
 const buildDate = useBuildDate()
 const birthDate = new Date('2001-02-20')
-const age = computed(() => {
-  const now = buildDate.value
-  const hadBirthday = now.getUTCMonth() > birthDate.getUTCMonth()
-    || (now.getUTCMonth() === birthDate.getUTCMonth() && now.getUTCDate() >= birthDate.getUTCDate())
-  return now.getUTCFullYear() - birthDate.getUTCFullYear() - (hadBirthday ? 0 : 1)
-})
+const age = computed(() => getAge(birthDate, buildDate.value))
 
 useSeoMeta({
   title,

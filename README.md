@@ -22,6 +22,8 @@ bun run dev        # http://localhost:3000
 bun run lint       # eslint (bun run lint:fix to autofix)
 bun run typecheck
 bun run build      # static output in .output/public
+bun run test       # unit tests (Vitest)
+bun run test:e2e   # end-to-end tests on the build (Playwright; first run: bunx playwright install chromium)
 ```
 
 ## Editing content
