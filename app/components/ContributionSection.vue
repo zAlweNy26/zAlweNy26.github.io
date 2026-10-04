@@ -9,11 +9,9 @@ defineProps<{
     <div class="flex flex-wrap items-start gap-2 justify-between">
       <div class="space-y-2">
         <h3 class="text-base font-semibold text-highlighted">
-          <ULink external :to="contribution.repoUrl" target="_blank"
-                 class="group inline-flex text-highlighted items-center gap-2">
-            <UIcon name="i-hugeicons-github-01" class="size-5" />
-            <span class="group-hover:text-primary transition-colors">{{ contribution.repoFullName }}</span>
-          </ULink>
+          <IconLabel icon="i-hugeicons-github-01" :to="contribution.repoUrl">
+            {{ contribution.repoFullName }}
+          </IconLabel>
         </h3>
         <div class="flex flex-wrap gap-2">
           <UBadge :label="`PR merged: ${contribution.prCount}`" color="neutral" class="print:bg-transparent" variant="soft" />

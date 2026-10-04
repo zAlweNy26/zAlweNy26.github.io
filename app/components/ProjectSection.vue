@@ -26,18 +26,14 @@ function getLastUpdate(date?: string | null) {
       </div>
       <div class="text-toned justify-start flex flex-wrap gap-2 text-sm">
         <template v-if="repo.homepage">
-          <ULink external :to="repo.homepage" target="_blank"
-                 class="group inline-flex text-highlighted items-center gap-2">
-            <UIcon name="i-hugeicons-link-04" class="size-5" />
-            <span class="group-hover:text-primary transition-colors">Demo</span>
-          </ULink>
+          <IconLabel icon="i-hugeicons-link-04" :to="repo.homepage">
+            Demo
+          </IconLabel>
           <UChip standalone inset size="2xs" />
         </template>
-        <ULink external :to="repo.html_url" target="_blank"
-               class="group inline-flex text-highlighted items-center gap-2">
-          <UIcon name="i-hugeicons-github-01" class="size-5" />
-          <span class="group-hover:text-primary transition-colors">Code</span>
-        </ULink>
+        <IconLabel icon="i-hugeicons-github-01" :to="repo.html_url">
+          Code
+        </IconLabel>
       </div>
     </div>
     <div class="flex flex-wrap gap-2">

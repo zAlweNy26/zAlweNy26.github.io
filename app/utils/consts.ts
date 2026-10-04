@@ -116,3 +116,16 @@ export const categorySkills = {
   'Security & DevOps': ['Docker', 'Kubernetes', 'Cloudflare', 'GitHub Actions', 'Digital Ocean'],
   'Tools': ['Git', 'Vitest', 'Playwright', 'Vite', 'ESLint'],
 }
+
+export interface SocialLink {
+  label: string
+  icon: string
+  to: string
+}
+
+export const socialLinks: SocialLink[] = [
+  { label: 'LinkedIn', icon: 'i-hugeicons-linkedin-02', to: 'https://linkedin.com/in/daniele-nicosia' },
+  { label: 'GitHub', icon: 'i-hugeicons-github', to: 'https://github.com/zAlweNy26' },
+  { label: 'Instagram', icon: 'i-hugeicons-instagram', to: 'https://www.instagram.com/dany_alwe' },
+  { label: 'PayPal', icon: 'i-hugeicons-paypal', to: 'https://paypal.me/danyalwe' },
+]

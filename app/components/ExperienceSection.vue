@@ -2,8 +2,6 @@
 defineProps<{
   experience: ProfessionalExperience
 }>()
-
-const buildDate = useBuildDate()
 </script>
 
 <template>
@@ -14,24 +12,16 @@ const buildDate = useBuildDate()
           {{ experience.position }}
         </h3>
         <div class="text-toned justify-start flex flex-wrap gap-2 text-sm">
-          <ULink external :to="experience.companyUrl" target="_blank"
-                 class="group inline-flex text-highlighted items-center gap-2">
-            <UIcon name="i-hugeicons-briefcase-01" class="size-5" />
-            <span class="group-hover:text-primary transition-colors">{{ experience.company }}</span>
-          </ULink>
+          <IconLabel icon="i-hugeicons-briefcase-01" :to="experience.companyUrl">
+            {{ experience.company }}
+          </IconLabel>
           <UChip standalone inset size="2xs" />
-          <span class="group inline-flex text-highlighted items-center gap-2">
-            <UIcon name="i-hugeicons-pin-location-03" class="size-5" />
+          <IconLabel icon="i-hugeicons-pin-location-03">
             {{ experience.location }}
-          </span>
+          </IconLabel>
         </div>
       </div>
-      <p class="text-sm text-muted whitespace-nowrap">
-        <span class="capitalize">{{ formatMonthYear(experience.startDate) }}</span>
-        -
-        <span class="capitalize">{{ experience.endDate ? formatMonthYear(experience.endDate) : 'Present' }}</span>
-        ({{ getTimeSpan(experience.startDate, experience.endDate ?? buildDate) }})
-      </p>
+      <DateRange :start="experience.startDate" :end="experience.endDate" />
     </div>
     <article class="leading-relaxed prose prose-neutral prose-p:m-0 prose-ul:m-0 dark:prose-invert max-w-none text-sm"
              v-html="experience.description" />

@@ -33,24 +33,6 @@
     margin: 1rem;
   }
 
-  .no-print {
-    display: none !important;
-  }
-
-  .print-break {
-    page-break-before: always;
-  }
-
-  .print-avoid-break {
-    page-break-inside: auto;
-    break-inside: auto;
-  }
-
-  .print-allow-break {
-    page-break-inside: auto;
-    break-inside: auto;
-  }
-
   * {
     box-shadow: none !important;
     @apply text-black;
@@ -59,10 +41,6 @@
   a {
     color: inherit !important;
     text-decoration: none !important;
-  }
-
-  .max-w-4xl {
-    max-width: none !important;
   }
 
   [data-reka-popper-content-wrapper] {
