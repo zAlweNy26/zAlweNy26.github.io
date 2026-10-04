@@ -21,6 +21,7 @@
     "@nuxt/ui": "^4.11.3",
     "@nuxtjs/seo": "5.3.16",
     "@tailwindcss/typography": "^0.5.20",
+    "@takumi-rs/core": "^2.14.0",
     "@vueuse/core": "^15.0.0",
     "@vueuse/nuxt": "^15.0.0",
     "nuxt": "^4.5.2",
