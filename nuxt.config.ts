@@ -63,7 +63,7 @@ export default defineNuxtConfig({
       name: 'Daniele Nicosia',
       alternateName: 'DanyAlwe',
       url: 'https://zalweny26.github.io',
-      image: 'https://zalweny26.github.io/me_jojo.jpeg',
+      image: 'https://zalweny26.github.io/me_jojo.webp',
       jobTitle: 'Lead Frontend Developer',
       sameAs: [
         'https://github.com/zAlweNy26',
