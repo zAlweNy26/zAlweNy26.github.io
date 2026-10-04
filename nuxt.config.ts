@@ -52,6 +52,11 @@ export default defineNuxtConfig({
     },
   },
 
+  site: {
+    url: 'https://zalweny26.github.io',
+    name: 'DanyAlwe · Portfolio',
+  },
+
   ogImage: {
     enabled: false,
   },

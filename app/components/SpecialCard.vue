@@ -8,52 +8,53 @@ const props = withDefaults(defineProps<{
   gradientOpacity: 0.75,
 })
 
-const containerRef = useTemplateRef('container')
-const mouseX = ref(-props.gradientSize * 10)
-const mouseY = ref(-props.gradientSize * 10)
+const offscreen = -props.gradientSize * 10
+const mouseX = ref(offscreen)
+const mouseY = ref(offscreen)
+const rotateX = ref(0)
+const rotateY = ref(0)
 
 function handleMouseMove(e: MouseEvent) {
-  const target = e.currentTarget as HTMLElement
-  const { left, top, width, height } = target.getBoundingClientRect()
+  const { left, top, width, height } = (e.currentTarget as HTMLElement).getBoundingClientRect()
   mouseX.value = e.clientX - left
   mouseY.value = e.clientY - top
-  const x = (e.clientX - left - width / 2) / 25
-  const y = (e.clientY - top - height / 2) / 25
-  if (!containerRef.value) return
-  containerRef.value.$el.style.transform = `perspective(1000px) rotateX(${x}deg) rotateY(${y}deg) translateZ(50px)`
+  rotateX.value = (e.clientX - left - width / 2) / 25
+  rotateY.value = (e.clientY - top - height / 2) / 25
 }
 
-function handleMouseLeave() {
-  mouseX.value = -props.gradientSize * 10
-  mouseY.value = -props.gradientSize * 10
-  if (!containerRef.value) return
-  containerRef.value.$el.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)`
+function handleFocus(e: FocusEvent) {
+  // Keyboard focus has no pointer position: light up the card from its center, without tilting it
+  const { width, height } = (e.currentTarget as HTMLElement).getBoundingClientRect()
+  mouseX.value = width / 2
+  mouseY.value = height / 2
 }
 
-onMounted(() => {
-  mouseX.value = -props.gradientSize * 10
-  mouseY.value = -props.gradientSize * 10
-})
+function handleLeave() {
+  mouseX.value = offscreen
+  mouseY.value = offscreen
+  rotateX.value = 0
+  rotateY.value = 0
+}
 
-const backgroundStyle = computed(() => {
-  return `radial-gradient(
-    circle at ${mouseX.value}px ${mouseY.value}px,
-    rgba(127, 127, 127, 0.5) 0%,
-    rgba(0, 0, 0, 0) 70%
-  )`
-})
+const isTilted = computed(() => rotateX.value !== 0 || rotateY.value !== 0)
+
+const cardStyle = computed(() => ({
+  transform: `perspective(1000px) rotateX(${rotateX.value}deg) rotateY(${rotateY.value}deg) translateZ(${isTilted.value ? 50 : 0}px)`,
+}))
+
+const backgroundStyle = computed(() => `radial-gradient(
+  circle at ${mouseX.value}px ${mouseY.value}px,
+  rgba(127, 127, 127, 0.5) 0%,
+  rgba(0, 0, 0, 0) 70%
+)`)
 </script>
 
 <template>
-  <UCard ref="container" variant="soft"
+  <UCard variant="soft" :style="cardStyle"
          class="relative print:bg-neutral-200 perspective-distant overflow-hidden transition-all transform-3d size-full duration-200 ease-linear"
-         @mousemove="handleMouseMove" @mouseleave="handleMouseLeave" @focusin="handleMouseMove" @focusout="handleMouseLeave">
+         @mousemove="handleMouseMove" @mouseleave="handleLeave" @focusin="handleFocus" @focusout="handleLeave">
     <slot />
-    <div
-      class="pointer-events-none absolute inset-0 rounded-xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-      :style="{
-        background: backgroundStyle,
-        opacity: gradientOpacity,
-      }" />
+    <div class="pointer-events-none absolute inset-0 rounded-xl"
+         :style="{ background: backgroundStyle, opacity: gradientOpacity }" />
   </UCard>
 </template>
