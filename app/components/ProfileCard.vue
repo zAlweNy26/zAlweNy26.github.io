@@ -71,7 +71,13 @@ const mapsUrl = (place: string) => `https://google.com/maps/place/${place.replac
       <h2 class="font-semibold text-lg md:text-xl text-highlighted leading-loose">
         About Me
       </h2>
-      <p class="text-sm md:text-base text-toned print:text-sm">
+      <!-- The full story is for the website, the printed CV gets a short professional summary -->
+      <p class="hidden print:block text-sm text-toned">
+        Developer with a lifelong passion for programming and a curiosity that led me through many languages before
+        finding my home on the web. I value simplicity, clean code and consistent design, and I like building things
+        that anyone can use just by opening a browser.
+      </p>
+      <p class="text-sm md:text-base text-toned print:hidden">
         I'm <strong>{{ age }}</strong> years old born in
         <span
           class="bg-clip-text text-transparent font-bold bg-linear-[45deg,#fff100_50%,#ed141e_50%]">Sicily</span>,
