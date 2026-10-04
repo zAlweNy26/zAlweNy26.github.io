@@ -22,13 +22,9 @@ export default defineNuxtConfig({
     ],
   },
 
-  ssr: false,
-
   css: ['~/assets/css/main.css'],
 
   compatibilityDate: 'latest',
-
-  spaLoadingTemplate: './loading.html',
 
   experimental: {
     typedPages: true,
@@ -37,20 +33,23 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
+    // Set NUXT_GITHUB_TOKEN at build time to avoid the anonymous GitHub API rate limit
+    githubToken: '',
     public: {
       version,
-    },
-  },
-
-  hooks: {
-    'prerender:routes': ({ routes }) => {
-      routes.clear()
     },
   },
 
   site: {
     url: 'https://zalweny26.github.io',
     name: 'DanyAlwe · Portfolio',
+  },
+
+  nitro: {
+    prerender: {
+      // A failed route (see the data checks in app.vue) must fail the build and keep the last deploy online
+      failOnError: true,
+    },
   },
 
   ogImage: {

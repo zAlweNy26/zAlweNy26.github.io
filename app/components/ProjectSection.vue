@@ -3,27 +3,10 @@ const { repo } = defineProps<{
   repo: GitHubRepository
 }>()
 
-const { data: languages } = await useFetch(repo.languages_url, {
-  transform: (data: Record<string, number>) => {
-    const res = {
-      list: Object.entries(data).sort(([, a], [, b]) => b - a).map(([lang]) => lang),
-      fetchedAt: new Date(),
-    }
-    window.localStorage.setItem(`cache:languages:${repo.name}`, JSON.stringify(res))
-    return res
-  },
-  key: `languages:${repo.name}`,
-  getCachedData,
-  default: () => ({
-    list: [] as string[],
-    fetchedAt: new Date(),
-  }),
-})
-
 function getLastUpdate(date?: string | null) {
   if (!date) return 'Unknown'
   const updatedDate = new Date(date)
-  return `Last Update: ${updatedDate.toLocaleDateString('en-GB')}`
+  return `Last Update: ${updatedDate.toLocaleDateString('en-GB', { timeZone: 'UTC' })}`
 }
 </script>
 
@@ -41,7 +24,7 @@ function getLastUpdate(date?: string | null) {
                   variant="soft" :ui="{ leadingIcon: 'text-warning' }" />
         </div>
       </div>
-      <p class="text-toned justify-start flex flex-wrap gap-2 text-sm">
+      <div class="text-toned justify-start flex flex-wrap gap-2 text-sm">
         <template v-if="repo.homepage">
           <ULink external :to="repo.homepage" target="_blank"
                  class="group inline-flex text-highlighted items-center gap-2">
@@ -55,10 +38,10 @@ function getLastUpdate(date?: string | null) {
           <UIcon name="i-hugeicons-github-01" class="size-5" />
           <span class="group-hover:text-primary transition-colors">Code</span>
         </ULink>
-      </p>
+      </div>
     </div>
     <div class="flex flex-wrap gap-2">
-      <UBadge v-for="(lang, i) in languages.list" :key="i" :label="lang" variant="soft" />
+      <UBadge v-for="(lang, i) in repo.languages" :key="i" :label="lang" variant="soft" />
     </div>
   </div>
 </template>

@@ -38,9 +38,12 @@ function startViewTransition(event: MouseEvent) {
 </script>
 
 <template>
-  <UTooltip arrow text="Toggle Theme" class="no-print">
-    <UButton class="fixed bottom-4 md:top-4 md:bottom-auto left-4 rounded-full z-50"
-             size="lg" color="neutral" square aria-label="Toggle Theme" variant="subtle"
-             :icon="nextTheme === 'dark' ? 'i-hugeicons-sun-03' : 'i-hugeicons-moon-02'" @click="startViewTransition" />
-  </UTooltip>
+  <!-- The resolved color mode is only known in the browser, so the icon can't be prerendered -->
+  <ClientOnly>
+    <UTooltip arrow text="Toggle Theme" class="no-print">
+      <UButton class="fixed bottom-4 md:top-4 md:bottom-auto left-4 rounded-full z-50"
+               size="lg" color="neutral" square aria-label="Toggle Theme" variant="subtle"
+               :icon="nextTheme === 'dark' ? 'i-hugeicons-sun-03' : 'i-hugeicons-moon-02'" @click="startViewTransition" />
+    </UTooltip>
+  </ClientOnly>
 </template>
