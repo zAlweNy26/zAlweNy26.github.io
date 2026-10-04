@@ -1,0 +1,15 @@
+# Link check for the live site, run weekly by .github/workflows/links.yml
+
+# These answer automated requests (and CI runners' IPs) with 999/403 even when the page is fine
+exclude = [
+  '^https://(www\.)?linkedin\.com/',
+  '^https://(www\.)?instagram\.com/',
+  # The live-location API only answers the site's own origin
+  '^https://location\.danyalwe\.me/',
+]
+
+max_concurrency = 8
+timeout = 20
+max_retries = 3
+# Being rate limited doesn't mean the link is broken
+accept = ['200..=299', '429']
