@@ -3,6 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
+  "packageManager": "bun@1.4.2",
   "scripts": {
     "build": "nuxt build --preset github_pages",
     "dev": "nuxt dev",

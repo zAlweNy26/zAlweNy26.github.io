@@ -2,30 +2,45 @@ name: Deploy to GitHub Pages
 
 on:
   workflow_dispatch:
+  pull_request:
   push:
     branches:
       - master
 
 concurrency:
-  group: pages
+  group: pages-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
+      - name: Install Node
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
       - name: Install Bun
         uses: oven-sh/setup-bun@v2
+        with:
+          bun-version-file: package.json
       - name: Install dependencies
-        run: bun install
+        run: bun install --frozen-lockfile
+      - name: Lint
+        run: bun run lint
+      - name: Typecheck
+        run: bun run typecheck
       - name: Build application
         run: bun run build
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v5
         with:
           path: ./.output/public
+          # Keep public/.well-known (hidden files are excluded by default since v4)
+          include-hidden-files: true
   deploy:
+    if: github.event_name != 'pull_request'
     needs: build
     permissions:
       pages: write
@@ -37,4 +52,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
