@@ -7,23 +7,19 @@ export default defineNuxtConfig({
   modules: [
     'motion-v/nuxt',
     'nuxt-vitalizer',
-    '@formkit/auto-animate/nuxt',
     '@vueuse/nuxt',
     '@nuxtjs/seo',
     '@nuxt/ui',
-    '@nuxt/image',
-    '@compodium/nuxt',
     '@nuxt/eslint',
-    'nuxt-mcp',
-    '@nuxt/hints',
   ],
 
-  vite: {
-    build: {
-      rollupOptions: {
-        external: ['sharp'],
-      },
-    },
+  // Dev-only tooling, kept out of production builds
+  $development: {
+    modules: [
+      '@compodium/nuxt',
+      'nuxt-mcp',
+      '@nuxt/hints',
+    ],
   },
 
   ssr: false,
@@ -62,7 +58,19 @@ export default defineNuxtConfig({
   },
 
   schemaOrg: {
-    enabled: false,
+    identity: {
+      type: 'Person',
+      name: 'Daniele Nicosia',
+      alternateName: 'DanyAlwe',
+      url: 'https://zalweny26.github.io',
+      image: 'https://zalweny26.github.io/me_jojo.jpeg',
+      jobTitle: 'Lead Frontend Developer',
+      sameAs: [
+        'https://github.com/zAlweNy26',
+        'https://linkedin.com/in/daniele-nicosia',
+        'https://www.instagram.com/dany_alwe',
+      ],
+    },
   },
 
   sitemap: {
