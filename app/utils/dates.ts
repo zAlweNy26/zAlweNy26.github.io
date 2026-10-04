@@ -1,25 +1,15 @@
-const plural = (n: number, unit: string) => `${n} ${unit}${n !== 1 ? 's' : ''}`
-
 /**
  * Dates in `consts.ts` are parsed as UTC midnight, so format them in UTC
  * to avoid showing the previous month to visitors west of Greenwich.
  */
-export function formatMonthYear(date: Date) {
-  return date.toLocaleDateString('en-GB', { year: 'numeric', month: 'short', timeZone: 'UTC' })
+export function formatMonthYear(date: Date, locale: string) {
+  return date.toLocaleDateString(locale, { year: 'numeric', month: 'short', timeZone: 'UTC' })
 }
 
-export function getTimeSpan(startDate: Date, end: Date) {
-  const months = (end.getUTCFullYear() - startDate.getUTCFullYear()) * 12 + (end.getUTCMonth() - startDate.getUTCMonth())
-  if (months < 1) {
-    const days = Math.floor(Math.abs(end.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24))
-    return plural(days, 'day')
-  }
-  if (months < 12) return plural(months, 'month')
-  const years = Math.floor(months / 12)
-  const remMonths = months % 12
-  return remMonths === 0 ? plural(years, 'year') : `${plural(years, 'year')} ${plural(remMonths, 'month')}`
-}
-
-export function formatDateRange(start: Date, end: Date | undefined, now: Date) {
-  return `${formatMonthYear(start)} - ${end ? formatMonthYear(end) : 'Present'} (${getTimeSpan(start, end ?? now)})`
+/** Whole calendar months between two dates, split into years and months (days only under a month) */
+export function getTimeSpan(start: Date, end: Date) {
+  const totalMonths = (end.getUTCFullYear() - start.getUTCFullYear()) * 12 + (end.getUTCMonth() - start.getUTCMonth())
+  if (totalMonths < 1)
+    return { years: 0, months: 0, days: Math.floor(Math.abs(end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24)) }
+  return { years: Math.floor(totalMonths / 12), months: totalMonths % 12, days: 0 }
 }

@@ -8,8 +8,9 @@ import { unified } from 'unified'
 const processor = unified()
   .use(remarkParse)
   .use(remarkGfm)
-  .use(remarkRehype)
+  // The markdown comes from consts.ts (trusted), and the About Me story uses inline HTML for the flag colours
+  .use(remarkRehype, { allowDangerousHtml: true })
   .use(rehypeExternalLinks, { target: '_blank', rel: ['noopener', 'noreferrer'] })
-  .use(rehypeStringify)
+  .use(rehypeStringify, { allowDangerousHtml: true })
 
 export const parseMarkdown = (text: string) => processor.processSync(text).toString()

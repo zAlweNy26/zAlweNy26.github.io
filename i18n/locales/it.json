@@ -1,0 +1,59 @@
+{
+  "meta": {
+    "description": "Portfolio di DanyAlwe, con progetti e competenze di sviluppo web.",
+    "ogSummary": "Sviluppatore con una passione per la programmazione che dura da sempre. Credo nella semplicità, nel codice pulito e nel design coerente.",
+    "ogAlt": "Daniele Nicosia, Lead Frontend Developer"
+  },
+  "sections": {
+    "about": "Chi sono",
+    "experience": "Esperienza professionale",
+    "projects": "Progetti personali",
+    "contributions": "Contributi open source",
+    "skills": "Competenze",
+    "education": "Formazione",
+    "certifications": "Certificazioni"
+  },
+  "skills": {
+    "languages": "Lingue",
+    "programming": "Linguaggi di programmazione",
+    "frontend": "Tecnologie frontend",
+    "backend": "Tecnologie backend",
+    "devops": "Sicurezza e DevOps",
+    "tools": "Strumenti"
+  },
+  "profile": {
+    "livePosition": "Posizione live",
+    "followers": "follower | follower",
+    "following": "seguiti",
+    "hover": "Passa il mouse!",
+    "touch": "Toccami!"
+  },
+  "time": {
+    "present": "Oggi",
+    "years": "{n} anno | {n} anni",
+    "months": "{n} mese | {n} mesi",
+    "days": "{n} giorno | {n} giorni"
+  },
+  "projects": {
+    "lastUpdate": "Ultimo aggiornamento: {date}",
+    "unknown": "Sconosciuto",
+    "demo": "Demo",
+    "code": "Codice"
+  },
+  "contributions": {
+    "merged": "PR accettate: {count}",
+    "recent": "PR recenti"
+  },
+  "certifications": {
+    "view": "Vedi certificato"
+  },
+  "actions": {
+    "print": "Stampa",
+    "toggleTheme": "Cambia tema",
+    "switchLanguage": "Read in English"
+  },
+  "footer": {
+    "copyright": "Copyright © {from} - {to} di {name}",
+    "gdpr": "Autorizzo il trattamento dei dati personali contenuti nel mio curriculum vitae ai sensi del Regolamento (UE) 2016/679 del Parlamento europeo e del Consiglio (GDPR)."
+  }
+}

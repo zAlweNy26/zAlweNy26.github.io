@@ -10,6 +10,7 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     // Before @nuxtjs/seo: it installs @nuxt/fonts, which the OG image renderer needs to find at setup
     '@nuxt/ui',
+    '@nuxtjs/i18n',
     '@nuxtjs/seo',
     '@nuxt/eslint',
   ],
@@ -52,6 +53,19 @@ export default defineNuxtConfig({
     },
   },
 
+  i18n: {
+    baseUrl: 'https://danyalwe.me',
+    defaultLocale: 'en',
+    // English at /, Italian at /it
+    strategy: 'prefix_except_default',
+    locales: [
+      { code: 'en', language: 'en-GB', name: 'English', file: 'en.json' },
+      { code: 'it', language: 'it-IT', name: 'Italiano', file: 'it.json' },
+    ],
+    // No automatic redirect: on a static site it would happen after load, as a visible jump
+    detectBrowserLanguage: false,
+  },
+
   site: {
     url: 'https://danyalwe.me',
     name: 'DanyAlwe · Portfolio',
@@ -59,8 +73,9 @@ export default defineNuxtConfig({
 
   nitro: {
     prerender: {
-      // A failed route (see the data checks in app.vue) must fail the build and keep the last deploy online
+      // A failed route (see the data checks in pages/index.vue) must fail the build and keep the last deploy online
       failOnError: true,
+      routes: ['/', '/it'],
     },
   },
 

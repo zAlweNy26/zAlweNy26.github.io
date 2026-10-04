@@ -14,7 +14,7 @@ defineProps<{
           </IconLabel>
         </h3>
         <div class="flex flex-wrap gap-2">
-          <UBadge :label="`PR merged: ${contribution.prCount}`" color="neutral" class="print:bg-transparent" variant="soft" />
+          <UBadge :label="$t('contributions.merged', { count: contribution.prCount })" color="neutral" class="print:bg-transparent" variant="soft" />
           <UBadge icon="i-hugeicons-star" :label="contribution.stars" color="neutral"
                   class="print:bg-transparent" variant="soft" :ui="{ leadingIcon: 'text-warning' }" />
         </div>
@@ -22,7 +22,7 @@ defineProps<{
     </div>
     <div v-if="contribution.recentPrs.length > 0" class="space-y-2 text-sm">
       <p class="text-muted">
-        Recent PRs
+        {{ $t('contributions.recent') }}
       </p>
       <div class="flex flex-col gap-2">
         <ULink v-for="pr in contribution.recentPrs" :key="pr.url" external :to="pr.url" target="_blank"

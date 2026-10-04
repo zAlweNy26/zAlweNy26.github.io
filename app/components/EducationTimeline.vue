@@ -1,13 +1,13 @@
 <script setup lang="ts">
 const props = defineProps<{
-  education: EducationalExperience[]
+  education: EducationalExperience<string>[]
 }>()
 
-const buildDate = useBuildDate()
+const { formatDateRange } = useDates()
 
 const items = computed(() => props.education.map(entry => ({
   ...entry,
-  date: formatDateRange(entry.startDate, entry.endDate, buildDate.value),
+  date: formatDateRange(entry.startDate, entry.endDate),
   icon: 'i-hugeicons-mortarboard-02',
 })))
 

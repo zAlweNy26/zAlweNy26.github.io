@@ -1,7 +1,9 @@
 <script setup lang="ts">
 defineProps<{
-  certificate: Certification
+  certificate: Certification<string>
 }>()
+
+const { formatDate } = useDates()
 </script>
 
 <template>
@@ -15,10 +17,10 @@ defineProps<{
       </IconLabel>
       <USeparator orientation="vertical" decorative class="h-4" />
       <IconLabel icon="i-hugeicons-calendar-04">
-        {{ formatMonthYear(certificate.issueDate) }}
+        {{ formatDate(certificate.issueDate) }}
       </IconLabel>
     </div>
     <UButton v-if="certificate.url" variant="subtle" color="neutral" class="text-primary print:hidden"
-             :to="certificate.url" target="_blank" external icon="i-hugeicons-link-04" label="View Certificate" />
+             :to="certificate.url" target="_blank" external icon="i-hugeicons-link-04" :label="$t('certifications.view')" />
   </div>
 </template>

@@ -40,9 +40,9 @@ function startViewTransition(event: MouseEvent) {
 <template>
   <!-- The resolved color mode is only known in the browser, so the icon can't be prerendered -->
   <ClientOnly>
-    <UTooltip arrow text="Toggle Theme">
+    <UTooltip arrow :text="$t('actions.toggleTheme')">
       <UButton class="fixed bottom-4 md:top-4 md:bottom-auto left-4 rounded-full z-50 print:hidden"
-               size="lg" color="neutral" square aria-label="Toggle Theme" variant="subtle"
+               size="lg" color="neutral" square :aria-label="$t('actions.toggleTheme')" variant="subtle"
                :icon="nextTheme === 'dark' ? 'i-hugeicons-sun-03' : 'i-hugeicons-moon-02'" @click="startViewTransition" />
     </UTooltip>
   </ClientOnly>
