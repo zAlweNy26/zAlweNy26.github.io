@@ -5,7 +5,6 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
 
   modules: [
-    'motion-v/nuxt',
     'nuxt-vitalizer',
     '@vueuse/nuxt',
     '@nuxtjs/seo',
