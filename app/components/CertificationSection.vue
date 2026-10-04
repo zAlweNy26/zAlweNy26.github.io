@@ -9,7 +9,7 @@ defineProps<{
     <h3 class="text-base font-semibold text-highlighted">
       {{ certificate.title }}
     </h3>
-    <p class="text-toned justify-start flex flex-wrap gap-2 text-sm">
+    <div class="text-toned justify-start flex flex-wrap gap-2 text-sm">
       <span class="group inline-flex text-highlighted items-center gap-2">
         <UIcon name="i-hugeicons-award-01" class="size-5" />
         {{ certificate.issuer }}
@@ -19,7 +19,7 @@ defineProps<{
         <UIcon name="i-hugeicons-calendar-04" class="size-5" />
         {{ formatMonthYear(certificate.issueDate) }}
       </span>
-    </p>
+    </div>
     <UButton v-if="certificate.url" variant="subtle" color="neutral" class="text-primary print:bg-transparent"
              :to="certificate.url" target="_blank" external icon="i-hugeicons-link-04" label="View Certificate" />
   </div>

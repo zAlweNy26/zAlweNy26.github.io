@@ -3,6 +3,9 @@ name: Deploy to GitHub Pages
 on:
   workflow_dispatch:
   pull_request:
+  # Rebuild daily so GitHub stats, ages and durations stay fresh
+  schedule:
+    - cron: '0 4 * * *'
   push:
     branches:
       - master
@@ -32,6 +35,8 @@ jobs:
         run: bun run typecheck
       - name: Build application
         run: bun run build
+        env:
+          NUXT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload artifact
         if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v5

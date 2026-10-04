@@ -1,15 +1,18 @@
 <script setup lang="ts">
-import { Octokit } from '@octokit/rest'
-
-const username = 'zAlweNy26'
+const username = GITHUB_USERNAME
 const description = 'Portfolio of DanyAlwe, showcasing web development projects and skills.'
 const site = useSiteConfig()
 const ogImage = `${site.url}/og-image.png`
+const title = 'DanyAlwe'
 
+const buildDate = useBuildDate()
 const birthDate = new Date('2001-02-20')
-const age = Math.floor((Date.now() - birthDate.getTime()) / 3.15576e10)
-
-const title = useTitle('DanyAlwe')
+const age = computed(() => {
+  const now = buildDate.value
+  const hadBirthday = now.getUTCMonth() > birthDate.getUTCMonth()
+    || (now.getUTCMonth() === birthDate.getUTCMonth() && now.getUTCDate() >= birthDate.getUTCDate())
+  return now.getUTCFullYear() - birthDate.getUTCFullYear() - (hadBirthday ? 0 : 1)
+})
 
 useHead({
   link: [
@@ -36,148 +39,26 @@ useSeoMeta({
   twitterCard: 'summary',
 })
 
-const octokit = new Octokit()
+const [profileRes, reposRes, contributionsRes, resumeRes] = await Promise.all([
+  useGitHubProfile(),
+  useGitHubRepos(),
+  useGitHubContributions(),
+  useResume(),
+])
+const { data: profile } = profileRes, { data: repos } = reposRes
+const { data: contributions } = contributionsRes, { data: resume } = resumeRes
 
-const { data: profile } = await useAsyncData('profile', async () => {
-  const res = await octokit.rest.users.getByUsername({ username })
-  return res.data
-}, {
-  transform: (data) => {
-    const res = {
-      ...data,
-      name: data.name || 'Daniele Nicosia',
-      email: data.email || 'work@danyalwe.me',
-      location: data.location || 'Cremona, Italy',
-      fetchedAt: new Date(),
-    }
-    window.localStorage.setItem('cache:profile', JSON.stringify(res))
-    return res
-  },
-  getCachedData,
-  default: () => ({
-    name: 'Daniele Nicosia',
-    email: 'work@danyalwe.me',
-    location: 'Cremona, Italy',
-    created_at: '2018-07-15T14:43:19Z',
-    followers: 0,
-    following: 0,
-    fetchedAt: new Date(),
-  }),
-})
+// Fail the static build rather than deploy a page with missing sections (e.g. GitHub rate limit)
+if (import.meta.prerender) {
+  const failed = [profileRes, reposRes, contributionsRes, resumeRes].find(res => res.error.value)
+  if (failed) throw createError({ statusCode: 500, message: `Prerender data fetch failed: ${failed.error.value?.message}`, fatal: true })
+}
 
-const { data: repos } = await useAsyncData('repos', async () => {
-  const res = await octokit.rest.repos.listForUser({ username, type: 'owner', per_page: 100 })
-  return res.data.sort((a, b) => (b.stargazers_count || 0) - (a.stargazers_count || 0)).slice(0, 6)
-}, {
-  transform: (data) => {
-    const res = {
-      list: data,
-      fetchedAt: new Date(),
-    }
-    window.localStorage.setItem('cache:repos', JSON.stringify(res))
-    return res
-  },
-  getCachedData,
-  default: () => {
-    return {
-      list: [] as GitHubRepository[],
-      fetchedAt: new Date(),
-    }
-  },
-})
-
-const { data: contributions } = await useAsyncData('contributions', async () => {
-  const res = await octokit.rest.search.issuesAndPullRequests({
-    q: `is:pr is:merged author:${username}`,
-    per_page: 100,
-    sort: 'updated',
-    order: 'desc',
-  })
-
-  const summaryMap = new Map<string, ContributionSummary>()
-
-  for (const item of res.data.items) {
-    const repositoryUrl = item.repository_url
-    if (!repositoryUrl) continue
-
-    const repoFullName = repositoryUrl.replace('https://api.github.com/repos/', '')
-    const [owner] = repoFullName.split('/')
-    if (owner?.toLowerCase() === username.toLowerCase()) continue
-
-    const updatedAt = item.updated_at || item.closed_at || item.created_at || new Date().toISOString()
-    const existing = summaryMap.get(repoFullName)
-    const summary: ContributionSummary = existing || {
-      repoFullName,
-      repoUrl: `https://github.com/${repoFullName}`,
-      prCount: 0,
-      stars: 0,
-      lastPrUpdatedAt: updatedAt,
-      recentPrs: [],
-    }
-
-    summary.prCount += 1
-    if (new Date(updatedAt).getTime() > new Date(summary.lastPrUpdatedAt).getTime())
-      summary.lastPrUpdatedAt = updatedAt
-
-    if (summary.recentPrs.length < 2 && item.html_url) {
-      summary.recentPrs.push({
-        title: item.title || `PR #${item.number}`,
-        url: item.html_url,
-        updated_at: updatedAt,
-      })
-    }
-
-    summaryMap.set(repoFullName, summary)
-  }
-
-  const candidateLimit = 12
-  const candidates = Array.from(summaryMap.values())
-    .sort((a, b) => b.prCount - a.prCount || new Date(b.lastPrUpdatedAt).getTime() - new Date(a.lastPrUpdatedAt).getTime())
-    .slice(0, candidateLimit)
-
-  const enriched = await Promise.all(candidates.map(async (summary) => {
-    const [owner, repo] = summary.repoFullName.split('/')
-    if (!owner || !repo) return summary
-    try {
-      const repoRes = await octokit.rest.repos.get({ owner, repo })
-      return {
-        ...summary,
-        stars: repoRes.data.stargazers_count || 0,
-      }
-    }
-    catch {
-      return summary
-    }
-  }))
-
-  const list = enriched
-    .sort((a, b) => b.prCount - a.prCount
-      || (b.stars || 0) - (a.stars || 0)
-      || new Date(b.lastPrUpdatedAt).getTime() - new Date(a.lastPrUpdatedAt).getTime())
-    .slice(0, 6)
-
-  return {
-    list,
-    fetchedAt: new Date(),
-  }
-}, {
-  transform: (data) => {
-    const res = {
-      ...data,
-      fetchedAt: new Date(),
-    }
-    window.localStorage.setItem('cache:contributions', JSON.stringify(res))
-    return res
-  },
-  getCachedData,
-  default: () => ({
-    list: [] as ContributionSummary[],
-    fetchedAt: new Date(),
-  }),
-})
-
-const { data: location } = await useFetch('https://location.danyalwe.me/api/location', {
+// The live position changes all the time, so it's the only data fetched in the browser
+const { data: location } = useFetch('https://location.danyalwe.me/api/location', {
   key: 'location',
+  server: false,
+  lazy: true,
   transform: (data: { location: string }) => data.location,
 })
 
@@ -265,7 +146,7 @@ function handlePrint() {
                                 :alt="profile.name || 'Profile Picture'" class="size-30 md:size-40 rounded-full object-cover" />
                 <p class="text-sm text-center select-none print:hidden text-muted italic">
                   <span class="pointer-coarse:hidden">Hover me!</span>
-                  <span class="pointer-fine:hidden">Touch me!</span>
+                  <span class="hidden pointer-coarse:inline">Touch me!</span>
                 </p>
               </div>
             </div>
@@ -301,25 +182,25 @@ function handlePrint() {
               Professional Experience
             </h2>
           </template>
-          <ExperienceSection v-for="(experience, index) in professionalExperiences" :key="index" :experience />
+          <ExperienceSection v-for="(experience, index) in resume.experiences" :key="index" :experience />
         </UCard>
-        <UCard v-if="repos.list.length > 0" as="section" variant="subtle" class="print:hidden" :ui="{ body: 'grid grid-cols-2 md:grid-cols-3 gap-4' }">
+        <UCard v-if="repos.length > 0" as="section" variant="subtle" class="print:hidden" :ui="{ body: 'grid grid-cols-2 md:grid-cols-3 gap-4' }">
           <template #header>
             <h2 class="text-xl md:text-2xl font-bold text-highlighted leading-loose">
               Personal Projects
             </h2>
           </template>
-          <SpecialCard v-for="(repo, index) in repos.list" :key="index">
+          <SpecialCard v-for="(repo, index) in repos" :key="index">
             <ProjectSection :repo />
           </SpecialCard>
         </UCard>
-        <UCard v-if="contributions.list.length > 0" as="section" variant="subtle" class="print:hidden" :ui="{ body: 'grid grid-cols-1 md:grid-cols-2 gap-4' }">
+        <UCard v-if="contributions.length > 0" as="section" variant="subtle" class="print:hidden" :ui="{ body: 'grid grid-cols-1 md:grid-cols-2 gap-4' }">
           <template #header>
             <h2 class="text-xl md:text-2xl font-bold text-highlighted leading-loose">
               Open Source Contributions
             </h2>
           </template>
-          <SpecialCard v-for="(contribution, index) in contributions.list" :key="index">
+          <SpecialCard v-for="(contribution, index) in contributions" :key="index">
             <ContributionSection :contribution />
           </SpecialCard>
         </UCard>
@@ -342,7 +223,7 @@ function handlePrint() {
               Education
             </h2>
           </template>
-          <EducationSection v-for="(experience, index) in educationalExperiences" :key="index" :experience />
+          <EducationSection v-for="(experience, index) in resume.education" :key="index" :experience />
         </UCard>
         <UCard as="section" variant="subtle" class="print:bg-transparent" :ui="{ body: 'grid grid-cols-2 gap-4' }">
           <template #header>
@@ -355,7 +236,7 @@ function handlePrint() {
           </SpecialCard>
         </UCard>
         <p class="text-muted print:hidden text-sm text-center">
-          Copyright © {{ new Date(profile.created_at).getFullYear() }} - {{ new Date().getFullYear() }} by {{ username }}
+          Copyright © {{ new Date(profile.created_at).getFullYear() }} - {{ buildDate.getFullYear() }} by {{ username }}
         </p>
         <p class="text-muted print:hidden text-xs text-center">
           v{{ $config.public.version }}
