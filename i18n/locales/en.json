@@ -9,6 +9,7 @@
     "experience": "Professional Experience",
     "projects": "Personal Projects",
     "contributions": "Open Source Contributions",
+    "activity": "GitHub Activity",
     "skills": "Skills",
     "education": "Education",
     "certifications": "Certifications"
@@ -43,6 +44,17 @@
   "contributions": {
     "merged": "PR merged: {count}",
     "recent": "Recent PRs"
+  },
+  "activity": {
+    "total": "Contributions in the last year",
+    "longestStreak": "Longest streak",
+    "currentStreak": "Current streak",
+    "calendarLabel": "{n} contributions in the last year",
+    "day": "No contributions on {date} | {count} contribution on {date} | {count} contributions on {date}",
+    "less": "Less",
+    "more": "More",
+    "languages": "Most used languages",
+    "other": "Other"
   },
   "certifications": {
     "view": "View Certificate"

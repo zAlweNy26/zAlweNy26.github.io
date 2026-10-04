@@ -121,3 +121,63 @@ export function useGitHubContributions(limit = 6) {
     default: () => [] as ContributionSummary[],
   })
 }
+
+const activityQuery = `query ($login: String!) {
+  user(login: $login) {
+    contributionsCollection {
+      contributionCalendar {
+        totalContributions
+        weeks { contributionDays { date contributionCount contributionLevel } }
+      }
+    }
+    repositories(ownerAffiliations: OWNER, isFork: false, privacy: PUBLIC, first: 100) {
+      nodes { languages(first: 10, orderBy: { field: SIZE, direction: DESC }) { edges { size node { name color } } } }
+    }
+  }
+}`
+
+interface ActivityResponse {
+  data?: {
+    user: {
+      contributionsCollection: { contributionCalendar: { totalContributions: number, weeks: { contributionDays: ContributionDay[] }[] } }
+      repositories: { nodes: RepositoryLanguages[] }
+    }
+  }
+  errors?: { message: string }[]
+}
+
+export interface GitHubActivity {
+  totalContributions: number
+  weeks: ContributionDay[][]
+  streaks: { longest: number, current: number }
+  languages: LanguageShare[]
+}
+
+/**
+ * Contribution calendar and language breakdown from a single GraphQL request. GraphQL has no
+ * anonymous access: without a token (e.g. a local build) the section is left out instead of failing.
+ */
+export function useGitHubActivity() {
+  const github = useGitHubFetch()
+  const hasToken = import.meta.server && !!useRuntimeConfig().githubToken
+  return useAsyncData('activity', async (): Promise<GitHubActivity | null> => {
+    if (!hasToken) return null
+    const res = await github<ActivityResponse>('/graphql', {
+      method: 'POST',
+      body: { query: activityQuery, variables: { login: GITHUB_USERNAME } },
+    })
+    // GraphQL reports errors with a 200 status
+    if (!res.data || res.errors?.length) throw new Error(res.errors?.map(e => e.message).join('; ') || 'Empty GraphQL response')
+
+    const { contributionCalendar } = res.data.user.contributionsCollection
+    const weeks = contributionCalendar.weeks.map(week => week.contributionDays)
+    return {
+      totalContributions: contributionCalendar.totalContributions,
+      weeks,
+      streaks: getStreaks(weeks.flat()),
+      languages: aggregateLanguages(res.data.user.repositories.nodes, 7, OTHER_LANGUAGES),
+    }
+  }, {
+    default: () => null,
+  })
+}

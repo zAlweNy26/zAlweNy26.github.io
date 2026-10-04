@@ -36,18 +36,19 @@ defineOgImage('Portfolio', { summary: t('meta.ogSummary') }, {
   alt: t('meta.ogAlt'),
 })
 
-const [profileRes, reposRes, contributionsRes, resumeRes] = await Promise.all([
+const [profileRes, reposRes, contributionsRes, activityRes, resumeRes] = await Promise.all([
   useGitHubProfile(),
   useGitHubRepos(),
   useGitHubContributions(),
+  useGitHubActivity(),
   useResume(),
 ])
 const { data: profile } = profileRes, { data: repos } = reposRes
-const { data: contributions } = contributionsRes, { data: resume } = resumeRes
+const { data: contributions } = contributionsRes, { data: activity } = activityRes, { data: resume } = resumeRes
 
 // Fail the static build rather than deploy a page with missing sections (e.g. GitHub rate limit)
 if (import.meta.prerender) {
-  const failed = [profileRes, reposRes, contributionsRes, resumeRes].find(res => res.error.value)
+  const failed = [profileRes, reposRes, contributionsRes, activityRes, resumeRes].find(res => res.error.value)
   if (failed) throw createError({ statusCode: 500, message: `Prerender data fetch failed: ${failed.error.value?.message}`, fatal: true })
 }
 
@@ -81,6 +82,9 @@ const { data: location } = useFetch('https://location.danyalwe.me/api/location',
             <ContributionSection :contribution />
           </LazyTiltCard>
         </UPageGrid>
+      </SectionCard>
+      <SectionCard v-if="activity" :title="$t('sections.activity')" class="print:hidden">
+        <LazyGitHubActivity hydrate-never :activity />
       </SectionCard>
       <SectionCard :title="$t('sections.skills')">
         <LazySkillsList hydrate-never :skills="resume.skills" />
