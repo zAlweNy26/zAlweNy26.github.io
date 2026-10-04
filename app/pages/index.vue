@@ -69,39 +69,35 @@ const { data: location } = useFetch('https://location.danyalwe.me/api/location',
   <UContainer as="main" class="min-h-screen py-4 not-print:pt-16 print:p-0 print:max-w-none selection:bg-primary selection:text-neutral-900">
     <BlurReveal class="space-y-4">
       <ProfileCard :profile :location :age :story="resume.aboutStory" :summary="resume.aboutSummary" />
+      <!-- Static sections never hydrate (no JS needed); tilt cards hydrate once scrolled into view -->
       <SectionCard :title="$t('sections.experience')">
-        <ExperienceTimeline :experiences="resume.experiences" />
+        <LazyExperienceTimeline hydrate-never :experiences="resume.experiences" />
       </SectionCard>
       <SectionCard v-if="repos.length > 0" :title="$t('sections.projects')" class="print:hidden">
         <UPageGrid>
-          <TiltCard v-for="repo in repos" :key="repo.name">
+          <LazyTiltCard v-for="repo in repos" :key="repo.name" hydrate-on-visible>
             <ProjectSection :repo />
-          </TiltCard>
+          </LazyTiltCard>
         </UPageGrid>
       </SectionCard>
       <SectionCard v-if="contributions.length > 0" :title="$t('sections.contributions')" class="print:hidden">
         <UPageGrid class="lg:grid-cols-2">
-          <TiltCard v-for="contribution in contributions" :key="contribution.repoFullName">
+          <LazyTiltCard v-for="contribution in contributions" :key="contribution.repoFullName" hydrate-on-visible>
             <ContributionSection :contribution />
-          </TiltCard>
+          </LazyTiltCard>
         </UPageGrid>
       </SectionCard>
-      <SectionCard :title="$t('sections.skills')" body-class="space-y-2">
-        <div v-for="{ category, skills } in resume.skills" :key="category" class="flex gap-2 items-center print:break-inside-avoid">
-          <strong>{{ $t(`skills.${category}`) }}:</strong>
-          <div class="flex flex-wrap gap-2">
-            <UBadge v-for="skill in skills" :key="skill" :label="skill" variant="soft" />
-          </div>
-        </div>
+      <SectionCard :title="$t('sections.skills')">
+        <LazySkillsList hydrate-never :skills="resume.skills" />
       </SectionCard>
       <SectionCard :title="$t('sections.education')">
-        <EducationTimeline :education="resume.education" />
+        <LazyEducationTimeline hydrate-never :education="resume.education" />
       </SectionCard>
       <SectionCard :title="$t('sections.certifications')">
         <UPageGrid class="lg:grid-cols-2">
-          <TiltCard v-for="certificate in resume.certifications" :key="certificate.title">
+          <LazyTiltCard v-for="certificate in resume.certifications" :key="certificate.title" hydrate-on-visible>
             <CertificationSection :certificate />
-          </TiltCard>
+          </LazyTiltCard>
         </UPageGrid>
       </SectionCard>
       <UFooter :ui="{ container: 'py-2 lg:py-2 px-0 sm:px-0 lg:px-0 text-sm text-muted print:hidden', bottom: 'py-0 lg:py-0' }">
