@@ -1,6 +1,6 @@
-import type { ContributionDay, RepositoryLanguages, SearchIssueItem } from '../../app/utils/github'
+import type { ContributionDay, GitHubActivityData, RepositoryLanguages, SearchIssueItem } from '../../app/utils/github'
 import { describe, expect, it } from 'vitest'
-import { aggregateLanguages, batchRepoQueries, getStreaks, rankContributions, summarizeContributions } from '../../app/utils/github'
+import { aggregateLanguages, batchRepoQueries, getStreaks, monthsAgo, rankContributions, summarizeContributions, toGitHubActivity } from '../../app/utils/github'
 
 function pr(repo: string, number: number, updated_at: string): SearchIssueItem {
   return {
@@ -129,5 +129,45 @@ describe('aggregateLanguages', () => {
 
   it('returns nothing when there is no code', () => {
     expect(aggregateLanguages([repo()])).toEqual([])
+  })
+})
+
+describe('monthsAgo', () => {
+  it('goes back whole calendar months, across a year', () => {
+    expect(monthsAgo(6, new Date('2026-10-05T10:00:00Z'))).toBe('2026-04-05')
+    expect(monthsAgo(3, new Date('2026-02-15T00:00:00Z'))).toBe('2025-11-15')
+  })
+})
+
+describe('toGitHubActivity', () => {
+  const now = new Date('2026-10-05T10:00:00Z') // 6 months back: 2026-04-05
+  const day = (date: string, contributionCount: number): ContributionDay => ({ date, contributionCount, contributionLevel: contributionCount ? 'FIRST_QUARTILE' : 'NONE' })
+  const repo = (name: string, pushedAt: string | null) => ({ pushedAt, languages: { edges: [{ size: 10, node: { name, color: `#${name}` } }] } })
+  const data: GitHubActivityData = {
+    contributionCalendar: {
+      totalContributions: 99,
+      weeks: [
+        { contributionDays: [day('2026-03-29', 5), day('2026-03-30', 5)] }, // all before the window
+        { contributionDays: [day('2026-04-04', 7), day('2026-04-05', 1), day('2026-04-06', 1)] }, // cut in the middle
+        { contributionDays: [day('2026-10-04', 0), day('2026-10-05', 2)] },
+      ],
+    },
+    repositories: [repo('ts', '2026-09-01T00:00:00Z'), repo('old', '2025-12-01T00:00:00Z'), repo('never', null)],
+  }
+
+  it('keeps only the days in the window, dropping emptied weeks', () => {
+    const { weeks } = toGitHubActivity(data, 6, now)
+    expect(weeks.map(week => week.map(d => d.date))).toEqual([['2026-04-05', '2026-04-06'], ['2026-10-04', '2026-10-05']])
+  })
+
+  it('recomputes the total and streaks from the days left', () => {
+    const activity = toGitHubActivity(data, 6, now)
+    expect(activity.totalContributions).toBe(4)
+    expect(activity.streaks).toEqual({ longest: 2, current: 1 })
+  })
+
+  it('counts languages only of the repositories pushed to in the window', () => {
+    expect(toGitHubActivity(data, 6, now).languages.map(l => l.name)).toEqual(['ts'])
+    expect(toGitHubActivity(data, 12, now).languages.map(l => l.name)).toEqual(['ts', 'old'])
   })
 })

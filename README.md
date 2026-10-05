@@ -12,6 +12,23 @@ GitHub data (profile, projects, contributions) is fetched at build time and the
 site is rebuilt daily, so visitors never hit the GitHub API. Set `NUXT_GITHUB_TOKEN`
 when building locally if you run into the anonymous rate limit.
 
+### Activity panel
+
+The side panel (below the profile on small screens) is loaded in the browser from the
+[my-location](https://github.com/zAlweNy26/my-location) Worker at `location.danyalwe.me`, which also serves
+the live position. The Worker holds the API keys and does the fetching:
+
+- **Right now**: live Discord presence (status, custom status, Spotify, games and apps), streamed from
+  `/api/presence/stream`. A Durable Object keeps the bot connected to the Discord Gateway.
+- **Coding, last 7 days** and **GitHub**: WakaTime summaries, and the last year of GitHub contributions and
+  repository languages, from `/api/activity`, cached in KV and refreshed hourly. How many months of GitHub
+  to show is `activity.githubMonths` in `app/app.config.ts`: one value for the side column (from `lg`), one for
+  smaller screens, where the panel is stacked with the other cards. The totals are computed here
+  (`app/utils/wakatime.ts`, `app/utils/github.ts`).
+
+To try a local Worker (`wrangler dev` on port 8787), start the site with
+`NUXT_PUBLIC_LIVE_API_URL=http://localhost:8787/api bun run dev`.
+
 ## Development
 
 Bun is the package manager (version pinned in `package.json`); Node (`.nvmrc`) runs the Nuxt CLI.

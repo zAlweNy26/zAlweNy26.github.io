@@ -5,12 +5,19 @@
 
 @theme static {
   --font-sans: 'Space Grotesk', sans-serif;
+  --text-2xs: 0.625rem;
+  --text-2xs--line-height: calc(1 / 0.625);
 }
 
 :root {
   --ui-radius: 0.35rem;
   /* UContainer width: a single-column CV reads better narrower than the 80rem default */
   --ui-container: var(--container-4xl);
+
+  /* From lg the activity panel sits beside the CV, which keeps roughly its single-column width */
+  @variant lg {
+    --ui-container: var(--container-7xl);
+  }
 }
 
 @layer base {

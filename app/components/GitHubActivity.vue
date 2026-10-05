@@ -34,6 +34,12 @@ const monthLabels = computed(() => {
   })
 })
 
+const languageItems = computed(() => activity.languages.map(lang => ({
+  label: lang.name === OTHER_LANGUAGES ? t('activity.other') : lang.name,
+  value: lang.percent,
+  color: lang.color,
+})))
+
 const total = computed(() => activity.totalContributions.toLocaleString(localeProperties.value.language))
 
 const stats = computed(() => [
@@ -46,58 +52,52 @@ const stats = computed(() => [
 <template>
   <div class="space-y-6">
     <dl class="grid grid-cols-3 gap-2 text-center">
-      <div v-for="stat in stats" :key="stat.label" class="rounded-md bg-elevated/50 p-2">
-        <dt class="text-xs sm:text-sm text-muted">
+      <div v-for="stat in stats" :key="stat.label" class="rounded-md bg-elevated/50 px-1.5 py-1">
+        <dt class="text-2xs text-muted">
           {{ stat.label }}
         </dt>
-        <dd class="text-lg sm:text-xl font-bold text-highlighted">
+        <dd class="text-sm font-bold text-highlighted whitespace-nowrap">
           {{ stat.value }}
         </dd>
       </div>
     </dl>
 
-    <div class="space-y-2">
-      <!-- rtl: on narrow screens the scroll starts at the end, showing the latest weeks -->
-      <div dir="rtl" class="overflow-x-auto pb-1">
-        <!-- Columns stretch to fill the card, down to 11px cells before scrolling -->
-        <div dir="ltr" role="img" :aria-label="t('activity.calendarLabel', { n: total })"
-             class="flex flex-col gap-1 w-max min-w-full">
-          <div class="flex gap-[3px] text-xs text-muted h-4" aria-hidden="true">
+    <!-- rtl: if a narrow screen can't fit it, the scroll starts at the end, showing the latest weeks -->
+    <div dir="rtl" class="overflow-x-auto pb-1">
+      <div dir="ltr" class="w-max mx-auto space-y-2">
+        <div role="img" :aria-label="t('activity.calendarLabel', { n: total })" class="flex flex-col gap-1">
+          <div class="flex gap-0.75 text-xs text-muted h-4" aria-hidden="true">
             <!-- Absolute, so a label overflows into the next columns instead of widening its own -->
-            <span v-for="(label, i) in monthLabels" :key="i" class="relative flex-1 basis-0 min-w-[11px]">
+            <span v-for="(label, i) in monthLabels" :key="i" class="relative w-[11px] shrink-0">
               <span class="absolute whitespace-nowrap">{{ label }}</span>
             </span>
           </div>
           <div class="flex gap-[3px]">
-            <div v-for="(week, i) in activity.weeks" :key="i" class="flex flex-1 basis-0 min-w-[11px] flex-col gap-[3px]" :class="{ 'justify-end': i === 0 }">
-              <span v-for="day in week" :key="day.date" :class="levelClasses[day.contributionLevel]"
-                    class="w-full aspect-square rounded-[2px]"
-                    :title="t('activity.day', { count: day.contributionCount, date: format(day.date, { dateStyle: 'medium' }) }, day.contributionCount)" />
+            <div v-for="(week, i) in activity.weeks" :key="i" class="flex flex-col gap-[3px] w-[11px] shrink-0" :class="{ 'justify-end': i === 0 }">
+              <UTooltip v-for="day in week" :key="day.date" arrow
+                        :text="t('activity.day', { count: day.contributionCount, date: format(day.date, { dateStyle: 'medium' }) }, day.contributionCount)">
+                <span :class="levelClasses[day.contributionLevel]" class="size-[11px] rounded-[2px]" />
+              </UTooltip>
             </div>
           </div>
         </div>
-      </div>
-      <div class="flex items-center justify-end gap-[3px] text-xs text-muted" aria-hidden="true">
-        <span class="me-1">{{ $t('activity.less') }}</span>
-        <span v-for="level in levels" :key="level" :class="level" class="size-[11px] rounded-[2px]" />
-        <span class="ms-1">{{ $t('activity.more') }}</span>
+        <div class="flex items-center justify-end gap-[3px] text-xs text-muted" aria-hidden="true">
+          <span class="me-1">{{ $t('activity.less') }}</span>
+          <span v-for="level in levels" :key="level" :class="level" class="size-[11px] rounded-[2px]" />
+          <span class="ms-1">{{ $t('activity.more') }}</span>
+        </div>
       </div>
     </div>
 
     <div v-if="activity.languages.length > 0" class="space-y-3">
-      <h3 class="text-base font-semibold text-highlighted">
+      <h4 class="text-sm font-semibold text-highlighted">
         {{ $t('activity.languages') }}
-      </h3>
-      <div class="flex h-3 overflow-hidden rounded-full bg-accented" aria-hidden="true">
-        <span v-for="lang in activity.languages" :key="lang.name" :style="{ width: `${lang.percent}%`, backgroundColor: lang.color }" />
-      </div>
-      <ul class="flex flex-wrap gap-x-4 gap-y-1 text-sm">
-        <li v-for="lang in activity.languages" :key="lang.name" class="flex items-center gap-1.5">
-          <span class="size-2.5 rounded-full" :style="{ backgroundColor: lang.color }" />
-          <span class="text-highlighted">{{ lang.name === OTHER_LANGUAGES ? $t('activity.other') : lang.name }}</span>
-          <span class="text-muted">{{ lang.percent.toLocaleString(localeProperties.language) }}%</span>
-        </li>
-      </ul>
+      </h4>
+      <UProgressGroup :items="languageItems">
+        <template #item-trailing="{ item }">
+          {{ item.value?.toLocaleString(localeProperties.language) }}%
+        </template>
+      </UProgressGroup>
     </div>
   </div>
 </template>

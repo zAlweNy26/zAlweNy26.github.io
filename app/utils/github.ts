@@ -140,3 +140,41 @@ export function aggregateLanguages(repos: RepositoryLanguages[], limit = 7, othe
 
   return shares.map(({ name, color, size }) => ({ name, color, percent: Math.round(size / total * 1000) / 10 }))
 }
+
+export interface GitHubActivity {
+  totalContributions: number
+  weeks: ContributionDay[][]
+  streaks: { longest: number, current: number }
+  languages: LanguageShare[]
+}
+
+/** What the my-location Worker serves: the last year of GraphQL data, untouched */
+export interface GitHubActivityData {
+  contributionCalendar: { totalContributions: number, weeks: { contributionDays: ContributionDay[] }[] }
+  /** Most recently pushed first */
+  repositories: (RepositoryLanguages & { pushedAt: string | null })[]
+}
+
+/** `YYYY-MM-DD` of the same calendar day `months` before `now` (UTC) */
+export function monthsAgo(months: number, now = new Date()) {
+  return new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() - months, now.getUTCDate())).toISOString().slice(0, 10)
+}
+
+/**
+ * The Worker's year of data cut to the last `months`: weeks, total and streaks from the days left, and languages
+ * from the repositories pushed to since then (their whole code: GitHub has no per-period sizes).
+ */
+export function toGitHubActivity({ contributionCalendar, repositories }: GitHubActivityData, months: number, now = new Date()): GitHubActivity {
+  const since = monthsAgo(months, now)
+  // A week cut in the middle keeps its later days: the heatmap aligns that first column to the bottom
+  const weeks = contributionCalendar.weeks
+    .map(week => week.contributionDays.filter(day => day.date >= since))
+    .filter(week => week.length > 0)
+  const days = weeks.flat()
+  return {
+    totalContributions: days.reduce((sum, day) => sum + day.contributionCount, 0),
+    weeks,
+    streaks: getStreaks(days),
+    languages: aggregateLanguages(repositories.filter(repo => repo.pushedAt && repo.pushedAt.slice(0, 10) >= since)),
+  }
+}

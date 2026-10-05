@@ -9,7 +9,7 @@
     "experience": "Professional Experience",
     "projects": "Personal Projects",
     "contributions": "Open Source Contributions",
-    "activity": "GitHub Activity",
+    "activity": "Activity",
     "skills": "Skills",
     "education": "Education",
     "certifications": "Certifications"
@@ -46,7 +46,7 @@
     "recent": "Recent PRs"
   },
   "activity": {
-    "total": "Contributions in the last year",
+    "total": "Contributions",
     "longestStreak": "Longest streak",
     "currentStreak": "Current streak",
     "calendarLabel": "{n} contributions in the last year",
@@ -54,7 +54,33 @@
     "less": "Less",
     "more": "More",
     "languages": "Most used languages",
-    "other": "Other"
+    "other": "Other",
+    "coding": "Coding, last 7 days",
+    "github": "GitHub, last month | GitHub, last {n} months",
+    "loading": "Loading activity"
+  },
+  "wakatime": {
+    "total": "Total",
+    "average": "Daily average",
+    "chartLabel": "{total} of coding in the last 7 days"
+  },
+  "discord": {
+    "loading": "Loading Discord status",
+    "status": {
+      "online": "Online",
+      "idle": "Away",
+      "dnd": "Do not disturb",
+      "offline": "Offline"
+    },
+    "spotify": "Listening on Spotify",
+    "playing": "Playing",
+    "streaming": "Streaming",
+    "listening": "Listening to",
+    "watching": "Watching",
+    "competing": "Competing in",
+    "elapsed": "for {time}",
+    "idle": "Nothing going on right now",
+    "unavailable": "Status unavailable"
   },
   "certifications": {
     "view": "View Certificate"

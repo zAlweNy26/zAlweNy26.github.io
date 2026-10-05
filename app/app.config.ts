@@ -1,4 +1,8 @@
 export default defineAppConfig({
+  activity: {
+    // Months: the my-location Worker serves the last year, so 12 at most
+    githubMonths: { side: 4, stacked: 12 },
+  },
   // https://ui.nuxt.com/getting-started/theme#design-system
   ui: {
     colors: {
@@ -32,6 +36,13 @@ export default defineAppConfig({
       },
       defaultVariants: {
         variant: 'subtle',
+      },
+    },
+    progressGroup: {
+      slots: {
+        list: 'flex-row flex-wrap gap-x-4 gap-y-1',
+        itemLabel: 'text-highlighted',
+        itemTrailing: 'ms-0 text-muted tabular-nums',
       },
     },
     pageGrid: {

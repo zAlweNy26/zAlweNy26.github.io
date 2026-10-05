@@ -9,7 +9,7 @@
     "experience": "Esperienza professionale",
     "projects": "Progetti personali",
     "contributions": "Contributi open source",
-    "activity": "Attività su GitHub",
+    "activity": "Attività",
     "skills": "Competenze",
     "education": "Formazione",
     "certifications": "Certificazioni"
@@ -46,7 +46,7 @@
     "recent": "PR recenti"
   },
   "activity": {
-    "total": "Contributi nell’ultimo anno",
+    "total": "Contributi",
     "longestStreak": "Serie più lunga",
     "currentStreak": "Serie attuale",
     "calendarLabel": "{n} contributi nell’ultimo anno",
@@ -54,7 +54,33 @@
     "less": "Meno",
     "more": "Di più",
     "languages": "Linguaggi più usati",
-    "other": "Altri"
+    "other": "Altri",
+    "coding": "Programmazione, ultimi 7 giorni",
+    "github": "GitHub, ultimo mese | GitHub, ultimi {n} mesi",
+    "loading": "Caricamento delle attività"
+  },
+  "wakatime": {
+    "total": "Totale",
+    "average": "Media giornaliera",
+    "chartLabel": "{total} di programmazione negli ultimi 7 giorni"
+  },
+  "discord": {
+    "loading": "Caricamento dello stato di Discord",
+    "status": {
+      "online": "Online",
+      "idle": "Assente",
+      "dnd": "Non disturbare",
+      "offline": "Offline"
+    },
+    "spotify": "In ascolto su Spotify",
+    "playing": "Sta giocando a",
+    "streaming": "In diretta",
+    "listening": "Sta ascoltando",
+    "watching": "Sta guardando",
+    "competing": "In gara su",
+    "elapsed": "da {time}",
+    "idle": "Nessuna attività in corso",
+    "unavailable": "Stato non disponibile"
   },
   "certifications": {
     "view": "Vedi certificato"

@@ -36,24 +36,23 @@ defineOgImage('Portfolio', { summary: t('meta.ogSummary') }, {
   alt: t('meta.ogAlt'),
 })
 
-const [profileRes, reposRes, contributionsRes, activityRes, resumeRes] = await Promise.all([
+const [profileRes, reposRes, contributionsRes, resumeRes] = await Promise.all([
   useGitHubProfile(),
   useGitHubRepos(),
   useGitHubContributions(),
-  useGitHubActivity(),
   useResume(),
 ])
 const { data: profile } = profileRes, { data: repos } = reposRes
-const { data: contributions } = contributionsRes, { data: activity } = activityRes, { data: resume } = resumeRes
+const { data: contributions } = contributionsRes, { data: resume } = resumeRes
 
 // Fail the static build rather than deploy a page with missing sections (e.g. GitHub rate limit)
 if (import.meta.prerender) {
-  const failed = [profileRes, reposRes, contributionsRes, activityRes, resumeRes].find(res => res.error.value)
+  const failed = [profileRes, reposRes, contributionsRes, resumeRes].find(res => res.error.value)
   if (failed) throw createError({ statusCode: 500, message: `Prerender data fetch failed: ${failed.error.value?.message}`, fatal: true })
 }
 
 // The live position changes all the time, so it's the only data fetched in the browser
-const { data: location } = useFetch('https://location.danyalwe.me/api/location', {
+const { data: location } = useFetch(`${useRuntimeConfig().public.liveApiUrl}/location`, {
   key: 'location',
   server: false,
   lazy: true,
@@ -63,55 +62,61 @@ const { data: location } = useFetch('https://location.danyalwe.me/api/location',
 
 <template>
   <UContainer as="main" class="min-h-screen py-4 not-print:pt-16 print:p-0 print:max-w-none selection:bg-primary selection:text-neutral-900">
-    <BlurReveal class="space-y-4">
-      <ProfileCard :profile :location :age :story="resume.aboutStory" :summary="resume.aboutSummary" />
-      <!-- Static sections never hydrate (no JS needed); tilt cards hydrate once scrolled into view -->
-      <SectionCard :title="$t('sections.experience')">
-        <LazyExperienceTimeline hydrate-never :experiences="resume.experiences" />
-      </SectionCard>
-      <SectionCard v-if="repos.length > 0" :title="$t('sections.projects')" class="print:hidden">
-        <UPageGrid>
-          <LazyTiltCard v-for="repo in repos" :key="repo.name" hydrate-on-visible>
-            <ProjectSection :repo />
-          </LazyTiltCard>
-        </UPageGrid>
-      </SectionCard>
-      <SectionCard v-if="contributions.length > 0" :title="$t('sections.contributions')" class="print:hidden">
-        <UPageGrid class="lg:grid-cols-2">
-          <LazyTiltCard v-for="contribution in contributions" :key="contribution.repoFullName" hydrate-on-visible>
-            <ContributionSection :contribution />
-          </LazyTiltCard>
-        </UPageGrid>
-      </SectionCard>
-      <SectionCard v-if="activity" :title="$t('sections.activity')" class="print:hidden">
-        <LazyGitHubActivity hydrate-never :activity />
-      </SectionCard>
-      <SectionCard :title="$t('sections.skills')">
-        <LazySkillsList hydrate-never :skills="resume.skills" />
-      </SectionCard>
-      <SectionCard :title="$t('sections.education')">
-        <LazyEducationTimeline hydrate-never :education="resume.education" />
-      </SectionCard>
-      <SectionCard :title="$t('sections.certifications')">
-        <UPageGrid class="lg:grid-cols-2">
-          <LazyTiltCard v-for="certificate in resume.certifications" :key="certificate.title" hydrate-on-visible>
-            <CertificationSection :certificate />
-          </LazyTiltCard>
-        </UPageGrid>
-      </SectionCard>
-      <UFooter :ui="{ container: 'py-2 lg:py-2 px-0 sm:px-0 lg:px-0 text-sm text-muted print:hidden', bottom: 'py-0 lg:py-0' }">
-        <template #left>
-          {{ $t('footer.copyright', { from: new Date(profile.created_at).getFullYear(), to: buildDate.getFullYear(), name: username }) }}
-        </template>
-        <template #right>
-          v{{ $config.public.version }}
-        </template>
-        <template #bottom>
-          <p class="hidden print:block text-center text-muted">
-            {{ $t('footer.gdpr') }}
-          </p>
-        </template>
-      </UFooter>
-    </BlurReveal>
+    <!-- Two columns on large screens, the activity panel on the side; on smaller ones it comes right after the profile -->
+    <div class="grid grid-cols-[minmax(0,1fr)] gap-4 lg:grid-cols-[minmax(0,1fr)_20rem] xl:grid-cols-[minmax(0,1fr)_22rem] print:block print:space-y-4">
+      <BlurReveal class="lg:col-start-1 lg:row-start-1">
+        <ProfileCard :profile :location :age :story="resume.aboutStory" :summary="resume.aboutSummary" />
+      </BlurReveal>
+      <BlurReveal :offset="1"
+                  class="min-w-0 lg:col-start-2 lg:row-start-1 lg:row-span-2 lg:self-start lg:sticky lg:top-16 print:hidden">
+        <ActivityPanel />
+      </BlurReveal>
+      <BlurReveal :offset="1" class="space-y-4 min-w-0 lg:col-start-1 lg:row-start-2">
+        <!-- Static sections never hydrate (no JS needed); tilt cards hydrate once scrolled into view -->
+        <SectionCard :title="$t('sections.experience')">
+          <LazyExperienceTimeline hydrate-never :experiences="resume.experiences" />
+        </SectionCard>
+        <SectionCard v-if="repos.length > 0" :title="$t('sections.projects')" class="print:hidden">
+          <UPageGrid>
+            <LazyTiltCard v-for="repo in repos" :key="repo.name" hydrate-on-visible>
+              <ProjectSection :repo />
+            </LazyTiltCard>
+          </UPageGrid>
+        </SectionCard>
+        <SectionCard v-if="contributions.length > 0" :title="$t('sections.contributions')" class="print:hidden">
+          <UPageGrid class="lg:grid-cols-2">
+            <LazyTiltCard v-for="contribution in contributions" :key="contribution.repoFullName" hydrate-on-visible>
+              <ContributionSection :contribution />
+            </LazyTiltCard>
+          </UPageGrid>
+        </SectionCard>
+        <SectionCard :title="$t('sections.skills')">
+          <LazySkillsList hydrate-never :skills="resume.skills" />
+        </SectionCard>
+        <SectionCard :title="$t('sections.education')">
+          <LazyEducationTimeline hydrate-never :education="resume.education" />
+        </SectionCard>
+        <SectionCard :title="$t('sections.certifications')">
+          <UPageGrid class="lg:grid-cols-2">
+            <LazyTiltCard v-for="certificate in resume.certifications" :key="certificate.title" hydrate-on-visible>
+              <CertificationSection :certificate />
+            </LazyTiltCard>
+          </UPageGrid>
+        </SectionCard>
+        <UFooter :ui="{ container: 'py-2 lg:py-2 px-0 sm:px-0 lg:px-0 text-sm text-muted print:hidden', bottom: 'py-0 lg:py-0' }">
+          <template #left>
+            {{ $t('footer.copyright', { from: new Date(profile.created_at).getFullYear(), to: buildDate.getFullYear(), name: username }) }}
+          </template>
+          <template #right>
+            v{{ $config.public.version }}
+          </template>
+          <template #bottom>
+            <p class="hidden print:block text-center text-muted">
+              {{ $t('footer.gdpr') }}
+            </p>
+          </template>
+        </UFooter>
+      </BlurReveal>
+    </div>
   </UContainer>
 </template>
