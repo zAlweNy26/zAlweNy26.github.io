@@ -49,7 +49,6 @@
     "eslint": "^10.12.0",
     "eslint-plugin-format": "^2.0.1",
     "eslint-plugin-vuejs-accessibility": "^2.6.0",
-    "nuxt-mcp": "^0.2.6",
     "serve": "^14.2.6",
     "typescript": "^5.9.3",
     "unlighthouse": "^0.19.1",

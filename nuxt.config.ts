@@ -18,7 +18,6 @@ export default defineNuxtConfig({
   $development: {
     modules: [
       '@compodium/nuxt',
-      'nuxt-mcp',
       '@nuxt/hints',
     ],
   },
