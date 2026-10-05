@@ -11,12 +11,15 @@ const props = withDefaults(defineProps<{
   yOffset?: number
   /** The first `maxStagger + 1` children animate on load, the rest as they scroll into view */
   maxStagger?: number
+  /** Delay steps before the first child, to continue the stagger of another BlurReveal */
+  offset?: number
 }>(), {
   duration: 0.4,
   delay: 0.12,
   blur: 8,
   yOffset: 16,
   maxStagger: 2,
+  offset: 0,
 })
 
 defineSlots<{ default: () => VNode[] }>()
@@ -42,7 +45,7 @@ const style = computed(() => ({
   <div :style>
     <div v-for="(child, index) in flatten($slots.default?.() ?? [])" :key="child.key ?? index"
          :class="index <= maxStagger ? 'reveal-load' : 'reveal-scroll'"
-         :style="{ '--reveal-delay': `${props.delay * Math.min(index, maxStagger)}s` }">
+         :style="{ '--reveal-delay': `${props.delay * (offset + Math.min(index, maxStagger))}s` }">
       <component :is="child" />
     </div>
   </div>

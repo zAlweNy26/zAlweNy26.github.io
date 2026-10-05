@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { formatMonthYear, getAge, getTimeSpan } from '../../app/utils/dates'
+import { formatDuration, formatMonthYear, getAge, getTimeSpan } from '../../app/utils/dates'
 
 describe('formatMonthYear', () => {
   it('formats in UTC, so a month start is not shown as the previous month', () => {
@@ -39,5 +39,13 @@ describe('getAge', () => {
 
   it('increments on the birthday', () => {
     expect(getAge(birth, new Date('2026-02-20'))).toBe(25)
+  })
+})
+
+describe('formatDuration', () => {
+  it('shows hours only when there are any', () => {
+    expect(formatDuration(12_000)).toBe('3h 20m')
+    expect(formatDuration(2_700)).toBe('45m')
+    expect(formatDuration(0)).toBe('0m')
   })
 })

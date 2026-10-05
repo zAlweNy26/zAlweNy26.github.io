@@ -28,6 +28,7 @@
     "@takumi-rs/core": "^2.14.0",
     "@vueuse/core": "^15.0.0",
     "@vueuse/nuxt": "^15.0.0",
+    "discord-api-types": "^0.38.56",
     "nuxt": "^4.5.2",
     "nuxt-vitalizer": "3.0.0",
     "rehype-external-links": "^3.0.0",

@@ -61,6 +61,8 @@ export default defineNuxtConfig({
     githubToken: '',
     public: {
       version,
+      // NUXT_PUBLIC_LIVE_API_URL=http://localhost:8787/api to try a local my-location Worker
+      liveApiUrl: 'https://location.danyalwe.me/api',
     },
   },
 
@@ -93,8 +95,8 @@ export default defineNuxtConfig({
   icon: {
     clientBundle: {
       scan: true,
-      // Picked with a ternary in ThemeButton, which the bundle scanner can't see
-      icons: ['hugeicons:sun-03', 'hugeicons:moon-02'],
+      // Picked with ternaries (ThemeButton, DiscordPresence), which the bundle scanner can't see
+      icons: ['hugeicons:sun-03', 'hugeicons:moon-02', 'hugeicons:computer', 'hugeicons:smart-phone-01'],
     },
     // Never fetch missing icons from api.iconify.design at runtime (and the CSP wouldn't allow it)
     fallbackToApi: false,
