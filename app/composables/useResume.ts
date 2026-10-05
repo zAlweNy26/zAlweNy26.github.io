@@ -4,13 +4,14 @@
  */
 export const useBuildDate = () => useState('build-date', () => new Date())
 
+/**
+ * Normally only runs while prerendering: the browser gets the HTML in the payload. It runs in the browser only
+ * when there's no payload (in dev: hot reload, switching language), so the dynamic import keeps unified/remark
+ * in a separate chunk that the deployed site never downloads.
+ */
 async function renderMarkdown(text: string) {
-  // Only ever runs at build time: the dead client branch keeps unified/remark out of the bundle
-  if (import.meta.server) {
-    const { parseMarkdown } = await import('~/lib/markdown')
-    return parseMarkdown(text)
-  }
-  return text
+  const { parseMarkdown } = await import('~/lib/markdown')
+  return parseMarkdown(text)
 }
 
 /** The CV content in the current language, with markdown already rendered to HTML */
