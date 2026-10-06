@@ -131,6 +131,11 @@ export default defineNuxtConfig({
     enabled: false,
   },
 
+  ui: {
+    // Theme CSS only for the components the site uses, instead of all of them
+    experimental: { componentDetection: true },
+  },
+
   colorMode: {
     disableTransition: false,
   },

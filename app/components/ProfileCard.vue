@@ -65,6 +65,8 @@ const mapsUrl = (place: string) => `https://google.com/maps/place/${place.replac
       </div>
       <div class="shrink-0">
         <ImageSpotlight baseImage="/me_jojo.webp" spotlightImage="/me.webp"
+                        baseSrcset="/me_jojo-240.webp 240w, /me_jojo.webp 320w" spotlightSrcset="/me-240.webp 240w, /me.webp 320w"
+                        sizes="(min-width: 48rem) 10rem, 7.5rem"
                         :alt="profile.name" class="size-30 md:size-40 rounded-full object-cover" />
         <p class="text-sm text-center select-none print:hidden text-muted italic">
           <span class="pointer-coarse:hidden">{{ $t('profile.hover') }}</span>

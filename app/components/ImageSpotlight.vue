@@ -2,6 +2,9 @@
 const { spotlightSize = 100 } = defineProps<{
   baseImage: string
   spotlightImage: string
+  baseSrcset?: string
+  spotlightSrcset?: string
+  sizes?: string
   spotlightSize?: number
   alt?: string
 }>()
@@ -29,8 +32,8 @@ const currentOpacity = computed(() => isHovering.value ? 1 : 0)
   <!-- Purely decorative interaction: not focusable, the base image carries the alt text -->
   <div class="relative overflow-hidden cursor-none select-none"
        @pointerdown="handlePointerMove" @pointermove="handlePointerMove" @pointerleave="handlePointerLeave" @pointercancel="handlePointerLeave">
-    <img :src="baseImage" :alt="alt" width="320" height="320" class="w-full h-full object-cover" draggable="false">
-    <img :src="spotlightImage" alt="" aria-hidden="true" width="320" height="320"
+    <img :src="baseImage" :srcset="baseSrcset" :sizes :alt="alt" width="320" height="320" class="w-full h-full object-cover" draggable="false">
+    <img :src="spotlightImage" :srcset="spotlightSrcset" :sizes alt="" aria-hidden="true" width="320" height="320"
          class="absolute spotlight inset-0 w-full h-full object-cover transition-opacity duration-300 ease-out pointer-events-none"
          draggable="false">
   </div>

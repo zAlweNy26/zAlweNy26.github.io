@@ -24,6 +24,8 @@
   let dpr = 1
   let frame = 0
   let lastFrameTime = 0
+  // The loop waits for the page to load and hydrate, so it doesn't compete with them for the main thread
+  let loaded = document.readyState === 'complete'
 
   // Nuxt color-mode puts the `dark` class on <html> before the first paint, and toggles it with the theme
   const rgb = () => document.documentElement.classList.contains('dark') ? '255, 255, 255' : '23, 23, 23'
@@ -104,6 +106,11 @@
       return circle
     })
     render()
+    if (loaded) animate()
+  }
+
+  function animate() {
+    cancelAnimationFrame(frame)
     if (!reducedMotion.matches) frame = requestAnimationFrame(tick)
   }
 
@@ -125,4 +132,13 @@
     .observe(document.documentElement, { attributes: true, attributeFilter: ['class'] })
 
   start()
+
+  if (!loaded) {
+    window.addEventListener('load', () => {
+      loaded = true
+      // No requestIdleCallback in Safari
+      if ('requestIdleCallback' in window) requestIdleCallback(animate, { timeout: 2000 })
+      else setTimeout(animate, 1)
+    }, { once: true })
+  }
 })()

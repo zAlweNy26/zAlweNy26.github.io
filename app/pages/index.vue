@@ -69,7 +69,8 @@ const { data: location } = useFetch(`${useRuntimeConfig().public.liveApiUrl}/loc
       </BlurReveal>
       <BlurReveal :offset="1"
                   class="min-w-0 lg:col-start-2 lg:row-start-1 lg:row-span-2 lg:self-start lg:sticky lg:top-16 print:hidden">
-        <ActivityPanel />
+        <!-- All its data is fetched in the browser, so its code waits for idle instead of being preloaded -->
+        <LazyActivityPanel hydrate-on-idle />
       </BlurReveal>
       <BlurReveal :offset="1" class="space-y-4 min-w-0 lg:col-start-1 lg:row-start-2">
         <!-- Static sections never hydrate (no JS needed); tilt cards hydrate once scrolled into view -->

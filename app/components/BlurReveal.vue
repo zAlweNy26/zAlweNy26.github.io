@@ -54,7 +54,8 @@ const style = computed(() => ({
 <style scoped>
 @keyframes reveal {
   from {
-    opacity: 0;
+    /* Not 0: Chrome ignores invisible elements for LCP, which would then wait for the animation */
+    opacity: 0.01;
     filter: blur(var(--reveal-blur));
     translate: 0 var(--reveal-y);
   }
