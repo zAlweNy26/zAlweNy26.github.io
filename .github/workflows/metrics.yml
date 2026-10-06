@@ -1,0 +1,25 @@
+name: PageSpeed metrics
+
+on:
+  workflow_dispatch:
+  # Weekly, so the score history doesn't flood the commit log
+  schedule:
+    - cron: '0 5 * * 1'
+
+jobs:
+  pagespeed:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: lowlighter/metrics@latest
+        with:
+          filename: .github/metrics/pagespeed.svg
+          # The PageSpeed plugin calls Google's API only, so no GitHub token or base sections are needed
+          token: NOT_NEEDED
+          base: ''
+          committer_message: 'chore: update PageSpeed metrics'
+          plugin_pagespeed: yes
+          plugin_pagespeed_token: ${{ secrets.PAGESPEED_TOKEN }}
+          plugin_pagespeed_url: https://danyalwe.me
+          plugin_pagespeed_detailed: yes
