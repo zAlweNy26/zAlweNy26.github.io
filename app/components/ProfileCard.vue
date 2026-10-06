@@ -3,6 +3,8 @@ const props = defineProps<{
   profile: GitHubProfile
   /** Live position, fetched in the browser */
   location?: string | null
+  /** Its space stays reserved while loading, so the content below doesn't shift when it arrives */
+  locationLoading?: boolean
   age: number
   /** HTML with an `{age}` placeholder */
   story: string
@@ -35,6 +37,8 @@ const mapsUrl = (place: string) => `https://google.com/maps/place/${place.replac
               <span class="group-hover:text-primary transition-colors">{{ location }}</span>
             </span>
           </ULink>
+          <!-- Same size as the link above: pin icon (size-8) plus two lines of text -->
+          <USkeleton v-else-if="locationLoading" class="h-10 w-44 print:hidden" />
         </div>
         <p class="text-base md:text-lg font-medium print:text-base">
           Lead Frontend Developer

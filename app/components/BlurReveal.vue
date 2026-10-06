@@ -9,7 +9,7 @@ const props = withDefaults(defineProps<{
   delay?: number
   blur?: number
   yOffset?: number
-  /** The first `maxStagger + 1` children animate on load, the rest as they scroll into view */
+  /** The first `maxStagger + 1` children animate on load, the rest (blurred) as they scroll into view */
   maxStagger?: number
   /** Delay steps before the first child, to continue the stagger of another BlurReveal */
   offset?: number
@@ -52,10 +52,18 @@ const style = computed(() => ({
 </template>
 
 <style scoped>
+/* No blur on load: a filter animation repaints the whole element every frame, competing with the page load */
 @keyframes reveal {
   from {
     /* Not 0: Chrome ignores invisible elements for LCP, which would then wait for the animation */
     opacity: 0.01;
+    translate: 0 var(--reveal-y);
+  }
+}
+
+@keyframes reveal-blur {
+  from {
+    opacity: 0;
     filter: blur(var(--reveal-blur));
     translate: 0 var(--reveal-y);
   }
@@ -67,7 +75,7 @@ const style = computed(() => ({
 
 @supports (animation-timeline: view()) {
   .reveal-scroll {
-    animation: reveal linear both;
+    animation: reveal-blur linear both;
     animation-timeline: view();
     /* Capped at the element height so short items at the very bottom of the page can still finish */
     animation-range: entry 0 entry min(200px, 100%);

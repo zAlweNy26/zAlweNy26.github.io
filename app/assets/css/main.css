@@ -3,8 +3,31 @@
 
 @plugin "@tailwindcss/typography";
 
+/*
+ * Local fonts resized to Space Grotesk's metrics (computed with fontaine), so text doesn't reflow when the web font
+ * swaps in. @nuxt/fonts only generates these for `font-family` declarations, not for the --font-sans variable.
+ * Arial for desktop and iOS, Roboto for Android
+ */
+@font-face {
+  font-family: 'Space Grotesk Fallback';
+  src: local('Arial');
+  size-adjust: 109.4659%;
+  ascent-override: 89.891%;
+  descent-override: 26.675%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Space Grotesk Fallback Roboto';
+  src: local('Roboto');
+  size-adjust: 109.7063%;
+  ascent-override: 89.6941%;
+  descent-override: 26.6165%;
+  line-gap-override: 0%;
+}
+
 @theme static {
-  --font-sans: 'Space Grotesk', sans-serif;
+  --font-sans: 'Space Grotesk', 'Space Grotesk Fallback', 'Space Grotesk Fallback Roboto', sans-serif;
   --text-2xs: 0.625rem;
   --text-2xs--line-height: calc(1 / 0.625);
 }

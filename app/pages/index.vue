@@ -52,7 +52,7 @@ if (import.meta.prerender) {
 }
 
 // The live position changes all the time, so it's the only data fetched in the browser
-const { data: location } = useFetch(`${useRuntimeConfig().public.liveApiUrl}/location`, {
+const { data: location, status: locationStatus } = useFetch(`${useRuntimeConfig().public.liveApiUrl}/location`, {
   key: 'location',
   server: false,
   lazy: true,
@@ -65,7 +65,7 @@ const { data: location } = useFetch(`${useRuntimeConfig().public.liveApiUrl}/loc
     <!-- Two columns on large screens, the activity panel on the side; on smaller ones it comes right after the profile -->
     <div class="grid grid-cols-[minmax(0,1fr)] gap-4 lg:grid-cols-[minmax(0,1fr)_20rem] xl:grid-cols-[minmax(0,1fr)_22rem] print:block print:space-y-4">
       <BlurReveal class="lg:col-start-1 lg:row-start-1">
-        <ProfileCard :profile :location :age :story="resume.aboutStory" :summary="resume.aboutSummary" />
+        <ProfileCard :profile :location :location-loading="locationStatus === 'idle' || locationStatus === 'pending'" :age :story="resume.aboutStory" :summary="resume.aboutSummary" />
       </BlurReveal>
       <BlurReveal :offset="1"
                   class="min-w-0 lg:col-start-2 lg:row-start-1 lg:row-span-2 lg:self-start lg:sticky lg:top-16 print:hidden">
