@@ -6,11 +6,12 @@ export function useDiscordPresence() {
   const { liveApiUrl } = useRuntimeConfig().public
   const presence = shallowRef<DiscordPresenceData | null>(null)
   const loading = ref(true)
+  const visibility = useDocumentVisibility()
 
   let source: EventSource | undefined
   let failures = 0
 
-  onMounted(() => {
+  function open() {
     source = new EventSource(`${liveApiUrl}/presence/stream`)
     source.addEventListener('message', (event) => {
       presence.value = JSON.parse(event.data) as DiscordPresenceData | null
@@ -23,7 +24,14 @@ export function useDiscordPresence() {
       source?.close()
       loading.value = false
     })
-  })
+  }
+
+  // Open only while the tab is visible: an open stream keeps the Worker's Discord connection (and its bill) alive
+  onMounted(() => watch(visibility, (state) => {
+    source?.close()
+    source = undefined
+    if (state === 'visible' && failures < 3) open()
+  }, { immediate: true }))
   onBeforeUnmount(() => source?.close())
 
   return { presence, loading }
