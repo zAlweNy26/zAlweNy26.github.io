@@ -1,6 +1,6 @@
 # zAlweNy26.github.io
 
-My personal portfolio, live at [danyalwe.me](https://danyalwe.me/), in English and Italian. It also prints as a CV.
+My personal portfolio, live at [danyn.dev](https://danyn.dev/), in English and Italian. It also prints as a CV.
 
 ## What's inside
 

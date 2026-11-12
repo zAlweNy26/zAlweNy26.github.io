@@ -37,7 +37,7 @@ function useGitHubFetch() {
 
 const fallbackProfile: GitHubProfile = {
   name: 'Daniele Nicosia',
-  email: 'work@danyalwe.me',
+  email: 'work@danyn.dev',
   location: 'Cremona, Italy',
   created_at: '2018-07-15T14:43:19Z',
   followers: 0,

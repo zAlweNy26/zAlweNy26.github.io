@@ -3,7 +3,7 @@ const {
   name = 'Daniele Nicosia',
   role = 'Lead Frontend Developer',
   summary = '',
-  domain = 'danyalwe.me',
+  domain = 'danyn.dev',
 } = defineProps<{
   name?: string
   role?: string

@@ -61,12 +61,12 @@ export default defineNuxtConfig({
     public: {
       version,
       // NUXT_PUBLIC_LIVE_API_URL=http://localhost:8787/api to try a local my-location Worker
-      liveApiUrl: 'https://location.danyalwe.me/api',
+      liveApiUrl: 'https://location.danyn.dev/api',
     },
   },
 
   i18n: {
-    baseUrl: 'https://danyalwe.me',
+    baseUrl: 'https://danyn.dev',
     defaultLocale: 'en',
     // English at /, Italian at /it
     strategy: 'prefix_except_default',
@@ -79,7 +79,7 @@ export default defineNuxtConfig({
   },
 
   site: {
-    url: 'https://danyalwe.me',
+    url: 'https://danyn.dev',
     name: 'DanyAlwe · Portfolio',
   },
 
@@ -116,8 +116,8 @@ export default defineNuxtConfig({
       type: 'Person',
       name: 'Daniele Nicosia',
       alternateName: 'DanyAlwe',
-      url: 'https://danyalwe.me',
-      image: 'https://danyalwe.me/me_jojo.webp',
+      url: 'https://danyn.dev',
+      image: 'https://danyn.dev/me_jojo.webp',
       jobTitle: 'Lead Frontend Developer',
       sameAs: [
         'https://github.com/zAlweNy26',

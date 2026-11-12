@@ -6,15 +6,17 @@ const locales = [
   { path: '/it', lang: 'it-IT', about: 'Chi sono', other: { path: '/', label: 'Read in English' } },
 ]
 
-/** Console errors and Vue warnings, minus the live-location API (it only allows the real origin) */
-function collectProblems(page: Page) {
+/** Console errors and Vue warnings, minus the aborted live-location API requests */
+async function collectProblems(page: Page) {
+  // The live API only allows the real origin and may be unreachable from CI, so keep the test off the network
+  await page.route('https://location.danyn.dev/**', route => route.abort())
   const problems: string[] = []
   page.on('pageerror', e => problems.push(e.message))
   page.on('console', (m) => {
     if (/Content Security Policy/.test(m.text())) problems.push(m.text())
   })
   page.on('console', (m) => {
-    if ((m.type() === 'error' || /hydration|Vue warn/i.test(m.text())) && !/location\.danyalwe\.me|CORS|ERR_FAILED/.test(m.text()))
+    if ((m.type() === 'error' || /hydration|Vue warn/i.test(m.text())) && !/ERR_FAILED/.test(m.text()))
       problems.push(m.text())
   })
   return problems
@@ -23,7 +25,7 @@ function collectProblems(page: Page) {
 for (const locale of locales) {
   test.describe(`${locale.path} (${locale.lang})`, () => {
     test('renders without errors or hydration warnings', async ({ page }) => {
-      const problems = collectProblems(page)
+      const problems = await collectProblems(page)
       await page.goto(locale.path)
       await expect(page.locator('html')).toHaveAttribute('lang', locale.lang)
       await expect(page.getByRole('heading', { level: 1 })).toHaveText('Daniele Nicosia')
@@ -35,8 +37,8 @@ for (const locale of locales) {
     test('has localized SEO metadata', async ({ page }) => {
       await page.goto(locale.path)
       const canonical = await page.locator('link[rel="canonical"]').getAttribute('href')
-      expect(canonical?.replace(/\/$/, '')).toBe(`https://danyalwe.me${locale.path}`.replace(/\/$/, ''))
-      await expect(page.locator('link[rel="alternate"][hreflang="it"]')).toHaveAttribute('href', 'https://danyalwe.me/it')
+      expect(canonical?.replace(/\/$/, '')).toBe(`https://danyn.dev${locale.path}`.replace(/\/$/, ''))
+      await expect(page.locator('link[rel="alternate"][hreflang="it"]')).toHaveAttribute('href', 'https://danyn.dev/it')
       await expect(page.locator('meta[property="og:image:width"]')).toHaveAttribute('content', '1200')
       await expect(page.locator('meta[property="og:image:height"]')).toHaveAttribute('content', '630')
       const jsonLd = JSON.parse(await page.locator('script[type="application/ld+json"]').first().textContent() ?? '{}')

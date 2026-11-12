@@ -29,7 +29,7 @@
 
 - Content consistency ([0954d07](https://github.com/zAlweNy26/zAlweNy26.github.io/commit/0954d07))
 - Dates, card focus, og urls, reveal stagger and footer year ([b4d328c](https://github.com/zAlweNy26/zAlweNy26.github.io/commit/b4d328c))
-- Use danyalwe.me as the site url ([7b9f82d](https://github.com/zAlweNy26/zAlweNy26.github.io/commit/7b9f82d))
+- Use danyn.dev as the site url ([7b9f82d](https://github.com/zAlweNy26/zAlweNy26.github.io/commit/7b9f82d))
 - Show real star counts for open source contributions ([44d4b75](https://github.com/zAlweNy26/zAlweNy26.github.io/commit/44d4b75))
 - **print:** Keep cards, timeline entries and headings together ([d7edbf4](https://github.com/zAlweNy26/zAlweNy26.github.io/commit/d7edbf4))
 

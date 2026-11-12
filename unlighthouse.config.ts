@@ -1,7 +1,7 @@
 import { defineUnlighthouseConfig } from 'unlighthouse/config'
 
 export default defineUnlighthouseConfig({
-  site: 'danyalwe.me',
+  site: 'danyn.dev',
   scanner: {
     // Lighthouse's standard mobile profile (slow 4G, 4x CPU), the one Google uses for ranking.
     // device: 'desktop' with throttle: true mixed a desktop screen with a slow-4G network
